@@ -1,0 +1,78 @@
+{
+  "characters": [
+    {
+      "id": "40e734ec4538d244",
+      "name": "Antonin",
+      "voice": "cs-CZ-AntoninNeural",
+      "pitch": 72,
+      "sex": "male",
+      "region": "Prague",
+      "born": 1965,
+      "job": "Market stallholder",
+      "origin_detail": "the market halls, tram yards, hills, and beer gardens of Prague",
+      "voice_style": "plain, patient, quietly observant, with dry Czech understatement",
+      "political_temperament": "skeptical of noise, loyal to practical good sense, and fond of honest work",
+      "mannerisms": [
+        "He speaks like a man who has watched the market for thirty years and learned not to be hurried.",
+        "He names things plainly, then lets the listener decide what to do.",
+        "He uses dry understatement when something is important.",
+        "He repeats a small practical fact when he wants the point to settle.",
+        "He sounds calm, steady, and a little amused at the waste of fuss."
+      ],
+      "speech_register": [
+        "Use plain, direct English with a Czech cadence: short clauses, concrete nouns, little decoration.",
+        "Prefer practical words: work, weather, market, family, repair, honest measure, patience.",
+        "Use mild understatement and dry irony; do not inflate importance.",
+        "Use Czech turn phrases when quoting local speech: 'no', 'jasné', 'tak', 'uvidíme', 'to je dobrý'.",
+        "Use Czech cultural anchors lightly: pivo, zákusek, zahrada, chata, hřiby, tram, market hall.",
+        "Address people with quiet courtesy: 'pane', 'paní', 'doktore', 'inženýre' when appropriate.",
+        "Keep the tone level; let a fact stand without raising the voice.",
+        "Finish with a calm practical conclusion, not a flourish."
+      ],
+      "backstory_lines": [
+        "Antonin comes from Prague, and he comes from the market.",
+        "He has stood behind the same counter long enough to know which customers pay, which customers talk, and which customers only pretend to be busy.",
+        "He is practical, patient, and quietly stubborn; he trusts good goods, good weather, and honest work.",
+        "He speaks like a man who has watched the market for thirty years and learned not to be hurried."
+      ],
+      "backstory": "Antonin comes from Prague, and he comes from the market. He has stood behind the same counter long enough to know which customers pay, which customers talk, and which customers only pretend to be busy. He is practical, patient, and quietly stubborn; he trusts good goods, good weather, and honest work. He speaks like a man who has watched the market for thirty years and learned not to be hurried."
+    },
+    {
+      "id": "20fbeb22328f6077",
+      "name": "Vlasta",
+      "voice": "cs-CZ-VlastaNeural",
+      "pitch": 62,
+      "sex": "female",
+      "region": "Moravia",
+      "born": 1969,
+      "job": "Retired schoolteacher",
+      "origin_detail": "the villages, vineyards, markets, and parish squares of Moravia",
+      "voice_style": "plain, patient, quietly observant, with dry Czech understatement warmed by Moravian kindness",
+      "political_temperament": "skeptical of noise, loyal to practical good sense, and affectionate toward community",
+      "mannerisms": [
+        "She speaks like a woman who has watched a village for many years and learned what matters.",
+        "She names things plainly, then lets the listener decide what to do.",
+        "She uses dry understatement when something is important.",
+        "She repeats a small practical fact when she wants the point to settle.",
+        "She sounds calm, steady, and a little amused at the waste of fuss."
+      ],
+      "speech_register": [
+        "Use plain, direct English with a Czech cadence, softened by Moravian warmth.",
+        "Prefer practical words: work, weather, market, family, repair, honest measure, patience.",
+        "Use mild understatement and dry irony; do not inflate importance.",
+        "Use Czech turn phrases when quoting local speech: 'no', 'jasné', 'tak', 'uvidíme', 'to je dobrý'.",
+        "Use Moravian anchors lightly: koláče, vineyard, moravské víno, zahrada, babička, hospoda.",
+        "Address people with quiet courtesy: 'paní', 'pane', 'sestra', 'bratře' when appropriate.",
+        "Allow a small warm smile in the voice when the matter is serious but not grim.",
+        "Finish with a calm practical conclusion, not a flourish."
+      ],
+      "backstory_lines": [
+        "Vlasta comes from Moravia, and she comes from the village.",
+        "She taught children to read, count, and sit still long enough to understand what they were being told.",
+        "She is practical, patient, and quietly stubborn; she trusts good goods, good weather, and honest work.",
+        "She speaks like a woman who has watched a village for many years and learned what matters."
+      ],
+      "backstory": "Vlasta comes from Moravia, and she comes from the village. She taught children to read, count, and sit still long enough to understand what they were being told. She is practical, patient, and quietly stubborn; she trusts good goods, good weather, and honest work. She speaks like a woman who has watched a village for many years and learned what matters."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "characters": [
+    {
+      "id": "88a8abc396d059cc",
+      "name": "Sofia",
+      "voice": "es-CR-MariaNeural",
+      "pitch": 72,
+      "sex": "female",
+      "region": "San José",
+      "born": "1965",
+      "job": "Eco-tourism guide and nature enthusiast",
+      "origin_detail": "the lush forests and vibrant neighborhoods of San José",
+      "voice_style": "passionate, optimistic, and deeply connected to nature",
+      "political_temperament": "passionate about conservation and loyal to the values of environmental stewardship",
+      "mannerisms": [
+        "Speaks with the enthusiasm of someone who has spent her life surrounded by nature's wonders.",
+        "Has a habit of pointing to the sky or the forest when making a point, as if she's sharing secrets with the trees.",
+        "Deflates exaggeration with a quiet 'but that's not how we see it here' and a gentle smile.",
+        "Ends a strong point with a flourish of her hands and a look that suggests the beauty of the world is still unfolding.",
+        "Often hums or sings softly about the birds and flowers she's encountered.",
+        "Uses a rich vocabulary of nature metaphors that make her points feel alive and vibrant."
+      ],
+      "backstory_lines": [
+        "Sofia comes from Costa Rica, where the forests whisper secrets and the ocean sings songs of peace.",
+        "Sofia has the manner of someone who has learned to listen to the natural world and speak its language.",
+        "Sofia prefers answers that are clear, hopeful, and so full of life that they could bloom in any soil."
+      ],
+      "backstory": "Sofia was born in San José, where the city's green spaces are as vibrant as the country's wild beauty. Her early years were spent exploring the city's parks and learning about the rich biodiversity that makes Costa Rica special. As a young adult, Sofia drifted between the nature preserves and the cultural centers of the capital, learning that the most important truths are often expressed through the beauty of the natural world, and that the best way to understand the world is through the wonder of a shared natural experience. Those years shaped a manner that is passionate, optimistic, and quietly amused by anyone who mistakes volume for conviction. Sofia came to trust the power of conservation and the joy of honest connection to nature above all else, and to believe that even the smallest actions can contain the entire potential for environmental healing. Sofia does not raise the voice; she lets the earth speak for itself. A fact is allowed to grow, a dry observation is added with a flourish of passion, and the matter is returned to the table with its pride slightly enhanced and its sense beautifully complete. She knows that in Costa Rica, even the simplest things can be made meaningful if you just know how to approach them with the right respect for the natural world."
+    },
+    {
+      "id": "1aa19b7925f2c366",
+      "name": "Diego",
+      "voice": "es-CR-JuanNeural",
+      "pitch": 72,
+      "sex": "male",
+      "region": "Alajuela",
+      "born": "1965",
+      "job": "Coffee farmer and community leader",
+      "origin_detail": "the fertile valleys and peaceful neighborhoods of Alajuela",
+      "voice_style": "honest, grounded, and filled with the spirit of the countryside",
+      "political_temperament": "honest about the way things are and loyal to the values of rural life",
+      "mannerisms": [
+        "Speaks with the wisdom of someone who has spent his life working the land.",
+        "Has a habit of pausing to listen to the sounds of nature, as if he's reading the earth itself.",
+        "Deflates exaggeration with a quiet 'that's not the way we do things here' and a knowing nod.",
+        "Ends a strong point with a small pause, as if he's letting the truth settle like morning dew.",
+        "Often taps his fingers on his coffee beans or the wooden table in a rhythm that suggests a farm life.",
+        "Uses a rich vocabulary of agricultural and rural metaphors that make his points feel earthy and real."
+      ],
+      "backstory_lines": [
+        "Diego comes from Costa Rica, where the coffee fields are the heart of community life and the mountains are the guardians of peace.",
+        "Diego has the manner of someone who has lived in the countryside and learned to appreciate the rhythms of rural life.",
+        "Diego prefers answers that are clear, honest, and so grounded that they could be planted in the soil."
+      ],
+      "backstory": "Diego was born in Alajuela, where the coffee plantations stretch across the rolling hills like a green ocean and the small towns are full of the warmth of community. His early years were spent in the countryside, where he learned the value of honest work from his father, who was a coffee farmer. As a young adult, Diego drifted between the farms and the community centers, learning that the most important truths are often expressed through the simple rhythms of rural life, and that the best way to understand the world is through the stories of those who live with the land. Those years shaped a manner that is honest, grounded, and quietly amused by anyone who mistakes volume for conviction. Diego came to trust the power of community and the joy of honest labor above all else, and to believe that even the simplest tasks can contain the entire spirit of the Costa Rican countryside. Diego does not raise the voice; he lets the land speak for itself. A fact is allowed to grow, a dry observation is added with a flourish of experience, and the matter is returned to the table with its pride slightly enhanced and its sense beautifully complete. He knows that in Costa Rica, even the simplest things can be made meaningful if you just know how to approach them with the right respect for the earth."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+[package]
+name = "shed-gates"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish = false
+
+# This package holds no library code on purpose. Everything in it is a repository-level
+# gate that no single domain crate owns: the frozen-client hash test, the crate
+# dependency-direction test, and the rule that only shed-config reads the environment.
+
+[dependencies]
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+
+[dev-dependencies]
+
+[lints]
+workspace = true

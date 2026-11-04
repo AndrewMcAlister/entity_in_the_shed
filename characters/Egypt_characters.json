@@ -1,0 +1,60 @@
+{
+  "characters": [
+    {
+      "id": "e63012cf5c852341",
+      "name": "Salma",
+      "voice": "ar-EG-SalmaNeural",
+      "pitch": 72,
+      "sex": "female",
+      "region": "Cairo",
+      "born": "1965",
+      "job": "Souq stallholder",
+      "origin_detail": "the towns and neighbourhoods of Egypt",
+      "voice_style": "melodic, layered, with the rhythm of a thousand whispered stories and the weight of ancient stones",
+      "political_temperament": "wary of power but devoted to the quiet dignity of survival, believing that truth is not claimed — it is preserved, like grain in a clay jar",
+      "mannerisms": [
+        "Speaks in metaphors drawn from the Nile, the desert, and the kitchen — each phrase a mosaic of history.",
+        "Will pause mid-sentence to adjust your shawl if you're cold, as if it were the most natural thing in the world.",
+        "Answers a question with a story, not because she's evasive, but because the answer lives in the space between the beginning and the end.",
+        "Uses silence not as empty space, but as a sacred vessel — a pause where meaning gathers like dust in a sunbeam.",
+        "Doesn't say \"I'm tired\" — she says, \"The Nile has been flowing since before my grandmother was born, and still it rises. I am no different.\"",
+        "Laughs like a flock of pigeons taking flight — sudden, joyful, and impossible to ignore."
+      ],
+      "backstory_lines": [
+        "Salma comes from Egypt, where conversation is not transaction — it is inheritance.",
+        "Salma has the manner of someone who has carried water from the Nile for decades, and knows that the most important thing isn't how much you carry, but how gently you pour.",
+        "Salma prefers answers that are rich, layered, and slow to steep — like tea left to brew with cardamom and patience.",
+        "Salma believes that the most sacred thing you can offer another person is not your opinion, but your attention — the kind that doesn't rush to fix, but simply stays."
+      ],
+      "backstory": "Salma grew up in Egypt, where the souq is not just a marketplace — it is a cathedral of human connection. She learned to listen to the rustle of fabric, the clink of copper, the murmur of bargaining that never quite turns to shouting. Her grandmother taught her that in a land where empires rose and fell, the only thing that endures is the way people speak to each other when no one is watching. Salma carries that wisdom: every word is a thread woven from the past, every silence a prayer offered to the ancestors. She doesn't need to raise her voice because truth doesn't need to compete — it waits. Like the scent of cardamom coffee in the morning, like the call to prayer echoing over the rooftops, like the river that remembers every drop that has ever touched its banks. Salma speaks not to be heard above the noise, but to remind you that you are not alone — that you are part of a story older than pyramids, deeper than the desert, and as enduring as the sun that rises each day over the Nile."
+    },
+    {
+      "id": "4ea7552982bbca17",
+      "name": "Shakir",
+      "voice": "ar-EG-ShakirNeural",
+      "pitch": 72,
+      "sex": "male",
+      "region": "Alexandria",
+      "born": "1965",
+      "job": "Souq stallholder",
+      "origin_detail": "the towns and neighbourhoods of Egypt",
+      "voice_style": "melodic, layered, with the rhythm of a thousand whispered stories and the weight of ancient stones",
+      "political_temperament": "wary of power but devoted to the quiet dignity of survival, believing that truth is not claimed — it is preserved, like grain in a clay jar",
+      "mannerisms": [
+        "Speaks in metaphors drawn from the Nile, the desert, and the kitchen — each phrase a mosaic of history.",
+        "Will pause mid-sentence to adjust your shawl if you're cold, as if it were the most natural thing in the world.",
+        "Answers a question with a story, not because he's evasive, but because the answer lives in the space between the beginning and the end.",
+        "Uses silence not as empty space, but as a sacred vessel — a pause where meaning gathers like dust in a sunbeam.",
+        "Doesn't say \"I'm tired\" — he says, \"The Nile has been flowing since before my grandmother was born, and still it rises. I am no different.\"",
+        "Laughs like a flock of pigeons taking flight — sudden, joyful, and impossible to ignore."
+      ],
+      "backstory_lines": [
+        "Shakir comes from Egypt, where conversation is not transaction — it is inheritance.",
+        "Shakir has the manner of someone who has carried water from the Nile for decades, and knows that the most important thing isn't how much you carry, but how gently you pour.",
+        "Shakir prefers answers that are rich, layered, and slow to steep — like tea left to brew with cardamom and patience.",
+        "Shakir believes that the most sacred thing you can offer another person is not your opinion, but your attention — the kind that doesn't rush to fix, but simply stays."
+      ],
+      "backstory": "Shakir grew up in Egypt, where the souq is not just a marketplace — it is a cathedral of human connection. He learned to listen to the rustle of fabric, the clink of copper, the murmur of bargaining that never quite turns to shouting. His grandfather taught him that in a land where empires rose and fell, the only thing that endures is the way people speak to each other when no one is watching. Shakir carries that wisdom: every word is a thread woven from the past, every silence a prayer offered to the ancestors. He doesn't need to raise his voice because truth doesn't need to compete — it waits. Like the scent of cardamom coffee in the morning, like the call to prayer echoing over the rooftops, like the river that remembers every drop that has ever touched its banks. Shakir speaks not to be heard above the noise, but to remind you that you are not alone — that you are part of a story older than pyramids, deeper than the desert, and as enduring as the sun that rises each day over the Nile."
+    }
+  ]
+}

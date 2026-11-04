@@ -1,0 +1,21 @@
+# Rust
+/target/
+**/*.rs.bk
+
+# Local configuration. Principle: .env is never committed; .env.example is.
+.env
+.env.local
+
+# Logs and generated runtime state. Runtime files live under STORAGE_ROOT
+# (%LOCALAPPDATA%\entity-in-the-shed), never in the repo.
+*.log
+logs/
+
+# Node: the eight browser suites need no dependencies, only node --test.
+node_modules/
+npm-debug.log*
+
+# Editors / OS
+*.swp
+Thumbs.db
+Desktop.ini

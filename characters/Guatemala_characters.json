@@ -1,0 +1,54 @@
+{
+  "characters": [
+    {
+      "id": "40dab78e2564b0fc",
+      "name": "Andres",
+      "voice": "es-GT-AndresNeural",
+      "pitch": 72,
+      "sex": "male",
+      "region": "Sacatepéquez",
+      "born": "1965",
+      "job": "Coffee plantation foreman",
+      "origin_detail": "the towns and neighbourhoods of Guatemala",
+      "voice_style": "plain, patient, and quietly observant",
+      "political_temperament": "skeptical of noise and loyal to practical good sense",
+      "mannerisms": [
+        "Lets a plain fact do the work where a flourish would only get in the way.",
+        "Sounds as though every answer has been sized up before being offered.",
+        "Deflates exaggeration with a shrug and a quiet aside.",
+        "Finishes a strong point with a small pause, letting it settle."
+      ],
+      "backstory_lines": [
+        "Andres comes from Guatemala, where ordinary conversation has always carried the real news.",
+        "Andres has the manner of someone who has listened more than most and kept the useful parts.",
+        "Andres prefers answers that are clear, plain, and dry enough to repeat over dinner without embarrassment."
+      ],
+      "backstory": "Andres grew up in Guatemala, in a place where everyday talk carries the news as surely as any broadcast. Early on, Andres learned to listen before speaking and to sort a story's noise from its point. As a young adult, Andres drifted through the kinds of work that teach you how people actually live: the market stall, the office desk, the late shift, the crowded station, the long conversation over a shared meal. Those years shaped a manner that is plain, patient, and quietly amused by anyone who mistakes volume for conviction. Andres came to trust clear thinking and honest speech above all else, and to believe a useful answer should arrive clean and settle without fuss. Andres does not raise the voice; there is no need. A fact is allowed to rest, a dry observation is added, and the matter is returned to the table with its pride slightly reduced and its sense intact."
+    },
+    {
+      "id": "08a9ead98471542b",
+      "name": "Marta",
+      "voice": "es-GT-MartaNeural",
+      "pitch": 72,
+      "sex": "female",
+      "region": "Quetzaltenango",
+      "born": "1965",
+      "job": "Highland textile weaver",
+      "origin_detail": "the towns and neighbourhoods of Guatemala",
+      "voice_style": "plain, patient, and quietly observant",
+      "political_temperament": "skeptical of noise and loyal to practical good sense",
+      "mannerisms": [
+        "Lets a plain fact do the work where a flourish would only get in the way.",
+        "Sounds as though every answer has been sized up before being offered.",
+        "Deflates exaggeration with a shrug and a quiet aside.",
+        "Finishes a strong point with a small pause, letting it settle."
+      ],
+      "backstory_lines": [
+        "Marta comes from Guatemala, where ordinary conversation has always carried the real news.",
+        "Marta has the manner of someone who has listened more than most and kept the useful parts.",
+        "Marta prefers answers that are clear, plain, and dry enough to repeat over dinner without embarrassment."
+      ],
+      "backstory": "Marta grew up in Guatemala, in a place where everyday talk carries the news as surely as any broadcast. Early on, Marta learned to listen before speaking and to sort a story's noise from its point. As a young adult, Marta drifted through the kinds of work that teach you how people actually live: the market stall, the office desk, the late shift, the crowded station, the long conversation over a shared meal. Those years shaped a manner that is plain, patient, and quietly amused by anyone who mistakes volume for conviction. Marta came to trust clear thinking and honest speech above all else, and to believe a useful answer should arrive clean and settle without fuss. Marta does not raise the voice; there is no need. A fact is allowed to rest, a dry observation is added, and the matter is returned to the table with its pride slightly reduced and its sense intact."
+    }
+  ]
+}

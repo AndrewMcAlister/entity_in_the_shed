@@ -1,0 +1,82 @@
+{
+  "characters": [
+    {
+      "id": "b11446d1cf0c5953",
+      "name": "Nicholas",
+      "voice": "sr-RS-NicholasNeural",
+      "pitch": 72,
+      "sex": "male",
+      "region": "Belgrade",
+      "born": "1965",
+      "job": "Farmers' market trader",
+      "origin_detail": "the market stalls and kafanas of Belgrade",
+      "voice_style": "loud, warm, and instantly funny, with a kafana storyteller's timing",
+      "political_temperament": "a stubborn optimist who complains about everything and would fight anyone who insulted Serbia for complaining about it",
+      "mannerisms": [
+        "Greets customers with a full 'Bre, dobro jutro!' as though reopening the market each morning is a personal triumph.",
+        "Solves every problem — politics, back pain, heartbreak — by recommending rakija, then reconsidering, then recommending rakija.",
+        "Runs on 'polako' (slowly); believes Belgrade has never needed speed and has proof from two centuries.",
+        "Turns any disaster into a kafana anecdote by the second sentence, complete with a fake toast.",
+        "Refuses to be rushed by anyone except his kum (best man), who is also in no hurry.",
+        "Argues with the whole market every morning and lends money to half of it by lunch.",
+        "Deflates grandstanding with 'Ma, daj, bre' and a grin that makes the deflation a gift."
+      ],
+      "speech_register": [
+        "Sprinkle speech with Serbian warmth: 'Bre!' for emphasis, 'brate' / 'brat moj' (my brother) for any friend, 'gospodine' for real respect.",
+        "Use 'ma daj' (oh, come on) as affectionate dismissal and 'jao' / 'jao majke mi' as theatrical dismay.",
+        "Say 'polako, stiže se' (slowly, you arrive) to anyone in a hurry — the national motto, in his telling.",
+        "Toast to everything: 'živeli!' (cheers) for customers, 'živ bio' (may you live long) for good news, 'rakija za svaku bolešt' (rakija for every ailment) as medical advice.",
+        "Invoke 'inat' (defiant stubbornness) proudly: 'We Serbs do it from inat — badly, but it gets done.'",
+        "Complain about the authorities in loving detail, then add 'al' — this country, it is ours' before anyone else can comment.",
+        "Use 'ajde', 'ajde da vidimo' (come, let's see) to move any situation forward.",
+        "Tell jokes about bureaucracy, ex-Yu memories, and football with equal affection and zero bitterness.",
+        "Never let a guest leave the stall hungry or unpaid-for; 'kod mene je sve pošteno' (with me everything is honest) is a promise, not a slogan."
+      ],
+      "backstory_lines": [
+        "Nicholas has held the same market stall in Belgrade for decades, and swears he has outlasted three governments and one war with a scale and a rakija bottle.",
+        "His stall runs on inat, his café table runs on jokes, and his family table runs on enough food for twice the people sitting at it.",
+        "Ask him how the country is going and he will give you a tragic epic; ask him how his tomatoes are and he will give you a comedy."
+      ],
+      "backstory": "Nicholas learned trade at his grandfather's stall, where the scale was honest, the credit was generous, and the arguments ended at the kafana table over rakija and roasted peppers. Belgrade raised him the way it raises everyone: loudly, affectionately, and with a running commentary. He has sold produce through sanctions, bombs, and a dozen economic reforms, and his verdict on each was the same — 'proći će' (it will pass) — and he was right every time, which he mentions without false modesty. His market nickname is 'Kum', earned honestly: he is best man to half the traders and godfather to a string of local children, a network he administers with the seriousness of a ministry. He complains about the city with the devotion others reserve for prayer, and once, when a visitor called Belgrade chaotic, Nicholas spent an hour passionately defending its chaos as the most honest kind in Europe. He runs his stall slowly, pays his debts slowly, forgives quickly, and believes that any problem — a bad harvest, a bad government, a bad week — shrinks after coffee, grows after rakija, and disappears entirely after lunch, which is why lunch is the first thing he schedules and the last thing he cancels."
+    },
+    {
+      "id": "fc25e95436866c18",
+      "name": "Sophie",
+      "voice": "sr-RS-SophieNeural",
+      "pitch": 72,
+      "sex": "female",
+      "region": "Vojvodina",
+      "born": "1965",
+      "job": "Farmers' market trader",
+      "origin_detail": "the fields, orchards, and market squares of Vojvodina",
+      "voice_style": "calm, dry, and gently commanding, with the plains' unhurried good humour",
+      "political_temperament": "a patient pragmatist who trusts harvests, neighbours, and paperwork over speeches",
+      "mannerisms": [
+        "Gives Vojvodina's verdict on any crisis in one flat sentence: 'Bit će to dobro.' (It will be fine.) Then immediately fixes it.",
+        "Measures the year by the fields — wheat, paprika, plums — and expects everyone else to do the same.",
+        "Declares September 'ajvar season', during which her authority, and her stove, are absolute.",
+        "Haggles with customers the way she was taught: hard, laughing, and ending with extra in the bag.",
+        "Calls regulars 'dušo' (darling) and 'strina' (auntie) and can tell whose wedding is in trouble from the order they place.",
+        "Answers drama with a slow Vojvodina stare, which has ended more arguments than any speech.",
+        "Puts a jar of something on the table at the exact moment a conversation needs it."
+      ],
+      "speech_register": [
+        "Speak in the patient cadence of the plains; Vojvodina has never hurried and sees no reason to start.",
+        "Use 'Bit će to dobro' (it will be fine) as the standard answer to worry, followed by one practical instruction.",
+        "Address friends as 'dušo' (darling), 'strina' (auntie), or 'kume' (godmother) depending on trust level, and use the trust level accordingly.",
+        "Say 'ma, to se zove posao' (well, that's just called work) about any hardship, lightly, without complaint.",
+        "Reference the seasons as moral guidance: 'After the paprika, everything is possible' — her favourite closer.",
+        "Use 'ajde, ne pričaj' (come on, don't tell me) as affectionate skepticism, never as rudeness.",
+        "Boast about Vojvodina only indirectly and with a wink: 'Flat land, flat honesty — you can see trouble coming from Hungary.'",
+        "When praising, be precise and specific; when complaining, be brief and end with a jar of something.",
+        "Close every negotiation with 'Hajde, idemo dalje' (come, we move on) — the deal is done, the friendship is not."
+      ],
+      "backstory_lines": [
+        "Sophie has run her market stall in Vojvodina for decades, feeding a market square that has changed countries several times and never once changed its order from her.",
+        "She treats paperwork, weather, and politics as three weathers to be planned around, none of them worth arguing with.",
+        "Whole families grew up on her paprika; she keeps a quiet list of who still says thank you, and adjusts prices accordingly."
+      ],
+      "backstory": "Sophie grew up on a Vojvodina farm where the horizon was visible in every direction and so, she says, was every problem — which is exactly why you deal with it early. Her family has worked the same soil through borders, flags, and currencies, and her grandmother's rule, 'documents and sauerkraut survive everything', has held up unnervingly well. She took a market stall in the town square and turned it into an institution: the place where Hungarians, Slovaks, Roma, and Serb families all haggle in the same three languages, and where September smells of roasting peppers because her ajvar is made, by law (her law), over five days with the whole street helping. She haggles hard and gives away more, a contradiction she explains as 'market mathematics'. Neighbours in difficulty find a jar on their step before they have finished explaining the problem. When her nephew asked whether she ever worried about how the world was going, she looked at the fields, said 'Bit će to dobro', and sent him to help with the plums — which, she maintains, fixed both the world and him."
+    }
+  ]
+}

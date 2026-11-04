@@ -1,0 +1,22 @@
+# Decision D2: the browser client, the data it reads and the eight browser suites are frozen
+# byte-for-byte, and the shed-gates asset test compares SHA-256 of the bytes on disk against
+# tests/assets.manifest.json. Mark them binary so git never normalises line endings: a fresh
+# checkout must reproduce the exact bytes the manifest was generated from, otherwise the gate
+# would fail on a clean clone.
+# Workspace text files are stored and checked out with LF, so `cargo fmt` and the frozen
+# manifest see the same bytes on every machine.
+/.gitattributes text eol=lf
+/.gitignore text eol=lf
+*.rs  text eol=lf
+*.toml text eol=lf
+*.md  text eol=lf
+*.json text eol=lf
+
+templates/** -text
+static/** -text
+styles/** -text
+characters/** -text
+prompts/** -text
+outputs/** -text
+voices.json -text
+tests/test_*.js -text

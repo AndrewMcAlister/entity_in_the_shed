@@ -1,0 +1,727 @@
+{
+    "captured_from":  "D:\\Entity-In-The-Shed",
+    "captured_at":  "2026-11-04",
+    "note":  "Decision D2: the browser client, the data it reads and the eight browser suites are copied byte-for-byte and frozen. tests/assets_are_unchanged.rs fails on any drift, on any extra file in a frozen tree, and on any manifest entry that is absent.",
+    "files":  [
+                  {
+                      "path":  "characters/Afghanistan_characters.json",
+                      "bytes":  4199,
+                      "sha256":  "b9299cc0cba21ffeea0c6c5037b2beeb46f1e5ffc9f9ed7bd8f05d504c552bfc"
+                  },
+                  {
+                      "path":  "characters/Albania_characters.json",
+                      "bytes":  4113,
+                      "sha256":  "c6eda353e3fb17a914cb44e21f0c64610cc425789f5df1a74140e331811844f9"
+                  },
+                  {
+                      "path":  "characters/Algeria_characters.json",
+                      "bytes":  4130,
+                      "sha256":  "2da020ebea9542b87576ecf739418e01fb9489465c00a2c8a5f03593632da90b"
+                  },
+                  {
+                      "path":  "characters/Argentina_characters.json",
+                      "bytes":  4141,
+                      "sha256":  "eafbac0719d4ee113e9d09b3c302d411e7f3ea3ef2a0aeedf2a68cd7737e2b38"
+                  },
+                  {
+                      "path":  "characters/Australia_characters.json",
+                      "bytes":  5772,
+                      "sha256":  "eb2504edd5f04090f160ecda71064238ef23c55de230a9c895c7d534de528326"
+                  },
+                  {
+                      "path":  "characters/Austria_characters.json",
+                      "bytes":  4130,
+                      "sha256":  "af26e2c755ed8ebd03b590692379ec980f4b0be92ff6465a820d9d9954f59d09"
+                  },
+                  {
+                      "path":  "characters/Azerbaijan_characters.json",
+                      "bytes":  4131,
+                      "sha256":  "6130c1fcbff0fec42b51f6f11ee638d7cf2edc38a7861269a2f8257e375daab9"
+                  },
+                  {
+                      "path":  "characters/Bahrain_characters.json",
+                      "bytes":  4099,
+                      "sha256":  "8347f90f1c9435ca39250d3bbb15c0d8b0270f4e519f062a520687687c9d476a"
+                  },
+                  {
+                      "path":  "characters/Bangladesh_characters.json",
+                      "bytes":  4609,
+                      "sha256":  "aadb0d6bf8b5650962f267da1210f6087a809c6e140ef8e6982e9d9ae04fe09c"
+                  },
+                  {
+                      "path":  "characters/Belgium_characters.json",
+                      "bytes":  9575,
+                      "sha256":  "762567d44d07c8fd40bfb737408e3ebb04e8a4af250733e8c83fdcb9c4c66e7a"
+                  },
+                  {
+                      "path":  "characters/Bolivia_characters.json",
+                      "bytes":  4143,
+                      "sha256":  "e757f75354e8282ccd9e9e4ee5bbc086b9cbcf5f36d03ee85275c80cd8641a1c"
+                  },
+                  {
+                      "path":  "characters/Bosnia_and_Herzegovina_characters.json",
+                      "bytes":  4461,
+                      "sha256":  "a1eb7bcab7690505ba2c0ad864f4c08a8b61354e0b092e3fc5cf12c90b279843"
+                  },
+                  {
+                      "path":  "characters/Brazil_characters.json",
+                      "bytes":  6385,
+                      "sha256":  "49057393fe4cd36a8e3a8f115a634e0192503c062196b0aab5f93d196413ab6c"
+                  },
+                  {
+                      "path":  "characters/Bulgaria_characters.json",
+                      "bytes":  4429,
+                      "sha256":  "dbfee8edfb66a3ff12dfe80deddab8e6081b28a7ef9422bed40da3fbfd639e2b"
+                  },
+                  {
+                      "path":  "characters/Cambodia_characters.json",
+                      "bytes":  6104,
+                      "sha256":  "35310ba223d28742ef8b3541fd8beed15a9c80637c871bed3521915f881c5925"
+                  },
+                  {
+                      "path":  "characters/Canada_characters.json",
+                      "bytes":  22242,
+                      "sha256":  "13bf7a1d3c2c63fa174a1fc6babb89ae0f303dea0bc85c90a0b3cf0d03161f34"
+                  },
+                  {
+                      "path":  "characters/Chile_characters.json",
+                      "bytes":  4166,
+                      "sha256":  "f473ecb60cc1a87da4b6a50da17ddc10f3324388d0900faaf1de003fc0484cc5"
+                  },
+                  {
+                      "path":  "characters/China_characters.json",
+                      "bytes":  16500,
+                      "sha256":  "384e653261dafdea27ba03ec1dc1cf217a2caabcdcef3360b1c6cf608851b471"
+                  },
+                  {
+                      "path":  "characters/Colombia_characters.json",
+                      "bytes":  6100,
+                      "sha256":  "ae6faccbb4cbd76f27bc3fc67da59c846aeb8499df47432c2f8847194d83299a"
+                  },
+                  {
+                      "path":  "characters/Costa_Rica_characters.json",
+                      "bytes":  5894,
+                      "sha256":  "20cc8feaa1b7ca0ac8523bf66ddb5f673c8f5d64e3c1fb487a1f3b2b5201138d"
+                  },
+                  {
+                      "path":  "characters/Croatia_characters.json",
+                      "bytes":  8667,
+                      "sha256":  "a8bf628da70d0402f73e348b38b27c96a74f2f132abb2e5393ae5de79b5dce08"
+                  },
+                  {
+                      "path":  "characters/Cuba_characters.json",
+                      "bytes":  5676,
+                      "sha256":  "2e40f2de6470d09f00afc639285a0861bf45da48acdd438eeb31839b9d0e49dd"
+                  },
+                  {
+                      "path":  "characters/Denmark_characters.json",
+                      "bytes":  5536,
+                      "sha256":  "0aa4a59fc4c637125ea3a7409af4139375861726862b8f3755d2f651874a1267"
+                  },
+                  {
+                      "path":  "characters/Ecuador_characters.json",
+                      "bytes":  6188,
+                      "sha256":  "c46b9949a4efe5b9586b33330288684718e32c9516cbeda8804effc1895b7e93"
+                  },
+                  {
+                      "path":  "characters/Egypt_characters.json",
+                      "bytes":  6181,
+                      "sha256":  "50560e9df0da6b7c2b1bc440a3a37c9322bd49e4262e4552b3121057620e0bc7"
+                  },
+                  {
+                      "path":  "characters/El_Salvador_characters.json",
+                      "bytes":  5897,
+                      "sha256":  "d0b032d43d6547763f5782bd95fc803864efe09cc1a2cda09e12b874c79833c7"
+                  },
+                  {
+                      "path":  "characters/Equatorial_Guinea_characters.json",
+                      "bytes":  6141,
+                      "sha256":  "5b92ecfbc47aee096da3eb6139bcda15d46c5c5f2fd590f4e47765188e019188"
+                  },
+                  {
+                      "path":  "characters/Estonia_characters.json",
+                      "bytes":  6148,
+                      "sha256":  "622118c7cba7ef99a5779aa663c2312d5890db622f3c17e5fe61eca6f4fe38db"
+                  },
+                  {
+                      "path":  "characters/Ethiopia_characters.json",
+                      "bytes":  6585,
+                      "sha256":  "5e1e0dc27c52d2fc4b3021b4196590e7e6bb33cd4e6be9c41adabb9e32ff2c09"
+                  },
+                  {
+                      "path":  "characters/Finland_characters.json",
+                      "bytes":  5180,
+                      "sha256":  "177c994b82e2786baa1f21c12b2de210381b40509dc8c12116c99c64dfe1d9b9"
+                  },
+                  {
+                      "path":  "characters/France_characters.json",
+                      "bytes":  14196,
+                      "sha256":  "bde464791cf1060aaeb27005bb27cf8e8aaa7c1d68de136455b7fadefd6eb05f"
+                  },
+                  {
+                      "path":  "characters/Georgia_characters.json",
+                      "bytes":  4111,
+                      "sha256":  "1ac5b206f3fb73908e7dad41d7d5de53ad3f86c3d66faad0a8843aacd9c89255"
+                  },
+                  {
+                      "path":  "characters/Germany_characters.json",
+                      "bytes":  23539,
+                      "sha256":  "15b708118013facf41e9100bf6549e68729b816b6fa4e241e7a59740e9c18130"
+                  },
+                  {
+                      "path":  "characters/Greece_characters.json",
+                      "bytes":  4156,
+                      "sha256":  "7daa7f4d01ae5627dc9e328d78fc6c4b68543f1412ca0d7c8fc7d960681652df"
+                  },
+                  {
+                      "path":  "characters/Guatemala_characters.json",
+                      "bytes":  4170,
+                      "sha256":  "9a3fb60ccffd8f92a0d32100a60b913d5d5cab8ed2bcb924a52abff41d8127cf"
+                  },
+                  {
+                      "path":  "characters/Honduras_characters.json",
+                      "bytes":  4164,
+                      "sha256":  "c3eb25dc2a274091c13be8353a0c92b596c51a4470468ca1b7b53325618c4c75"
+                  },
+                  {
+                      "path":  "characters/Hong_Kong_characters.json",
+                      "bytes":  11774,
+                      "sha256":  "4735e8ab99107125d9201ccc5267525a91d58e32a6288a0f41f95baf10274f5a"
+                  },
+                  {
+                      "path":  "characters/Hungary_characters.json",
+                      "bytes":  7500,
+                      "sha256":  "898dfa753152c0653a41e17502ad90f12b0bd659962f7f5f2d54bb4284836632"
+                  },
+                  {
+                      "path":  "characters/Iceland_characters.json",
+                      "bytes":  5464,
+                      "sha256":  "d5a02bf5679fa5d9ecc1df9944832f6b0a90bbdd0f0e4a0757216096f4312891"
+                  },
+                  {
+                      "path":  "characters/India_characters.json",
+                      "bytes":  81413,
+                      "sha256":  "aea9fa44a9b43558ee2aad484e51009bd660d0f48ce5075622d03f631d531de0"
+                  },
+                  {
+                      "path":  "characters/Indonesia_characters.json",
+                      "bytes":  28275,
+                      "sha256":  "aa8efcc369dae5a609ccc71fb12ac8d6f30005d59dab33c9dad99ad596c9bf78"
+                  },
+                  {
+                      "path":  "characters/Iran_characters.json",
+                      "bytes":  9522,
+                      "sha256":  "1cc4d41863a849e76c332abd8d196b69b622235bb5f263f0c31822fc4674f8e5"
+                  },
+                  {
+                      "path":  "characters/Iraq_characters.json",
+                      "bytes":  9300,
+                      "sha256":  "b661d0f7d0c87b10b67bc2bfc82315ffe8100ea53026921129946aec2d1597fc"
+                  },
+                  {
+                      "path":  "characters/Ireland_characters.json",
+                      "bytes":  17105,
+                      "sha256":  "0de04308c7f9c9837c2917343225d31ee7be4506045839df0be37b1cee3df948"
+                  },
+                  {
+                      "path":  "characters/Israel_characters.json",
+                      "bytes":  9239,
+                      "sha256":  "774d8d027d392a3fbe8ed11bb129a12026e91fd05203a8a851d33ddcf1a71e69"
+                  },
+                  {
+                      "path":  "characters/Italy_characters.json",
+                      "bytes":  18118,
+                      "sha256":  "08301d01a273960f4ef2a79ffb731e43e14541bc323e1be53f7ae7c762779487"
+                  },
+                  {
+                      "path":  "characters/Japan_characters.json",
+                      "bytes":  8645,
+                      "sha256":  "48742e43112e8412da4fa160d65014fa3bd5a584e5de23680d362ad4ab8b5916"
+                  },
+                  {
+                      "path":  "characters/Jordan_characters.json",
+                      "bytes":  8728,
+                      "sha256":  "2c926ef3c8bd347309b3e9c591a98cb49d720c51c16c152d612495d1d51513ff"
+                  },
+                  {
+                      "path":  "characters/Kazakhstan_characters.json",
+                      "bytes":  5476,
+                      "sha256":  "f1a3240f23dbaf3ae6c14955601d904f812d1532d7c048621337badbb0db56a8"
+                  },
+                  {
+                      "path":  "characters/Kenya_characters.json",
+                      "bytes":  13101,
+                      "sha256":  "dd5960a02934b55e87567839952adf6a0c8e06e9bdcfe77465945649a02042ba"
+                  },
+                  {
+                      "path":  "characters/Kuwait_characters.json",
+                      "bytes":  5586,
+                      "sha256":  "f60d4aad1c8d3742b89963580119103b3ba9dea4c6c25e5e2d68a32a724f1a31"
+                  },
+                  {
+                      "path":  "characters/Laos_characters.json",
+                      "bytes":  5406,
+                      "sha256":  "ae20133a830fc15afe693ffff9488e33813039bbc8e8ce8509056e68f2485a32"
+                  },
+                  {
+                      "path":  "characters/Latvia_characters.json",
+                      "bytes":  5372,
+                      "sha256":  "035fb8f096d2c8b3164d878062e04e019fb7f5bef63cf5ce9011424fbb416339"
+                  },
+                  {
+                      "path":  "characters/Lebanon_characters.json",
+                      "bytes":  5701,
+                      "sha256":  "af4ae3f7e472ae91954223642ec7422de3fcd12f3a40e8485d4f82fe927d40f6"
+                  },
+                  {
+                      "path":  "characters/Libya_characters.json",
+                      "bytes":  5659,
+                      "sha256":  "1e9df2b1937a9f2bc29771e362fad94b0b61e22ae471d6b2c19568930e0efb2d"
+                  },
+                  {
+                      "path":  "characters/Lithuania_characters.json",
+                      "bytes":  5435,
+                      "sha256":  "2cb0dab6bab2e4f73b19d1d48ac6290537c686bc1bc2eb12e89c979a1996891e"
+                  },
+                  {
+                      "path":  "characters/Malaysia_characters.json",
+                      "bytes":  11134,
+                      "sha256":  "4955fc8c6788e7493568f520ac098e2278f61d608d3742d44ff26a571e2575f0"
+                  },
+                  {
+                      "path":  "characters/Malta_characters.json",
+                      "bytes":  5544,
+                      "sha256":  "8d530d66bd016baa8268d9e00c96076f2e7be4d6c46fa47d2266eda853810ab7"
+                  },
+                  {
+                      "path":  "characters/Mexico_characters.json",
+                      "bytes":  5427,
+                      "sha256":  "9f98d958874f92d3cc7a57ba39fcb4c461f5001c88f79b84eaebb8ba64640619"
+                  },
+                  {
+                      "path":  "characters/Mongolia_characters.json",
+                      "bytes":  5385,
+                      "sha256":  "79a4ada040224ef684e1f761a2cbb7485107eeae187d4c9d357f4a650e8a94fb"
+                  },
+                  {
+                      "path":  "characters/Morocco_characters.json",
+                      "bytes":  5597,
+                      "sha256":  "a0f33c408e6924ac625ee56b5db8752e3fee41b6c4f40fc4ea5101d9a7529c9d"
+                  },
+                  {
+                      "path":  "characters/Myanmar_characters.json",
+                      "bytes":  5413,
+                      "sha256":  "01a9ff0de37cfedecff598cea62c1096d18f6eb5c703c4f6285931dcbdeb58ee"
+                  },
+                  {
+                      "path":  "characters/Nepal_characters.json",
+                      "bytes":  5592,
+                      "sha256":  "c3a13d50d9e87aab13c938d138ba1054f5e8161849016f193ee7a7441827d4a8"
+                  },
+                  {
+                      "path":  "characters/New_Zealand_characters.json",
+                      "bytes":  7365,
+                      "sha256":  "cd713e078c8b330db5aa73ed633c6d5e45bdbd6550137818060c16f71c63ac2b"
+                  },
+                  {
+                      "path":  "characters/Nicaragua_characters.json",
+                      "bytes":  5687,
+                      "sha256":  "df95a6171d4e920451ac8ebd7d5d06af0caf0e592f2062c6c1ec303afd54e1d9"
+                  },
+                  {
+                      "path":  "characters/Nigeria_characters.json",
+                      "bytes":  7496,
+                      "sha256":  "1d4ac53142f2b9bc80a9d42f62addba5e2d92c7eb4d6912881c13db5c7dcc59e"
+                  },
+                  {
+                      "path":  "characters/North_Macedonia_characters.json",
+                      "bytes":  5727,
+                      "sha256":  "0ce33d0332f1ef3a53f577f445aa5cff3f3ba136fd8f551fb005379d81a3144b"
+                  },
+                  {
+                      "path":  "characters/Norway_characters.json",
+                      "bytes":  5659,
+                      "sha256":  "cfab8a72d726bb29b00efb3d77a58d279de90e7fdf1038354ecdc52f64c3b35a"
+                  },
+                  {
+                      "path":  "characters/Oman_characters.json",
+                      "bytes":  6093,
+                      "sha256":  "a17250bc7f8887f35ffcfa7acbda9c90c32366f75006d4bbe39106bb99cccf27"
+                  },
+                  {
+                      "path":  "characters/Pakistan_characters.json",
+                      "bytes":  6390,
+                      "sha256":  "04695891b72f31cd67b426994f59cd63c9f35ebd737bc42796a2b47e08e52e5d"
+                  },
+                  {
+                      "path":  "characters/Panama_characters.json",
+                      "bytes":  6308,
+                      "sha256":  "0ccc6e89dc96bfdb0543c062e6067281645cbb56c5a16aef2b47a03dd3b6e064"
+                  },
+                  {
+                      "path":  "characters/Paraguay_characters.json",
+                      "bytes":  6263,
+                      "sha256":  "630063808a4aa57a976ac9382a611bf3995389de89a1d57945795e057a4979e3"
+                  },
+                  {
+                      "path":  "characters/Peru_characters.json",
+                      "bytes":  6366,
+                      "sha256":  "8d680688db5553ddbb8f49a0577f668556cd2eb75c67778e3935959daf619195"
+                  },
+                  {
+                      "path":  "characters/Poland_characters.json",
+                      "bytes":  6330,
+                      "sha256":  "324d1041b99c15bfae6d0ba5696d32c8cefad0bf3136e7de22e62d83b43fdd50"
+                  },
+                  {
+                      "path":  "characters/Portugal_characters.json",
+                      "bytes":  6256,
+                      "sha256":  "64a0d3eda952d139c4eb87cbd5c961ceebe7cd358d775c895bee7d18d5206e48"
+                  },
+                  {
+                      "path":  "characters/Puerto_Rico_characters.json",
+                      "bytes":  6316,
+                      "sha256":  "c34247aef1e92d80c2021b453608d1ee4851572631624ab1bef30eab0f2121b6"
+                  },
+                  {
+                      "path":  "characters/Qatar_characters.json",
+                      "bytes":  7607,
+                      "sha256":  "928903aa238710b0d47b7900e308ed7b3ba2874dc5895d404de863c45adff0e7"
+                  },
+                  {
+                      "path":  "characters/Romania_characters.json",
+                      "bytes":  7748,
+                      "sha256":  "c23a9fa38b5f711f16b37e1010c0ed833d72d6f8fe205e795dca41b661e7d913"
+                  },
+                  {
+                      "path":  "characters/Russia_characters.json",
+                      "bytes":  7915,
+                      "sha256":  "a576aa6e06d739e26123321a77fa782649982afeb72d36ed6fded72c46e08333"
+                  },
+                  {
+                      "path":  "characters/Saudi_Arabia_characters.json",
+                      "bytes":  8068,
+                      "sha256":  "029c0033149d28bc0e78f60bfea25cbc8d7ea13e012f9e3638ebf16fb1ea502a"
+                  },
+                  {
+                      "path":  "characters/Serbia_characters.json",
+                      "bytes":  8459,
+                      "sha256":  "66f2793f4542f9d440affdf0aef479231ef61691735f4506cbdb7975075e898b"
+                  },
+                  {
+                      "path":  "characters/Singapore_characters.json",
+                      "bytes":  17270,
+                      "sha256":  "097de37fb804fa4ccbcb3bb0e1c454ab949a13850a7e53db725c29274cbcd0a1"
+                  },
+                  {
+                      "path":  "characters/Slovakia_characters.json",
+                      "bytes":  8540,
+                      "sha256":  "97ec4a349540543c4f78204098623f712b46d4cdef9efa684a90cdadd81a95f5"
+                  },
+                  {
+                      "path":  "characters/Slovenia_characters.json",
+                      "bytes":  8716,
+                      "sha256":  "f54810c29c706ec682699ba7c7cbd3f1951b78e00fe69f13ee2d379d713aacac"
+                  },
+                  {
+                      "path":  "characters/Somalia_characters.json",
+                      "bytes":  8886,
+                      "sha256":  "1e173a9118575cd2ca709bb9b107fd9a727986395a20c9b07e2686b6ac1a66f7"
+                  },
+                  {
+                      "path":  "characters/South_Africa_characters.json",
+                      "bytes":  25895,
+                      "sha256":  "8d5604e06a5b98327584f38342b371327a9340dd1d1ac4b5d6d0369621794f35"
+                  },
+                  {
+                      "path":  "characters/South_Korea_characters.json",
+                      "bytes":  13510,
+                      "sha256":  "467597dbdc73567a636254b226963a9e9eeab770c999f49c593129bfb4c48682"
+                  },
+                  {
+                      "path":  "characters/Spain_characters.json",
+                      "bytes":  29930,
+                      "sha256":  "ea65f3843234b0afcf0cdf49ee38a18755c6486d39fe9ce95171811cbe44eb1e"
+                  },
+                  {
+                      "path":  "characters/Sri_Lanka_characters.json",
+                      "bytes":  16763,
+                      "sha256":  "94460faecc75fa72989167b7b6c127e6700ca6f32929a730a3fd0a1d0b957301"
+                  },
+                  {
+                      "path":  "characters/Sweden_characters.json",
+                      "bytes":  8451,
+                      "sha256":  "6ac6ebd76b4665729df55cc4e31cfc51f4217256c71d4b0aad340ef9973e5994"
+                  },
+                  {
+                      "path":  "characters/Switzerland_characters.json",
+                      "bytes":  16773,
+                      "sha256":  "a9a5e2feda96ce0e527357d1d213411c612dfa7967e23d88f5519e27183bc723"
+                  },
+                  {
+                      "path":  "characters/Syria_characters.json",
+                      "bytes":  8346,
+                      "sha256":  "a17d77f60f08e4f38c3513cadb5684f923e678c9c3474d1a468812ffc884671a"
+                  },
+                  {
+                      "path":  "characters/Taiwan_characters.json",
+                      "bytes":  11328,
+                      "sha256":  "4d4f6d97b25f2ad32faf0611d6059ca6b6a0420b9a80ac348a81caee09e50d77"
+                  },
+                  {
+                      "path":  "characters/Tanzania_characters.json",
+                      "bytes":  17082,
+                      "sha256":  "179399d1a0b396c67937a9ac3a267dbdda35da14eef189f2a4717bdf569780c8"
+                  },
+                  {
+                      "path":  "characters/Thailand_characters.json",
+                      "bytes":  8384,
+                      "sha256":  "fa633392fdc4064799381c853ff561bd5cfba388c95713306890c3abebd877c4"
+                  },
+                  {
+                      "path":  "characters/the_Czech_Republic_characters.json",
+                      "bytes":  5334,
+                      "sha256":  "6172fd71d60cfbebdfa5ea724f8d64cef3597b3bd977bcdc6b46c388a91b64bd"
+                  },
+                  {
+                      "path":  "characters/the_Dominican_Republic_characters.json",
+                      "bytes":  5598,
+                      "sha256":  "2a58295b32adb88cb8404664ea6c8bc53031de6d31357969594119677ea07855"
+                  },
+                  {
+                      "path":  "characters/the_Netherlands_characters.json",
+                      "bytes":  9626,
+                      "sha256":  "d1bd754d53c65af7c92f14f6e14040eaa1ec4b8e5fbcb1669ce450196e23e2fd"
+                  },
+                  {
+                      "path":  "characters/the_Philippines_characters.json",
+                      "bytes":  14679,
+                      "sha256":  "de8e08814e6dcd5d640551407cf124aa60602bb2757ef823c412d5fc288b5762"
+                  },
+                  {
+                      "path":  "characters/the_United_Arab_Emirates_characters.json",
+                      "bytes":  6747,
+                      "sha256":  "7ee332a3840de37857d065a14ad2f83d3c3d00620bef0773a5c3fa22dae6b059"
+                  },
+                  {
+                      "path":  "characters/the_United_States_characters.json",
+                      "bytes":  67656,
+                      "sha256":  "b52acbf72cee804d0a26ef6c2f1b24b2a4a63f463ed59d88cc256e2c322bb37f"
+                  },
+                  {
+                      "path":  "characters/Tunisia_characters.json",
+                      "bytes":  12323,
+                      "sha256":  "5288fdf387625476993f4aff520a94feb3cb11e51b8721410a993b1cb50309b6"
+                  },
+                  {
+                      "path":  "characters/Turkey_characters.json",
+                      "bytes":  10249,
+                      "sha256":  "af572dcfe03f3fdc3b96a8d0cf090d4cb149048b89603545d6f1abe0c4ee8d2d"
+                  },
+                  {
+                      "path":  "characters/Ukraine_characters.json",
+                      "bytes":  6368,
+                      "sha256":  "11a45b9ac670f33159f498237e06de2c0a82aacb710fc7b519e55c1f7baa2da2"
+                  },
+                  {
+                      "path":  "characters/United_Kingdom_characters.json",
+                      "bytes":  25527,
+                      "sha256":  "0e33de7414c346024d6a08ea4ecc3f14361bd034cce965a961985de4db8f5ba3"
+                  },
+                  {
+                      "path":  "characters/Uruguay_characters.json",
+                      "bytes":  5968,
+                      "sha256":  "79ce3bc719803e56eb94b98d30f16ef442671ad9040391f9b78107933337d74d"
+                  },
+                  {
+                      "path":  "characters/Uzbekistan_characters.json",
+                      "bytes":  5828,
+                      "sha256":  "356f0a134eda3d9226862e59ac966c39e1ea3c38bb08e45fc4a8bc06859e688c"
+                  },
+                  {
+                      "path":  "characters/Venezuela_characters.json",
+                      "bytes":  6097,
+                      "sha256":  "8bf9324890bdbc2b6f24bfbc448a92e12409a81dffe311066b456fc9781e963d"
+                  },
+                  {
+                      "path":  "characters/Vietnam_characters.json",
+                      "bytes":  6222,
+                      "sha256":  "77c6d4baee1d0e96ab464ecfd91874ff80fdca2fdc7f056b2e10ac50bce392dc"
+                  },
+                  {
+                      "path":  "characters/Yemen_characters.json",
+                      "bytes":  6297,
+                      "sha256":  "6beb2559a111a79febb16db577888ac8b46375e7acc9207fd051ee042d7ad7e8"
+                  },
+                  {
+                      "path":  "outputs/tts/fart/fart-1-speed0-5.mp3",
+                      "bytes":  8612,
+                      "sha256":  "b9a53a83536e6964e1ca13e1fa45817447e675d065acb2ea9ca392264fe4d1d7"
+                  },
+                  {
+                      "path":  "outputs/tts/fart/fart-2-speed0-5.mp3",
+                      "bytes":  5527,
+                      "sha256":  "2b95c5db655d1793aea24cb9e0e7ec8d2c544a0a52b669abb649cbc18d03755e"
+                  },
+                  {
+                      "path":  "outputs/tts/fart/fart-3-speed0-5.mp3",
+                      "bytes":  4014,
+                      "sha256":  "0a735631991582e8d7a7b3dbdb79c84f9ade012c0c504c268d6e313b706c2bab"
+                  },
+                  {
+                      "path":  "outputs/tts/fart/fart-4-speed0-5.mp3",
+                      "bytes":  6522,
+                      "sha256":  "4a96309c230a6f051ed057d21075e83ac642f257e9a1daca12b1dd5f79ee95fd"
+                  },
+                  {
+                      "path":  "outputs/tts/fart/fart-5-speed0-5.mp3",
+                      "bytes":  7797,
+                      "sha256":  "40a2426b40564f33c3682af4c04b0cdf64084a1b380c1c921aa0675fe060e44a"
+                  },
+                  {
+                      "path":  "outputs/tts/fart/fart-6-speed0-5.mp3",
+                      "bytes":  8288,
+                      "sha256":  "3849fa8993e501c9b5e4de9a9c94aec23b632a43e5a59807ee2f9b542fb519e0"
+                  },
+                  {
+                      "path":  "outputs/tts/fart/fart-7.mp3",
+                      "bytes":  25020,
+                      "sha256":  "da99c47cfc79338537a08e0398c98c12c510593baa8beb4949eb0bb661a3560a"
+                  },
+                  {
+                      "path":  "outputs/tts/laugh/laugh-1-spooky-male.mp3",
+                      "bytes":  193977,
+                      "sha256":  "596429752d3122589a57ef2e86e367f2d7245fb96d0353e04bf6f27a0025ab18"
+                  },
+                  {
+                      "path":  "outputs/tts/laugh/laugh-2-spooky-male.mp3",
+                      "bytes":  260014,
+                      "sha256":  "c53834d587eebabeb24966ad9ff24ebc35fb8485b3b3917d40fc4865dcbcd0bb"
+                  },
+                  {
+                      "path":  "outputs/tts/laugh/laugh-3-spooky-male.mp3",
+                      "bytes":  260014,
+                      "sha256":  "7c3287424703bc50c05b65125fe35886b6feb8ebaf93f3685f72dd345c1db26f"
+                  },
+                  {
+                      "path":  "outputs/tts/laugh/laugh-4-spooky-female.mp3",
+                      "bytes":  97802,
+                      "sha256":  "2f557b2d131a91a4f5b43889f252478591865e575615437bc0ea0f0343851a79"
+                  },
+                  {
+                      "path":  "outputs/tts/laugh/laugh-5-spooky-male.mp3",
+                      "bytes":  141165,
+                      "sha256":  "b13aceb0c4159aa174da2515fe99c79f94d9b60ea4c817e24a51367f4a6c224a"
+                  },
+                  {
+                      "path":  "outputs/tts/laugh/laugh-6-spooky-male.mp3",
+                      "bytes":  532992,
+                      "sha256":  "14fbe5570e4c9e7aea9d7cfc56109175a847881744336e1c5b373971379fe691"
+                  },
+                  {
+                      "path":  "outputs/tts/laugh/laugh-7-spooky-female.mp3",
+                      "bytes":  97440,
+                      "sha256":  "fb196fcd5b4be7e393cd7b8c321030fbc30792528059928c56861506491ad4e6"
+                  },
+                  {
+                      "path":  "outputs/tts/laugh/laugh-8-spooky-male.mp3",
+                      "bytes":  258342,
+                      "sha256":  "bb21da27e676c3c8d3bab2adbd32350beab51c1ab6c9786ef61413bb0907251d"
+                  },
+                  {
+                      "path":  "outputs/tts/laugh/laugh-9-spooky-male.mp3",
+                      "bytes":  57600,
+                      "sha256":  "4dd045e1aae32bf2f99f92fc07e919f87682e77b22b33701483172bec5f275e6"
+                  },
+                  {
+                      "path":  "prompts/prompt_in_love.md",
+                      "bytes":  2859,
+                      "sha256":  "8db41b1e253f662cbfbcb2362253a10156191df7de5fe6c116d9040eaf9bd692"
+                  },
+                  {
+                      "path":  "prompts/prompt_normal.md",
+                      "bytes":  2063,
+                      "sha256":  "7653aa9b5719f3be49342467ea65b0d06fb55dbc461a42242451b67275db70bd"
+                  },
+                  {
+                      "path":  "prompts/prompt_shakespearean.md",
+                      "bytes":  2249,
+                      "sha256":  "1e75aff828f56330e7e6ad8cd0cce67e3e8b03c120db0cca18aa92fed061d0cc"
+                  },
+                  {
+                      "path":  "prompts/prompt_spooky.md",
+                      "bytes":  3462,
+                      "sha256":  "7d09eecd9cdaf2872b3f91251fa079765c241f7fb250f68318a003173be8fdbb"
+                  },
+                  {
+                      "path":  "prompts/system_prompt.md",
+                      "bytes":  7598,
+                      "sha256":  "82c78371324bdeeb7792038233b0cad4b317cc66ae92919bfb05124dbe9a01d9"
+                  },
+                  {
+                      "path":  "static/app-helpers.js",
+                      "bytes":  119681,
+                      "sha256":  "1556a659beccf543af90f8a3c6d215324f240458b33388cf830cc046472f316b"
+                  },
+                  {
+                      "path":  "styles/app.css",
+                      "bytes":  11673,
+                      "sha256":  "aefa6fdb948d12d9625300c8183eb635d657c17bcd3c42da19e89292f6d29444"
+                  },
+                  {
+                      "path":  "styles/information_info_1565.webp",
+                      "bytes":  6126,
+                      "sha256":  "ff430c0348167e74467be2a643fcd1ef750968758503c946903dd82a551aedbe"
+                  },
+                  {
+                      "path":  "templates/index.html",
+                      "bytes":  193592,
+                      "sha256":  "b6e915d22fec4473b2861c9c98c9a3b9d8fd8287ee71d919184f927328b2f16b"
+                  },
+                  {
+                      "path":  "tests/test_entity_client.js",
+                      "bytes":  20522,
+                      "sha256":  "2e2338cffb2c83ede51e78924bc65f9abfb9beb060bf5369854c4ab7dd8b6e70"
+                  },
+                  {
+                      "path":  "tests/test_mobile_characters.js",
+                      "bytes":  11924,
+                      "sha256":  "7575c71297195ffcb2fdb3b1c5068bff94d704ab9ee7fcdf01b31c28591e48ff"
+                  },
+                  {
+                      "path":  "tests/test_mobile_client.js",
+                      "bytes":  24255,
+                      "sha256":  "025c8ab637e5004debb931b34b64221795503b5630c1f0dd781719cf2c1fbfb8"
+                  },
+                  {
+                      "path":  "tests/test_mobile_model_selection.js",
+                      "bytes":  1071,
+                      "sha256":  "05ac9a5850d7d2647f916679699a7711f51ba920fc0b5514efe60c7cb0637bc2"
+                  },
+                  {
+                      "path":  "tests/test_mobile_speech_chunking.js",
+                      "bytes":  5036,
+                      "sha256":  "1bd72df4e79ae5bee706a68e1fc6b5858540077ebba59f4b9fdd7c370ecc09e4"
+                  },
+                  {
+                      "path":  "tests/test_mobile_speech_markers.js",
+                      "bytes":  41724,
+                      "sha256":  "d36050e28cd5b6ba33a0fbae658b8637863056f7952f1c1244c54051b1e9c16b"
+                  },
+                  {
+                      "path":  "tests/test_mobile_speech_probe.js",
+                      "bytes":  4763,
+                      "sha256":  "15202f877e26afebe528274d962f67ce56d8177285538d64a9e386ece2623f61"
+                  },
+                  {
+                      "path":  "tests/test_mobile_speech_queue.js",
+                      "bytes":  49136,
+                      "sha256":  "042aed9546d418295ea93d393f26c2eca43bf3aea82d5e0a72b92f8ed7b6aece"
+                  },
+                  {
+                      "path":  "voices.json",
+                      "bytes":  135946,
+                      "sha256":  "8861e4f012ea6f0474e5d6181108f79c9f50779c4bb792c7d3343551c9d5a207"
+                  }
+              ]
+}
