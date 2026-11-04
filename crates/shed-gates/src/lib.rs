@@ -8,11 +8,14 @@
 //!   suites are copied byte-for-byte and frozen.
 //! - [`layers`] - plan 3.3: the crate dependency direction, and the rule that only
 //!   `shed-config` reads the environment (`How_To_Code` principles 19 and 24).
+//! - [`settings`] - principle 24: `.env.example` documents exactly the settings the code reads,
+//!   with the defaults the code actually uses.
 
 use std::path::{Path, PathBuf};
 
 pub mod assets;
 pub mod layers;
+pub mod settings;
 
 /// A gate test that reports every problem it found rather than only the first one, so one
 /// run tells the whole story.

@@ -355,6 +355,15 @@ goes to `TODO/Loose-Ends.md`.
 - Startup validates the whole config before any thread/task starts (principle 14): unknown key →
   warning, invalid value → hard failure with the key named. `STORAGE_ROOT` is created and checked
   before the mind loop, housekeeper or cache are constructed.
+  **Stage 1 implements the invalid-value half only**: a bad `APP_PORT`, a malformed
+  `MCTRADER_MCP_ARGS` / `MCTRADER_MCP_ENV` or a wrong JSON kind fails startup naming the key
+  (`ConfigError`), and `STORAGE_ROOT` is resolved and created before anything else boots. The
+  **unknown-key warning is deferred to Stage 9**, because "unknown" is only a true statement once the
+  clone reads the full set of names: the operator's real `.env` already carries the keys of stages that
+  are not ported yet, and warning about those at Stage 1 would be a false alarm. In the meantime the
+  `settings` gate (§8.1, `crates/shed-gates/src/settings.rs`) keeps the two halves honest at every
+  stage — every name `shed-config` reads is in `.env.example`, nothing in `.env.example` is unread, and
+  every documented value equals the default the code produces.
 - The unprompted-entity flags keep their source defaults, off: `ENTITY_PROACTIVE_ENABLED=false`,
   `ENTITY_SLOW_LOOP_ENABLED=false`, `ENTITY_SAY_ENABLED=false`, `ENTITY_SSE_ENABLED=false`,
   `ENTITY_DRY_RUN=true`. They are one opt-in chain, not four independent switches, and
@@ -450,9 +459,9 @@ JS suites green → `docs/PARITY.md` updated → guard catalogue updated → no 
 | Stage | Deliverable | Exit gate (beyond the standard one) |
 |---|---|---|
 | **0** | Workspace, lints, `rustfmt.toml`, `clippy.toml`, `package.json`, `docs/` skeleton, the client and data copied byte-for-byte into the mirrored layout (`templates/`, `static/`, `styles/`, `characters/`, `prompts/`, `outputs/tts/`, `voices.json`) with a hash manifest, `shed-gates` (frozen-asset + layering + env-read gates), `npm test` wired to `tests/*.js`, `.gitignore` | the `shed-gates` asset tests pass (144 entries, 0 drift); the 19 empty crates compile under `-D warnings`; the 8 JS suites pass unchanged |
-| **1** | `shed-config`, `shed-json`, `shed-text`, `shed-store`, `shed-logging`; binary boots and serves `GET /health` + `X-Request-ID` + error envelope | `/health` byte-comparable; `test_env_utils`, `test_json_util_utils`, `test_text_utils`, `test_entity_store_utils` ported |
+| **1** | `shed-config` (the `.env` reader, the `Env` table, the storage root, the log level, the model names, the MCP config slice), `shed-logging`, `shed-http` (`GET /health`), `shed-server` (boot + `--smoke`); `.env.example` with the settings Stage 1 reads | `/health` byte-comparable; `test_env_utils` ported; the `settings` gate keeps `.env.example` honest |
 | **2** | `shed-models` + `shed-llm`: discovery (disk + API), cache persistence, context windows, transport with retry, streaming reader, prompt-block store | `test_models_utils`, `test_lm_router_utils`, `test_lm_streaming` ported; a fake-LM test proves the retry ladder |
-| **3** | `shed-prompts`, `shed-characters` + catalogue routes (`/`, `/app.css`, `/app-helpers.js`, webp, `/api/countries`, `/api/characters`, `/api/voices`, `/api/models`, last-model-index, `/api/refresh-models`), warmer task | The frozen client loads and the country→character→voice flow works end-to-end against the real `characters/` data |
+| **3** | `shed-prompts`, `shed-characters` + catalogue routes (`/`, `/app.css`, `/app-helpers.js`, webp, `/api/countries`, `/api/characters`, `/api/voices`, `/api/models`, last-model-index, `/api/refresh-models`), warmer task, `X-Request-ID` and the `/api/*` error envelope (`agent.py:1002–1027`) | The frozen client loads and the country→character→voice flow works end-to-end against the real `characters/` data |
 | **4** | `shed-conversation` + `shed-chat`: records, identity, compaction, summarisation, housekeeping, recall/persona guardrails, reply shaping, `JsonReplyStreamScanner`, `SentenceSplitter`, `ReplyStreamPublisher`, `run_agent`, `POST /api/chat` + `/api/chat/jobs/<id>` + the turn gate | `test_api_chat`, `test_conversation_*`, `test_reply_*`, `test_sentence_splitter`, `test_reply_stream_*`, `test_glm4*` ported; a chat turn streams sentences to the client |
 | **5** | `shed-tools` + `shed-mcp`: local tools, DuckDuckGo search/fetch, spreadsheet writer, trade preview + confirmation, MCP stdio client, mctrader tool inference and auth gating, `/api/mcp/auth`, `/api/mcp/tools`, `/api/mcp/tools/refresh` | `test_mcp_*`, `test_pending_trades`, `test_trade_confirmation_flow` ported; a tool call round-trips through a fake MCP server |
 | **6** | `shed-tts` (voice catalogue, Edge WebSocket + `Sec-MS-GEC` v2 token, Windows SAPI, audio cache, MP3 pause trimming, failure messages) wired into `shed-http` as `/api/speak`, `/api/reply-laugh`, `/api/reply-fart`, `/api/test-speak` | **Opens with a time-boxed spike** on the v2 token; if it fails, ship Windows-SAPI-only and record Edge as a Loose-End. `test_tts_*`, `test_speech_pauses`, `test_voice_tones`, `test_tts_failure_message`, `test_test_speak_route` ported |
@@ -460,35 +469,76 @@ JS suites green → `docs/PARITY.md` updated → guard catalogue updated → no 
 | **8** | Ops: `/api/restart`, `/api/unload-models`, `/api/keyring`, cleanup scheduler, retention, `logs`, the Windows service installer pair, cloudflared service | The app runs as a Windows service with no Python installed; reboot restores state |
 | **9** | Full parity sweep: every `docs/PARITY.md` row ticked or justified, guard catalogue complete, `docs/` current, plan deleted per principle 21 | 49 ported test modules + 8 JS suites green against the Rust server; a side-by-side run of the Python app and the Rust app produces the same JSON for every route |
 
+### 8.1 How Stage 1 was cut, and what that changed about the table
+
+Stage 1 boots **the log, the storage root and `GET /health`**, and carries only what those three need.
+
+- **A crate is filled by the first stage that has a production caller for it.** A crate created empty in
+  Stage 0 compiles and is gated by layering; writing its code before a caller exists is principle 16's
+  dead code. So `shed-json` fills at Stage 2 (`models_cache.json` and the model payloads) and again at
+  Stage 5 (tool arguments); `shed-text` at Stage 2 (`utils/text.py`'s model-name normalisation feeds
+  `shed-models`), Stage 4 (reply cleanup) and Stage 6 (markup and sound tags); `shed-store` at Stage 4
+  (conversation files) and Stage 7 (mind, client and outbox files). §9 now records the stage beside every
+  suite, so a stage's exit gate lists exactly the suites it owes and no stage claims a crate it does not
+  yet use.
+- **`X-Request-ID` and the `@api_json_boundary` error envelope move to Stage 3.** Both hooks in the source
+  are `/api/`-only: `assign_request_id` returns early unless the path starts with `/api/`
+  (`agent.py:1004–1005`) and `attach_request_id_header` only sets the header for the same paths
+  (`1022–1027`), which is why the captured `/health` response has no `X-Request-ID`. Stage 3 is the first
+  stage that serves `/api/*`; middleware before that would guard nothing.
+- **`utils/env.py` helpers arrive with their first call site.** The staging table lives in
+  `crates/shed-config/src/env.rs`. Stage 1 carries `resolve_storage_dir`, `getenv_int`, `parse_json_env`
+  and `normalize_AI_MODEL_name`. `parse_bool` (first call site `LM_ENGINE_STREAM_CHAT`, `agent.py:495`;
+  also `LM_ENGINE_PROMPT_CACHE`, 500), `getenv_float` and `getenv_timeout_seconds`
+  (`LM_ENGINE_REPLY_TIMEOUT`) arrive with Stage 2; `current_process_account` arrives with Stage 8 and
+  `/api/keyring` (`agent.py:8782`). Three helpers are **never** ported: `getenv_first` (imported by
+  `agent.py`, called nowhere), `encode_token_bytes` / `decode_token_bytes` (used only by the dropped IMAP
+  tools) and `initialize_mctrader_credentials` (its body is `pass`).
+- **Every dependency and feature is named for the code that uses it.** No dotenv crate: `dotenvy` rejects
+  this operator's real `.env` — `LMSTUDIO_MODELS_DIR=D:\Models` is an illegal escape to it
+  (`LineParse("D:\\Models", 3)`) and the whole file fails — where `python-dotenv` keeps the backslash, so
+  `crates/shed-config/src/dotenv.rs` implements `parse_stream`'s grammar instead. `fancy-regex` rather than
+  `regex` (§10 risk 10). `tower`'s `util` feature is `oneshot`, which is how the `shed-http` route tests
+  drive the router; tokio's `net` and `io-util` features are the `--smoke` probe's socket and its reads.
+  An unused feature entry is principle 16 in `Cargo.toml` form, so each one carries a comment naming its
+  consumer.
+
 ---
 
 ## 9. Test port map (49 Python test modules + `conftest.py` + 8 JS suites)
 
-| Destination crate | Ported from |
-|---|---|
-| `shed-config` | `test_env_utils` |
-| `shed-json` | `test_json_util_utils` |
-| `shed-text` | `test_text_utils` |
-| `shed-store` | `test_entity_store_utils` |
-| `shed-models` | `test_models_utils`, `test_lm_router_utils`, `test_agent_models` |
-| `shed-llm` | `test_lm_streaming` |
-| `shed-prompts` | `test_prompt_utils`, `test_prompt_cache` |
-| `shed-characters` | `test_characters`, `test_character_profiles` |
-| `shed-conversation` | `test_conversation_history_utils`, `test_conversation_housekeeping`, `test_conversation_identity` |
-| `shed-chat` | `test_reply_utils`, `test_reply_recovery`, `test_reply_stream_scanner`, `test_reply_stream_publisher`, `test_sentence_splitter`, `test_glm4`, `test_glm4_followup` |
-| `shed-tools` | `test_pending_trades`, `test_trade_confirmation_flow` |
-| `shed-mcp` | `test_mcp_utils`, `test_mcp_args_utils`, `test_mcp_argument_guard` |
-| `shed-tts` | `test_tts_utils`, `test_tts_cache`, `test_tts_failure_message`, `test_speech_pauses`, `test_voice_tones` |
-| `shed-entity` | `test_entity_client`, `test_outbox`, `test_event_stream` |
-| `shed-mind` | `test_entity_loop`, `test_mind_loop`, `test_mind_events`, `test_mind_goals`, `test_mind_state`, `test_mind_user`, `test_mind_events_wiring`, `test_mind_state_wiring`, `test_mind_user_wiring` |
-| `shed-http` | `test_api_chat`, `test_http_server`, `test_app_stylesheet`, `test_frontend_cache_headers`, `test_test_speak_route` |
-| `shed-testutil` | `conftest.py` fixtures → temp storage roots, fake LM Studio, fake MCP server, fake Edge endpoint |
-| `tests/*.js` | `test_entity_client.js`, `test_mobile_characters.js`, `test_mobile_client.js`, `test_mobile_model_selection.js`, `test_mobile_speech_chunking.js`, `test_mobile_speech_markers.js`, `test_mobile_speech_probe.js`, `test_mobile_speech_queue.js` — **unchanged**, run by `npm test` against `static/app-helpers.js` |
-| `shed-gates` | no Python source: the workspace-wide gates (frozen assets, layering, env-read rule). Their tests live in each gate module, not in a `tests/` directory, because `unused_crate_dependencies` is checked per target |
+| Destination crate | Ported from | Stage |
+|---|---|---|
+| `shed-config` | `test_env_utils` | 1 |
+| `shed-json` | `test_json_util_utils` | 2 |
+| `shed-text` | `test_text_utils` | 2 → 4 → 6 (in pieces: each part ports with the stage that ports the function it tests — §8.1) |
+| `shed-store` | `test_entity_store_utils` | 4 |
+| `shed-models` | `test_models_utils`, `test_lm_router_utils`, `test_agent_models` | 2 |
+| `shed-llm` | `test_lm_streaming` | 2 |
+| `shed-prompts` | `test_prompt_utils`, `test_prompt_cache` | 3 |
+| `shed-characters` | `test_characters`, `test_character_profiles` | 3 |
+| `shed-conversation` | `test_conversation_history_utils`, `test_conversation_housekeeping`, `test_conversation_identity` | 4 |
+| `shed-chat` | `test_reply_utils`, `test_reply_recovery`, `test_reply_stream_scanner`, `test_reply_stream_publisher`, `test_sentence_splitter`, `test_glm4`, `test_glm4_followup` | 4 |
+| `shed-tools` | `test_pending_trades`, `test_trade_confirmation_flow` | 5 |
+| `shed-mcp` | `test_mcp_utils`, `test_mcp_args_utils`, `test_mcp_argument_guard` | 5 |
+| `shed-tts` | `test_tts_utils`, `test_tts_cache`, `test_tts_failure_message`, `test_speech_pauses`, `test_voice_tones` | 6 |
+| `shed-entity` | `test_entity_client`, `test_outbox`, `test_event_stream` | 7 |
+| `shed-mind` | `test_entity_loop`, `test_mind_loop`, `test_mind_events`, `test_mind_goals`, `test_mind_state`, `test_mind_user`, `test_mind_events_wiring`, `test_mind_state_wiring`, `test_mind_user_wiring` | 7 |
+| `shed-http` | `test_app_stylesheet`, `test_frontend_cache_headers` (3); `test_api_chat` (4); `test_test_speak_route` (6); `test_http_server` (1, then again at 4 and 7 — see below) | 1 → 3 → 4 → 6 → 7 |
+| `shed-testutil` | `conftest.py` fixtures → temp storage roots, fake LM Studio, fake MCP server, fake Edge endpoint | 2 (first fake), extended by each stage that needs one |
+| `tests/*.js` | `test_entity_client.js`, `test_mobile_characters.js`, `test_mobile_client.js`, `test_mobile_model_selection.js`, `test_mobile_speech_chunking.js`, `test_mobile_speech_markers.js`, `test_mobile_speech_probe.js`, `test_mobile_speech_queue.js` — **unchanged**, run by `npm test` against `static/app-helpers.js` | 0 (frozen), run against the Rust server from Stage 3 |
+| `shed-gates` | no Python source: the workspace-wide gates (frozen assets, layering, env-read rule, settings template). Their tests live in each gate module, not in a `tests/` directory, because `unused_crate_dependencies` is checked per target | 0 (assets, layering, env-read), 1 (settings) |
 
 Three suites (`test_mind_events_wiring`, `test_mind_state_wiring`, `test_mind_user_wiring`) test the
 `agent.py` wiring rather than the util; they port as `shed-mind` integration tests driving the slow
 tick, which is exactly the wiring the Rust version must reproduce.
+
+`tests/test_http_server.py` tests the waitress/Werkzeug switch, which §7.1 drops, so its four assertions
+split across the stages that own them: the host and port the server is started with, and the fact that
+there is exactly one boot path, are Stage 1's `--smoke` test; `test_the_housekeeper_is_started_with_the_server`
+ports at Stage 4 with the housekeeper; `test_the_channel_timeout_outlasts_the_heartbeat` (channel timeout
+≥ 4 × `ENTITY_SSE_HEARTBEAT_SECONDS`) and the bounded pool port at Stage 7, where a long-lived SSE stream
+is what turns an unbounded worker into the failure the suite describes.
 
 `tests/test_glm4.py` and `test_glm4_followup.py` are model-specific regressions. They need recorded
 upstream responses: Stage 4 captures golden fixtures from the Python app **before** any Python code is
@@ -509,6 +559,7 @@ retired, so the Rust port is graded against real model output rather than a hand
 | 7 | **Windows service + keyring under a service account.** `MCTRADER_LOGIN_KEYRING_*` and `/api/keyring` depend on the process account | Stage 8 runs the service-installer pair and asserts `current_process_account` reports the service identity |
 | 8 | **Scale.** 11,607 lines with an 890-line character catalogue and a 332-line `run_agent` | Stage order is fixed by dependency (§3.3); no stage carries more than one monolith region |
 | 9 | **Model discovery drift** from LM Studio's local store layout (`lmstudio_models_root`, `ingest_discovery_item`) | Discovery is tested against a captured directory fixture, and the `models_cache.json` fallback path is ported so a discovery failure degrades the way the Python app degrades |
+| 10 | **Dependency pins that are not in the local cargo cache.** Stage 1 verified: the cache holds `reqwest` 0.13.5, `rmcp` 3.8.0 and `windows` 0.62.2, and has no `keyring`, `tokio-tungstenite` or `fancy-regex` at all, so the pins in `[workspace.dependencies]` (`reqwest = "0.12"`, `rmcp = "1"`, `windows = "0.61"`, `keyring = "3"`, `tokio-tungstenite = "0.24"`, `fancy-regex = "0.20"`) need a download when their stage first builds. `fancy-regex` is the one with a *reason* rather than a habit: `utils/text.py` uses look-around and a backreference (`(?s)(\*+).*?\1`), which the RE2 engine behind `regex` cannot express, so it is not a pin that can be relaxed to the cached crate | Each stage that introduces a crate resolves its dependency in front of the operator before writing code against it, and the resolved version is recorded in `Cargo.lock` in that stage's commit |
 
 ## 11. Stage 0 decisions — all resolved
 
@@ -529,3 +580,19 @@ Two facts found while resolving these, both now carried into the stages:
   `ENTITY_SAY_ENABLED`, `ENTITY_SSE_ENABLED` all default false and `ENTITY_DRY_RUN` defaults true. Stage 7
   reproduces the opt-in chain and runs its exit gate with it switched on; a Stage 7 demo that "the entity
   speaks on its own" is a configured state, not the default one.
+
+## 12. Stage 1 decisions — all resolved
+
+| # | Question | Decision | What it commits |
+|---|---|---|---|
+| 1 | How a `.env` file is read | **Hand-written reader, no dotenv crate** | `crates/shed-config/src/dotenv.rs` implements `python-dotenv`'s `parse_stream` grammar. `dotenvy` was tried and failed on the operator's real `.env` — `LMSTUDIO_MODELS_DIR=D:\Models` is an illegal escape to it (`LineParse("D:\\Models", 3)`) and it rejects the whole file — so it is out of `[workspace.dependencies]` with that reason written where it used to be. `load_dotenv(..., override=True)` (`agent.py:299`) becomes `Env::with_dotenv_overrides` |
+| 2 | Where the environment lives | **One `Env` table, built once at startup** | `from_process()` for the real thing, `with_values` for tests, `with_dotenv_overrides` for the file, and `Env: Default` **empty**, which is what "nothing is set" means. No helper reads a process-global environment, so the ported tests are deterministic under parallel test execution |
+| 3 | `APP_HOST`/`APP_PORT` versus the source's four names | **`APP_HOST`/`APP_PORT` only** | `FLASK_HOST` with its `HOST` fallback and `FLASK_PORT` with its `PORT` fallback (`agent.py:574–575`) are not read. Defaults are unchanged (`0.0.0.0`, `5005`), and the divergence is a row in `docs/PARITY.md` §6 |
+| 4 | `/health`'s `mctrader_mcp` block | **The config slice now, the live tool list at Stage 5** | `configured`, `error`, `server_name` and `transport` are byte-parity today — including `error: ""` rather than `null` when configured, because `validate_mctrader_mcp_config` returns `(True, "")`. `tool_count` and `tools` stay `0` and `[]` until `shed-mcp` can open a session: `list_mctrader_mcp_tools()` connects to the server, and `/health` is not allowed to depend on that |
+| 5 | Which `utils/env.py` helpers exist | **Only the ones a stage calls** (§8.1) | `parse_bool`'s off-spellings (`""`, `"0"`, `"false"`, `"no"`, `"off"` — a deny-list, so `disabled` reads as *on*, and non-strings pass through) are recorded as prose in `env.rs` so the stage that ports the helper inherits the quirk instead of rediscovering it |
+| 6 | How `.env.example` stays honest | **The `settings` gate** | `crates/shed-gates/src/settings.rs` discovers the names by scanning `shed-config`'s shipped source, so no name list is duplicated anywhere. Read set and documented set must be equal apart from `MACHINE_NAMES` (`LOCALAPPDATA`, `HOME`, which the machine sets and the operator does not); every documented value must equal the default the code produces; every name UPPERCASE; every `_PERCENT` key double-quoted and ending in `%` |
+| 7 | `--smoke` and the port the operator is already using | **Bind `127.0.0.1:0`, report the configured address** | The stage gate then runs while the Python app still holds 5005. The probe opens a **real socket**, because `Content-Length` is written by hyper at serve time and an in-memory router would not prove the byte count; the probe must not half-close the write half, because hyper's `half_close` defaults to false (`hyper-1.12.0/src/server/conn/http1.rs:260–271`) |
+| 8 | Logging | **`shed-logging` owns the level mapping and never reads `RUST_LOG`** | `Targets::new().with_target("shed_", app_level).with_default(LevelFilter::WARN)`, no ANSI, stderr, idempotent behind a `Once`. `LogLevel` → `LevelFilter` lives here so `shed-config` stays free of I/O types. The startup line says which level is live and that only `shed_*` lines are app lines |
+| 9 | `unwrap` / `expect` | **Denied everywhere, tests included** | `clippy::unwrap_used` and `clippy::expect_used` are denied and `--all-targets` covers the test targets, so test helpers return `Result<_, ConfigError>`. A branch that is provably unreachable uses `unreachable!("…")` with the reason written beside it (`layers.rs:143`, `shed-http/src/health.rs`) |
+| 10 | The startup banner | **Reproduce `agent.py:11577`, drop the Werkzeug line** | `Starting The Entity In The Shed HTTP server on {APP_HOST}:{APP_PORT}`; the `  server=werkzeug (threaded)` line goes with `USE_WAITRESS` (§7.1) |
+| 11 | `/health`'s JSON bytes | **`serde_json::Map` + `to_string` + one trailing `\n`** | `serde_json::Map` is a `BTreeMap`, which is Flask's `sort_keys=True` key order; `axum::Json` is deliberately not used because it does not promise either the ordering or the trailing newline. The fixture is 289 bytes including the newline |

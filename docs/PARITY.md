@@ -34,7 +34,7 @@ Legend — **Client**: the browser client calls it (it is load-bearing for the f
 | 21 | `GET /api/entity/stream` | Client | 7 | port — SSE, `state` then `utterance`, heartbeats | ☐ |
 | 22 | `POST /api/entity/events` | Ops | 7 | port — entity ingestion | ☐ |
 | 23 | `POST /api/entity/say` | Ops | 7 | port | ☐ |
-| 24 | `GET /health` | Ops | 1 | port | ☐ |
+| 24 | `GET /health` | Ops | 1 | port — byte-identical against the captured 289-byte fixture (key order, `Content-Type`, `Content-Length`, one trailing `\n`); `mctrader_mcp.tool_count` and `tools` stay `0` and `[]` until Stage 5 (§10) | ☑ |
 | 25 | `POST /api/refresh-models` | Ops | 3 | port | ☐ |
 | 26 | `POST /api/unload-models` | Ops | 8 | port — router admin | ☐ |
 | 27 | `POST /api/restart` | Client | 8 | port — the client's restart button reads `error`/`message` | ☐ |
@@ -47,10 +47,14 @@ Legend — **Client**: the browser client calls it (it is load-bearing for the f
 | 34 | `POST /api/set-model` | None | — | **absent** — legacy mode-switch leftover; the launchers it served were removed | n/a |
 | 35 | `POST /api/test-speak` | None | 6 | **port** — the voice audition for `MARKUP_TESTING.md`: raw text with **no** markup normalisation, explicit `rate` (float, default 1.0) and `pitch` (float, default 72) via `parse_tts_test_tuning` (`agent.py:8591`), `X-TTS-Provider`, codes `no_text` / `no_voice` / `unsupported_provider` / `synthesis_failed` / `test_speak_error`. It answered 500 to every request for its whole life until `tests/test_test_speak_route.py` pinned it; that suite is ported unchanged | ☐ |
 
-Middleware: `before_request` request-id assignment (`agent.py:1015–1020`), `after_request`
-`X-Request-ID` echo (`1023–1027`) — Stage 1. `@api_json_boundary` (`1002–1012`) wraps every `/api/*`
-handler **except** `/api/entity/stream` and `/_routes`, which the source explains at `11474–11481`; the
-clone keeps that exception. Stage numbers below refer to §8 of `PLAN-Rust-Clone.md`.
+Middleware: `before_request` request-id assignment (`agent.py:1014–1020`), `after_request`
+`X-Request-ID` echo (`1022–1027`) — **Stage 3**, not Stage 1. Both hooks are `/api/`-only in the source:
+`assign_request_id` returns unless `request.path.startswith("/api/")` and `attach_request_id_header` sets
+the header for the same paths, which is why the captured `/health` response carries no `X-Request-ID`.
+Stage 1's only route is `/health`, so middleware for `/api/*` would guard nothing until Stage 3 serves
+`/api/countries`. `@api_json_boundary` (`1002–1012`) wraps every `/api/*` handler **except**
+`/api/entity/stream` and `/_routes`, which the source explains at `11474–11481`; the clone keeps that
+exception, and it lands with the same stage. Stage numbers below refer to §8 of `PLAN-Rust-Clone.md`.
 
 ## 2. Background loops
 
@@ -102,20 +106,28 @@ the chain switched on, once with the defaults to prove the silent state is silen
 
 | Path | Stage | Ported |
 |---|---|---|
+| `STORAGE_ROOT` itself, resolved and created at startup | 1 | ☑ |
 | `Conversations/<client-id or ip>.json` | 4 | ☐ |
 | `Conversations/<slug>/character-outline.json` + per-character profile folders | 3 | ☐ |
 | `Mind/clients/` | 7 | ☐ |
 | `Mind/users/` | 7 | ☐ |
 | `Mind/outbox/` | 7 | ☐ |
 | `Mind/<slug>/state.json`, `goals.json`, `events.jsonl`, thoughts | 7 | ☐ |
-| `Logs/` | 1 | ☐ |
+| `Logs/` — the directory and the daily log file | 8 | ☐ |
 | `tts-cache/` | 6 | ☐ |
 | `models_cache.json`, `model_local_map.json` | 2 | ☐ |
-| `.bak` and `.corrupt-<stamp>` quarantine side files | 1 | ☐ |
+| `.bak` and `.corrupt-<stamp>` quarantine side files | 4 | ☐ |
 | last-model-index file (source keeps it in the repo root; the clone keeps it under `STORAGE_ROOT`) | 3 | ☐ |
 
 `STORAGE_ROOT` default changes from `C:\Temp\entity-in-the-shed` to `%LOCALAPPDATA%\entity-in-the-shed`
-(the source README itself says `C:\Temp` destroys `Mind`). Recorded as a fixed defect, not a surprise.
+(the source README itself says `C:\Temp` destroys `Mind`), falling back to `$HOME/entity-in-the-shed` and
+then to a bare `entity-in-the-shed` when neither is set. Recorded as a fixed defect, not a surprise.
+
+**Stage 1 creates the root and nothing inside it.** The source creates `Logs/` at import time
+(`agent.py:311–312`) although the daily log file is written by the service host, which is Stage 8; the
+clone creates a directory only when a stage has code that puts a file in it. Stage 1's log lines go to
+stderr, which is where the source's own handler writes them (`configure_logging`, `11524–11550`), and the
+service host is what redirects that stderr into `Logs/`.
 
 ## 6. Config keys
 
@@ -141,6 +153,18 @@ token cap, not a ratio, so it stays a bare number.
 
 Two keys the source reads into constants and never uses (`MCTRADER_BASE_URL`, `MCTRADER_API_TOKEN` —
 noted in the source's own Loose Ends) are **not** ported; the decision is recorded here.
+
+**The clone's `.env.example` grows stage by stage, and a gate keeps it honest.** Stage 1 documents the 13
+names its three booting pieces read (`STORAGE_ROOT`, `APP_HOST`, `APP_PORT`, `AI_MODEL`,
+`LM_ENGINE_NORMAL_MODEL`, the seven `MCTRADER_MCP_*`, `LOG_LEVEL`) rather than 140 keys nothing reads
+yet. `crates/shed-gates/src/settings.rs` fails the suite when a stage reads a name it has not documented,
+documents a name no code reads, writes a value that is not the default the code produces, or spells a name
+or a `_PERCENT` value the wrong way. `LOCALAPPDATA` and `HOME` are the two names on that gate's
+`MACHINE_NAMES` allow-list: they locate the default storage root, they are set by Windows and the shell
+rather than by the operator, and documenting them would advertise settings nobody is meant to set.
+`APP_HOST`/`APP_PORT` replace all four source names, and the source's `FLASK_HOST`/`HOST` and
+`FLASK_PORT`/`PORT` fallbacks are **not** read (§7 of the plan). Startup fails on an invalid value naming
+the key; the unknown-key warning is deferred to Stage 9, where "unknown" becomes a true thing to say.
 
 ## 7. Deliberately absent, with reason
 
@@ -168,22 +192,50 @@ noted in the source's own Loose Ends) are **not** ported; the decision is record
 | 7 | `streamed_whole` says when a reply arrived whole | 4 | ☐ |
 | 8 | Pending trades survive a restart | 5 | ☐ |
 | 9 | A voice tier has one authority in the server (JS mirror becomes a read of the server's value) | 6 | ☐ |
-| 10 | Percentage config keys follow principle 24 | 1 | ☐ |
-| 11 | `.env` is never committed | 1 | ☐ |
-| 12 | `STORAGE_ROOT` default is not a swept temp directory | 1 | ☐ |
+| 10 | Percentage config keys follow principle 24 | 7 (the two keys arrive with the mind stage; the **rule** is gated from Stage 1 — `settings::tests::every_documented_name_is_spelled_as_a_setting` rejects a `_PERCENT` key whose value is not double-quoted and ending in `%`) | ☐ |
+| 11 | `.env` is never committed | 1 | ☑ `settings::tests::the_real_env_file_is_ignored_and_the_template_is_not` |
+| 12 | `STORAGE_ROOT` default is not a swept temp directory | 1 | ☑ `storage::tests::the_default_root_sits_under_the_account_profile_not_the_repo` |
 | 13 | A proactive line requires a live subscriber or a fresh poll | 7 | ☐ |
 | 14 | `agent.py`'s 730 top-level nodes land in 18 crates + 1 binary with no god module | all | ☐ |
-| 15 | Every env name the code reads is documented in `.env.example` (36 are undocumented today) | 1 | ☐ |
+| 15 | Every env name the code reads is documented in `.env.example` (36 are undocumented today) | 1 (for the settings Stage 1 reads; the rest as each stage adds its own) | ☑ `settings::tests::every_setting_the_app_reads_is_documented`, `nothing_in_the_template_is_left_unread`, `every_documented_value_is_the_default_the_code_produces`, `every_documented_name_is_spelled_as_a_setting` |
 | 16 | The audition route reports the audio it actually produced: `synthesize_speech_with_edge` writes `.mp3` while `/api/test-speak` hard-codes `audio/wav` (`agent.py:8637`), unlike `/api/speak` which sniffs it (`agent.py:3766`) | 6 | ☐ |
 
 ## 9. Stage gates (principle 20)
 
-Every stage ends with all five green:
+Every stage ends with all five green. The list below is the requirement; the record after it says what a
+stage actually ran.
 
-- ☐ `cargo fmt --all -- --check`
-- ☐ `cargo clippy --workspace --all-targets -- -D warnings`
-- ☐ `cargo test --workspace`
-- ☐ `npm test` (the 8 unchanged JS suites)
-- ☐ `cargo run -p shed-server -- --smoke` (boot, `/health`, `/`, one `/api/chat` turn against a fake engine)
+- `cargo fmt --all -- --check`
+- `cargo clippy --workspace --all-targets -- -D warnings`
+- `cargo test --workspace`
+- `node --test "tests/*.js"` — `package.json` wires `npm test` to exactly this
+- `cargo run -p shed-server -- --smoke` — Stage 1: boot, `GET /health`. `/` joins the smoke test at
+  Stage 3 and one `/api/chat` turn against a fake engine at Stage 4, because neither route exists
+  before the stage that owns it.
+
+**Stage 1 — 2026-11-04.** fmt clean. clippy clean across all 20 packages under `-D warnings`.
+`cargo test --workspace`: 76 tests — 50 in `shed-config`, 16 in `shed-gates`, 5 in `shed-http`, 5 in
+`shed-logging`, 0 in the crates a later stage fills. `node --test "tests/*.js"`: 250 pass, 0 fail.
+`--smoke` exits 0 and prints `smoke: GET /health on 0.0.0.0:5005 answered HTTP/1.1 200 OK with 256 bytes
+of JSON`. No temporary or one-off file left in the repository or in the approved temporary tree.
 
 Plus the stage-specific manual check written in the plan.
+
+## 10. Stage 1 divergences, recorded while booting
+
+Anything not on this list and not already in §7 is a parity bug.
+
+| # | Divergence | Why | Where it is held |
+|---|---|---|---|
+| 1 | The `.env` file is read by the clone's own parser, not a crate | `dotenvy` rejects this operator's real `.env` — `LMSTUDIO_MODELS_DIR=D:\Models` is an illegal escape to it (`LineParse("D:\\Models", 3)`) and the whole file fails — where `python-dotenv` keeps the backslash and carries on. The clone implements `dotenv/parser.py`'s grammar: `export`, quoted keys, quoted and unquoted values, `# comment`, and a value that is nothing | `dotenv.rs`'s tests; the `single_env_reader` gate keeps a dotenv crate out of every other package |
+| 2 | `APP_HOST`/`APP_PORT` only | §6: the source's `FLASK_HOST`/`HOST`/`FLASK_PORT`/`PORT` fallbacks name Flask, not the address | `server.rs`, `.env.example` |
+| 3 | Log lines carry no ANSI codes and go to stderr | The source's Flask handler writes plain text to stderr and the service host redirects that stderr into the daily log (Stage 8). `tracing-subscriber`'s default features include `ansi`, so they are switched off: `default-features = false, features = ["fmt"]` | `shed-logging`'s tests, `Cargo.toml`'s pin comment |
+| 4 | `RUST_LOG` is never read | The source has no such variable. `LOG_LEVEL` is the only level knob, and a second one would be a second authority for the same decision (principle 11) | `shed-logging` never builds an `EnvFilter` from the environment |
+| 5 | `--smoke` binds `127.0.0.1:0` and then reports the configured `host:port` | The operator's Python app holds 5005 for the whole port, so the stage gate must not claim a port; the line it prints still names the address a real boot would bind | `bins/shed-server/src/smoke.rs` |
+| 6 | The probe opens a real socket and does not half-close it | `Content-Length` is written by hyper while serving, not by the router, so only a served response proves the byte count; hyper's `half_close` defaults to false (`hyper-1.12.0/src/server/conn/http1.rs:260–271`), so a probe that shut its write half down would wait for an EOF that never arrives | `smoke.rs` |
+| 7 | `/health`'s key order comes from `serde_json::Map` (a `BTreeMap`) and the body ends in one `\n` | Flask's `jsonify` sorts keys; `axum::Json` promises neither the order nor the trailing newline, and the captured response is compared byte for byte | `health.rs`'s 289-byte fixture |
+| 8 | Non-ASCII text is **not** escaped | Flask's `app.json.ensure_ascii` defaults to `True`, so the Python app writes `\uXXXX` for a non-ASCII name; `serde_json` writes UTF-8. The `/health` payload is ASCII today, so the fixture cannot show the difference. Any route whose payload can carry a non-ASCII model, character or reply name is compared byte for byte when it is ported, and if the frozen client turns out to depend on the escapes, the clone escapes at that point | recorded here; each later route's parity test decides |
+| 9 | `/health` carries no `X-Request-ID` | The source's request-id hooks are `/api/`-only (§1) | `health.rs`'s header assertion |
+| 10 | Flask's `/health` failure path is not ported | The source's handler catches an exception and answers 500. The clone's `/health` reads only values `AppConfig` already validated at startup, so there is no failure left to catch inside the request; a bad setting stops the process before it can answer | `health.rs` |
+| 11 | `--smoke` creates the real `%LOCALAPPDATA%\entity-in-the-shed` root | Stage 1 resolves and creates the storage root exactly as the app does, and the source creates its own at import time too (`agent.py:311–312`). The smoke run therefore touches the operator's real runtime directory — it writes nothing into it | recorded so the side effect is not a surprise; the directory is created by `Storage::resolve` |
+| 12 | `mctrader_mcp.tool_count` is `0` and `tools` is `[]` until Stage 5 | `list_mctrader_mcp_tools()` opens a session against the MCP server, and `/health` may not depend on that. The rest of the block is byte-parity now | `health.rs`'s fixture, plan §12 decision 4 |

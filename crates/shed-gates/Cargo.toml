@@ -6,13 +6,18 @@ rust-version.workspace = true
 license.workspace = true
 publish = false
 
-# This package holds no library code on purpose. Everything in it is a repository-level
-# gate that no single domain crate owns: the frozen-client hash test, the crate
-# dependency-direction test, and the rule that only shed-config reads the environment.
+# This package holds no domain logic on purpose. Everything in it is a repository-level gate
+# that no single domain crate owns: the frozen-client hash test, the crate dependency-direction
+# test, the rule that only shed-config reads the environment, and the settings template gate.
 
 [dependencies]
 serde_json = { workspace = true }
 sha2 = { workspace = true }
+# The settings gate builds an `AppConfig` to compare `.env.example` with the defaults the code
+# produces, and it lists the settings by scanning `shed-config`'s source. A normal dependency
+# rather than a dev one because the scan itself is shipped code, and
+# `unused_crate_dependencies` is denied per target.
+shed-config = { workspace = true }
 
 [dev-dependencies]
 

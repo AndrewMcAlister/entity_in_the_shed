@@ -11,6 +11,13 @@ name = "shed-server"
 path = "src/main.rs"
 
 [dependencies]
+axum = { workspace = true }
+serde_json = { workspace = true }
+shed-config = { workspace = true }
+shed-http = { workspace = true }
+shed-logging = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
 
 [dev-dependencies]
 

@@ -107,8 +107,10 @@ pub const TEST_ONLY_CRATES: [&str; 2] = ["shed-testutil", "shed-gates"];
 
 /// Principle 19 and principle 24: the environment is read once, in `shed-config`, and every
 /// other crate is handed an `AppConfig`. `env!(...)` is a compile-time macro, not a read, so
-/// it is not matched here.
-pub const ENV_READ_MARKERS: [&str; 4] = ["env::var(", "env::vars(", "env::var_os(", "dotenvy::"];
+/// it is not matched here, and neither is `std::env::current_dir()`, which names where the
+/// process was started rather than what it was configured to do.
+pub const ENV_READ_MARKERS: [&str; 4] =
+    ["env::var(", "env::vars(", "env::var_os(", "env::vars_os("];
 
 /// The line with the inside of every string literal blanked out.
 ///
@@ -216,7 +218,8 @@ pub fn package_sources(package_dir: &Path) -> io::Result<Vec<PathBuf>> {
     Ok(files)
 }
 
-fn collect_rs(dir: &Path, files: &mut Vec<PathBuf>) -> io::Result<()> {
+/// The `.rs` files under a directory, recursively.
+pub fn collect_rs(dir: &Path, files: &mut Vec<PathBuf>) -> io::Result<()> {
     if !dir.is_dir() {
         return Ok(());
     }
@@ -375,7 +378,7 @@ mod tests {
     #[test]
     fn the_env_scan_catches_a_read_and_ignores_the_marker_table() {
         let read = r#"let provider = env::var("MODEL_PROVIDER").unwrap_or_default();"#;
-        let table = r#"["env::var(", "env::vars(", "env::var_os(", "dotenvy::"];"#;
+        let table = r#"["env::var(", "env::vars(", "env::var_os(", "env::vars_os("];"#;
         let lifetime = "pub fn allowed_for(name: &str) -> Option<&'static [&'static str]> {";
 
         let read_is_a_read =
@@ -390,5 +393,30 @@ mod tests {
             lifetime,
             "lifetimes must survive the scan unchanged"
         );
+    }
+
+    /// `shed-logging` decides which lines are the app's by matching the `shed_` prefix of the log
+    /// target, and a target starts with the crate name, which is the package name with `-` turned
+    /// into `_`. A package named outside that convention sits on the other side of the filter: its
+    /// app lines fall to the library level and disappear, which is the exact failure
+    /// `configure_logging`'s docstring in the source describes (`agent.py:11527–11534`).
+    #[test]
+    fn every_package_name_carries_the_log_filter_prefix() -> Gate {
+        let mut wrong = Vec::new();
+        for manifest in package_manifests(&repo_root())? {
+            let name = package_name(&manifest)?;
+            if !name.starts_with("shed-") {
+                wrong.push(format!(
+                    "{}: package name {name} does not start with `shed-`, so its log target would \
+                     not match the `shed_` app prefix",
+                    manifest.display()
+                ));
+            }
+        }
+
+        if !wrong.is_empty() {
+            return Err(Box::from(wrong.join("\n")));
+        }
+        Ok(())
     }
 }

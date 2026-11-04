@@ -42,25 +42,61 @@ dependencies.
   reason.
 - **Config key**: none.
 - **Tests**: `layers::tests::no_crate_depends_outside_its_layer`,
-  `layers::tests::every_workspace_package_is_declared_in_the_layer_table`.
+  `layers::tests::every_workspace_package_is_declared_in_the_layer_table`,
+  `layers::tests::every_package_name_carries_the_log_filter_prefix`.
 - **Note**: Cargo does not check dependency direction and clippy cannot express it, so the rules live as
   data (`LAYERS`, 20 entries) and a test reads each package manifest against them. A violation names the
   crate and the edge instead of "layering broke". `shed-testutil` and `shed-gates` are test-only and no
-  shipped crate may depend on them.
+  shipped crate may depend on them. The package-name half of the gate is the same rule seen from the log
+  side: `shed-logging` picks the app's lines by the `shed_` prefix of the log target, and a target begins
+  with the crate name, which is the package name with `-` turned into `_`.
 
 ### `single_env_reader`
 
 - **Lives in**: `crates/shed-gates/src/layers.rs`
 - **Gates**: who may read the environment (principles 19 and 24).
 - **Fires when**: any crate other than `shed-config` contains `env::var(`, `env::vars(`, `env::var_os(`
-  or `dotenvy::`.
+  or `env::vars_os(`.
 - **Clears when**: the value is threaded through `AppConfig` instead.
 - **Config key**: none.
 - **Tests**: `layers::tests::only_shed_config_reads_the_environment`,
   `layers::tests::the_env_scan_catches_a_read_and_ignores_the_marker_table`.
-- **Note**: `env!(...)` is a compile-time macro and is not a read, so it is not matched. The scan blanks
-  the inside of string and raw-string literals first, because the gate's own marker table and its test
-  fixtures contain the markers as text; a real read still reads as `env::var("")` and is caught.
+- **Note**: `env!(...)` is a compile-time macro and is not a read, so it is not matched; nor is
+  `std::env::current_dir()` or `std::env::args()`, which read the process, not a setting. The scan
+  blanks the inside of string and raw-string literals first, because the gate's own marker table and
+  its test fixtures contain the markers as text; a real read still reads as `env::var("")` and is
+  caught. There is no dotenv crate anywhere in the workspace: the `.env` grammar lives in
+  `shed-config/src/dotenv.rs`, which is what makes the settings gate below able to read
+  `.env.example` with the same parser the app uses.
+
+### `settings_template`
+
+- **Lives in**: `crates/shed-gates/src/settings.rs`
+- **Gates**: `.env.example` against the code that reads it — the read set, the documented set, the
+  documented values, and principle 24's spelling (`docs/PARITY.md` §6, fixes 10, 11 and 15).
+- **Fires when**: `shed-config` reads a name the template does not document; the template documents a
+  name nothing reads; a documented value is not the default the code produces (compared by building two
+  `AppConfig` values, one from an empty `Env` and one from the template); a documented name is not
+  UPPERCASE, or a `_PERCENT` key holds a value that is not double-quoted and ending in `%`; a read does
+  not name its setting with a literal; `.gitignore` stops ignoring `.env` or starts ignoring
+  `.env.example`.
+- **Clears when**: the stage that reads a name documents it in the same commit, with the default written
+  next to it, or deletes the setting it no longer reads.
+- **Config key**: none — it reads the repository, not the configuration.
+- **Tests**: `settings::tests::every_setting_the_app_reads_is_documented`,
+  `nothing_in_the_template_is_left_unread`,
+  `every_documented_value_is_the_default_the_code_produces`,
+  `every_documented_name_is_spelled_as_a_setting`,
+  `the_real_env_file_is_ignored_and_the_template_is_not`,
+  `the_scan_finds_a_named_read_and_ignores_the_lookalikes`, `a_setting_name_is_uppercase`,
+  `the_log_level_default_survives_an_absent_setting`.
+- **Note**: the names are **discovered**, not listed. The scan reads `shed-config`'s shipped files and
+  records each `env.<method>("NAME")` call, so a second copy of the settings list never exists to drift
+  (principle 19). A read must name its setting literally at the read site — that is why
+  `storage.rs::default_storage_root` writes `env.get("LOCALAPPDATA")` and `env.get("HOME")` instead of
+  looping over a name table, and why `mcp.rs` hoists its timeout read onto one line. `LOCALAPPDATA` and
+  `HOME` are on the `MACHINE_NAMES` allow-list: the machine sets them and the operator does not, so
+  documenting them would advertise a setting nobody should set.
 
 ## 2. App guards, not yet ported
 

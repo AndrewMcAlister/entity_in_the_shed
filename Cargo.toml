@@ -35,19 +35,33 @@ serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 thiserror = "2"
 anyhow = "1"
-tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "fs", "sync", "process", "signal"] }
+# `net` and `io-util` are here for the server itself: the listener it binds, and the socket
+# `--smoke` uses to ask its own `/health`.
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "net", "io-util", "fs", "sync", "process", "signal"] }
 axum = "0.8"
 reqwest = { version = "0.12", default-features = false, features = ["json", "gzip", "stream"] }
-tower = "0.5"
+# `util` is the module `ServiceExt::oneshot` lives in, which is how a route test calls the
+# router in memory instead of opening a socket.
+tower = { version = "0.5", features = ["util"] }
 tower-http = { version = "0.6", features = ["fs"] }
-dotenvy = "0.15"
+# No dotenv crate: `python-dotenv` and the off-the-shelf Rust parsers disagree about the
+# settings this operator actually has (`LMSTUDIO_MODELS_DIR=D:\Models` is an illegal escape
+# sequence to them and fails the whole file), so the `.env` reader lives in `shed-config`'s
+# `dotenv.rs` and matches `python-dotenv` instead. See `crates/shed-config/src/dotenv.rs`.
 uuid = { version = "1", features = ["v4"] }
 chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
 tracing = "0.1"
-tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# `env-filter` is off on purpose: it is the `RUST_LOG` reader, and `RUST_LOG` is not a setting
+# this app documents, so a log level that appeared from outside the settings file would break
+# principle 24. `fmt` pulls in `registry` and `std`, which is all `shed-logging` uses; the
+# default features also add `ansi`, which the daily log file has no use for.
+tracing-subscriber = { version = "0.3", default-features = false, features = ["fmt"] }
 sha2 = "0.10"
 rand = "0.9"
-regex = "1"
+# `fancy-regex`, not `regex`: the `utils/text.py` patterns use look-around and a backreference
+# (`(?s)(\*+).*?\1`), which RE2 in the `regex` crate cannot express. `utils/text.py` is ported
+# with the reply-cleanup stage, which is when this dependency gets a consumer.
+fancy-regex = "0.20"
 futures = "0.3"
 tokio-tungstenite = "0.24"
 rmcp = { version = "1", features = ["client-transport", "transport-io"] }
