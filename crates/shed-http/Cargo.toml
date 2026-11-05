@@ -1,0 +1,19 @@
+[package]
+name = "shed-http"
+version.workspace = true
+edition.workspace = true
+description = "The axum router: routes and response shapes byte-matched to the Flask app."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+axum.workspace = true
+serde_json.workspace = true    # /health payload: Value Display is the compact form
+shed-config = { path = "../shed-config" } # AppConfig the handlers read
+
+[dev-dependencies]
+http-body-util.workspace = true # collect the oneshotted response body
+tokio.workspace = true          # #[tokio::test]
+tower.workspace = true          # ServiceExt::oneshot drives the router

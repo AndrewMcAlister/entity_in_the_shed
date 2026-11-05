@@ -6,19 +6,22 @@
 # layering gate enforces it over whatever packages exist today.
 [workspace]
 resolver = "2"
-# "bins/*" joins members when Stage 1 creates bins/shed-server: cargo rejects
-# a glob whose parent directory does not exist, and an empty bins/ would not
-# survive a fresh clone (git does not track empty directories).
-members = ["crates/*"]
+members = ["crates/*", "bins/*"]
 
 # Only dependencies with a live consumer are listed here; later stages add
 # theirs as they write the code that uses them (principle 16). Each entry
 # names its consumer.
 [workspace.dependencies]
-sha2 = "0.10"           # shed-gates: frozen-asset manifest
+axum = "0.8"            # shed-http: router + /health; shed-server: serve
+http-body-util = "0.1"  # shed-http tests: collect the response body
 serde = { version = "1", features = ["derive"] } # shed-gates: manifest + layer model
-serde_json = "1"        # shed-gates: manifest parsing
+serde_json = "1"        # shed-config: JSON env values; shed-http: /health payload
+sha2 = "0.10"           # shed-gates: frozen-asset manifest
+tokio = { version = "1", features = ["io-util", "macros", "net", "rt-multi-thread", "signal"] } # shed-server: runtime + bind + raw smoke socket + ctrl-c
+tower = { version = "0.5", features = ["util"] } # shed-http tests: oneshot the router
 toml = "0.8"            # shed-gates: reads each crate's Cargo.toml
+tracing = "0.1"         # shed-logging + every crate's app lines
+tracing-subscriber = { version = "0.3", default-features = false, features = ["fmt", "registry"] } # shed-logging
 
 [workspace.package]
 version = "0.1.0"

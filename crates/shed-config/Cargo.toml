@@ -1,0 +1,12 @@
+[package]
+name = "shed-config"
+version.workspace = true
+edition.workspace = true
+description = "Typed AppConfig: the one crate that reads the environment. python-dotenv-grammar .env reader plus the utils/env.py helpers."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+serde_json.workspace = true   # parse_json_env: JSON-valued env entries (MCP args/env)

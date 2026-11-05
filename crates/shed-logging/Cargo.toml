@@ -1,0 +1,14 @@
+[package]
+name = "shed-logging"
+version.workspace = true
+edition.workspace = true
+description = "stderr logging: the LOG_LEVEL filter with app-lines-only quieting, mirroring agent.py configure_logging."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+shed-config = { path = "../shed-config" } # LogLevel
+tracing.workspace = true
+tracing-subscriber.workspace = true

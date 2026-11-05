@@ -1,0 +1,20 @@
+[package]
+name = "shed-server"
+version.workspace = true
+edition.workspace = true
+description = "The service binary: startup order config -> logging -> banner -> serve, a clone of agent.py run_http_server."
+publish = false
+
+[[bin]]
+name = "entity_in_the_shed" # the Windows service name (plan D9); the old Python service keeps entity-in-the-shed
+path = "src/main.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+axum.workspace = true
+tokio.workspace = true
+shed-config = { path = "../../crates/shed-config" }
+shed-http = { path = "../../crates/shed-http" }
+shed-logging = { path = "../../crates/shed-logging" }
