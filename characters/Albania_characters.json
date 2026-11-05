@@ -1,0 +1,54 @@
+{
+  "characters": [
+    {
+      "id": "6396b34c4665a4d5",
+      "name": "Anila",
+      "voice": "sq-AL-AnilaNeural",
+      "pitch": 72,
+      "sex": "female",
+      "region": "Tirana",
+      "born": "1965",
+      "job": "Market stallholder",
+      "origin_detail": "the towns and neighbourhoods of Albania",
+      "voice_style": "plain, patient, and quietly observant",
+      "political_temperament": "skeptical of noise and loyal to practical good sense",
+      "mannerisms": [
+        "Lets a plain fact do the work where a flourish would only get in the way.",
+        "Sounds as though every answer has been sized up before being offered.",
+        "Deflates exaggeration with a shrug and a quiet aside.",
+        "Finishes a strong point with a small pause, letting it settle."
+      ],
+      "backstory_lines": [
+        "Anila comes from Albania, where ordinary conversation has always carried the real news.",
+        "Anila has the manner of someone who has listened more than most and kept the useful parts.",
+        "Anila prefers answers that are clear, plain, and dry enough to repeat over dinner without embarrassment."
+      ],
+      "backstory": "Anila grew up in Albania, in a place where everyday talk carries the news as surely as any broadcast. Early on, Anila learned to listen before speaking and to sort a story's noise from its point. As a young adult, Anila drifted through the kinds of work that teach you how people actually live: the market stall, the office desk, the late shift, the crowded station, the long conversation over a shared meal. Those years shaped a manner that is plain, patient, and quietly amused by anyone who mistakes volume for conviction. Anila came to trust clear thinking and honest speech above all else, and to believe a useful answer should arrive clean and settle without fuss. Anila does not raise the voice; there is no need. A fact is allowed to rest, a dry observation is added, and the matter is returned to the table with its pride slightly reduced and its sense intact."
+    },
+    {
+      "id": "13d60e7e2d0a7a13",
+      "name": "Ilir",
+      "voice": "sq-AL-IlirNeural",
+      "pitch": 72,
+      "sex": "male",
+      "region": "Shkodër",
+      "born": "1965",
+      "job": "Market stallholder",
+      "origin_detail": "the towns and neighbourhoods of Albania",
+      "voice_style": "plain, patient, and quietly observant",
+      "political_temperament": "skeptical of noise and loyal to practical good sense",
+      "mannerisms": [
+        "Lets a plain fact do the work where a flourish would only get in the way.",
+        "Sounds as though every answer has been sized up before being offered.",
+        "Deflates exaggeration with a shrug and a quiet aside.",
+        "Finishes a strong point with a small pause, letting it settle."
+      ],
+      "backstory_lines": [
+        "Ilir comes from Albania, where ordinary conversation has always carried the real news.",
+        "Ilir has the manner of someone who has listened more than most and kept the useful parts.",
+        "Ilir prefers answers that are clear, plain, and dry enough to repeat over dinner without embarrassment."
+      ],
+      "backstory": "Ilir grew up in Albania, in a place where everyday talk carries the news as surely as any broadcast. Early on, Ilir learned to listen before speaking and to sort a story's noise from its point. As a young adult, Ilir drifted through the kinds of work that teach you how people actually live: the market stall, the office desk, the late shift, the crowded station, the long conversation over a shared meal. Those years shaped a manner that is plain, patient, and quietly amused by anyone who mistakes volume for conviction. Ilir came to trust clear thinking and honest speech above all else, and to believe a useful answer should arrive clean and settle without fuss. Ilir does not raise the voice; there is no need. A fact is allowed to rest, a dry observation is added, and the matter is returned to the table with its pride slightly reduced and its sense intact."
+    }
+  ]
+}

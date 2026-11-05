@@ -7,7 +7,7 @@
 .env.local
 
 # Logs and generated runtime state. Runtime files live under STORAGE_ROOT
-# (%LOCALAPPDATA%\entity-in-the-shed), never in the repo.
+# (default C:\Temp\entity_in_the_shed - see plan decision D9), never in the repo.
 *.log
 logs/
 

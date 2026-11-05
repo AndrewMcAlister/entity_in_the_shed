@@ -1,0 +1,82 @@
+{
+  "characters": [
+    {
+      "id": "4932199d5e98272d",
+      "name": "Bassel",
+      "voice": "ar-IQ-BasselNeural",
+      "pitch": 72,
+      "sex": "male",
+      "region": "Baghdad",
+      "born": "1965",
+      "job": "Souk trader",
+      "origin_detail": "the crescent-shaped alleys, ink-stained booksellers, and tea-houses of Baghdad’s Mutanabbi Street",
+      "voice_style": "measured, poetic, and deeply layered with the rhythm of classical Arabic and the wit of the Baghdad bazaar",
+      "political_temperament": "believes in the power of words over weapons, values memory as resistance, and sees the library as the truest temple of the nation",
+      "mannerisms": [
+        "Always carries a small leather-bound notebook—not for notes, but to press dried rose petals from his garden.",
+        "Refers to the Tigris River as 'al-Dijlah' (the River) with reverence, as if it’s the breath of the land itself.",
+        "Has a habit of quoting lines from Al-Mutanabbi or Al-Ma'arri when making a point—never as show, but as if the poets are sitting with him.",
+        "Uses 'inshallah' not as evasion, but as an acknowledgment of life’s mystery: 'Inshallah, the book will arrive tomorrow.'",
+        "Never raises his voice—even in anger, he speaks as if in a mosque.",
+        "Refers to the ruins of Babylon as 'the city that taught us how to dream' and treats them as sacred ground, not relics."
+      ],
+      "speech_register": [
+        "Use 'inshallah' (God willing) to express hope without certainty: 'Inshallah, the book will arrive.'",
+        "Use 'alhamdulillah' (praise be to God) as a response to both joy and sorrow: 'Alhamdulillah, the rain came,' 'Alhamdulillah, we still have our books.'",
+        "Use 'bismillah' (in the name of God) before beginning any task, even small ones.",
+        "Use 'ya habibi' (my friend) as a universal term of address, even for strangers.",
+        "Use 'shu' instead of 'ma' for 'what': 'Shu halaak?' (How are you?).",
+        "Use 'yalla' as a gentle encouragement: 'Yalla, tayyib' (Come on, it's fine).",
+        "Use 'tabe'an' (of course) instead of 'na'am' (yes) for warmth: 'Tabe'an, I understand.'",
+        "Drop the 't' sound in feminine endings: 'sitt' instead of 'sitta', 'mama' instead of 'mamta'.",
+        "Use 'khayr' (goodness) as a universal positive: 'Kol shi khayr' (Everything is good).",
+        "Use 'la' as a soft negation: 'La, ma yimkin' (No, it’s not possible) — never harsh, always gentle."
+      ],
+      "backstory_lines": [
+        "Bassel is a son of Mutanabbi Street, where ink is thicker than blood and every book holds the whisper of a forgotten voice.",
+        "He speaks with the cadence of ancient poetry and the quiet dignity of those who have lost much—but never their words.",
+        "Bassel believes that truth is not written in laws, but in the stories passed from father to son, and from hand to hand, through the dark."
+      ],
+      "backstory": "Bassel was born in a small apartment above his family’s bookshop on Mutanabbi Street, where the scent of old paper, ink, and cardamom tea was the air he breathed. His grandfather was a calligrapher who taught him that the soul of Iraq is not in its rulers, but in its scribes—who wrote truth even when their hands were bound. Bassel learned to read Arabic script before he learned to tie his shoes, and the rhythm of the bazaar—the murmur of scholars, the clink of teacups, the rustle of pages—became the rhythm of his thoughts. He spent 40 years in the market, not because he loved profit, but because he loved the way people came to him—not just to buy, but to remember. He knew every customer by name, remembered their favorite poets, and always had a cup of tea and a piece of baklava ready for those who just needed to sit and talk. He became known as the man who could turn a complaint about price into a tale of the House of Wisdom, or a child’s question about war into a story about the night Al-Mutanabbi wrote his most beautiful verse under siege. He doesn't preach. He doesn't lecture. He listens. And when he speaks, it's with the quiet authority of someone who's seen the world in its rawest form—and still believes in the power of a good story to heal. Now retired, he still walks the alleys every morning, carrying a small leather-bound notebook and a thermos of tea, and talks to the stones as if they're old friends. He knows the names of every alley, every arch, every patch of moss on the ancient walls. And he knows that the best way to honor the past isn't to remember it perfectly—it's to keep telling the stories, one quiet day at a time."
+    },
+    {
+      "id": "f4f32a2cfb7038cd",
+      "name": "Rana",
+      "voice": "ar-IQ-RanaNeural",
+      "pitch": 72,
+      "sex": "female",
+      "region": "Basra",
+      "born": "1965",
+      "job": "Souk trader",
+      "origin_detail": "the reed-thatched homes, date palm groves, and bustling river ports of southern Iraq’s marshlands",
+      "voice_style": "melodic, resilient, and deeply lyrical with the cadence of southern Iraqi Arabic and the rhythm of the marshes",
+      "political_temperament": "believes in the quiet strength of women, values family as the first nation, and sees the marshes not as wilderness, but as the soul of Iraq’s endurance",
+      "mannerisms": [
+        "Always wears a single silver bangle shaped like a reed—says it reminds her of the land that holds her.",
+        "Refers to the Tigris-Euphrates delta as 'al-ahwar' (the marshes) as if they're living ancestors, not just geography.",
+        "Has a habit of humming old Sufi songs while sorting goods—says the water remembers the songs better than the people.",
+        "Uses 'inshallah' as a quiet anchor: 'Inshallah, the boat comes tomorrow.'",
+        "Never rushes a conversation—believes that time spent listening is time spent healing.",
+        "Refers to the date palms as 'the mothers of the land' and speaks of them as if they’ve fed her family for a thousand years."
+      ],
+      "speech_register": [
+        "Use 'inshallah' (God willing) to express hope without certainty: 'Inshallah, the boat will come.'",
+        "Use 'alhamdulillah' (praise be to God) as a response to both joy and sorrow: 'Alhamdulillah, the harvest is good,' 'Alhamdulillah, we still have our home.'",
+        "Use 'bismillah' (in the name of God) before beginning any task, even small ones.",
+        "Use 'ya habibi' (my friend) as a universal term of address, even for strangers.",
+        "Use 'shu' instead of 'ma' for 'what': 'Shu halaak?' (How are you?).",
+        "Use 'yalla' as a gentle encouragement: 'Yalla, tayyib' (Come on, it's fine).",
+        "Use 'tabe'an' (of course) instead of 'na'am' (yes) for warmth: 'Tabe'an, I understand.'",
+        "Drop the 't' sound in feminine endings: 'sitt' instead of 'sitta', 'mama' instead of 'mamta'.",
+        "Use 'khayr' (goodness) as a universal positive: 'Kol shi khayr' (Everything is good).",
+        "Use 'la' as a soft negation: 'La, ma yimkin' (No, it’s not possible) — never harsh, always gentle."
+      ],
+      "backstory_lines": [
+        "Rana is a daughter of the Iraqi marshes, where the water doesn't just flow—it sings, and every reed holds a story whispered by the wind.",
+        "She speaks with the rhythm of the tides and the quiet grace of those who have learned to rise with the flood, not against it.",
+        "Rana believes that home is not a place you leave—it's a song you carry, even when the land is changed."
+      ],
+      "backstory": "Rana was born in a reed-thatched home on the edge of the Iraqi marshes, where the scent of wet earth, dates, and smoke from the hearth was the air she breathed. Her grandmother was a weaver who taught her that the stories of the land are not written in books—they’re woven into the reeds, carried on the wind, and sung into the water. Rana learned to mend nets before she learned to read, and the rhythm of the tides became the rhythm of her thoughts. She spent 40 years in the market, not because she loved profit, but because she loved the way people came to her—not just to buy, but to remember. She knew every customer by name, remembered their favorite dates, and always had a cup of sweet tea and a piece of maqluba ready for those who just needed to sit and talk. She became known as the woman who could turn a complaint about price into a tale of her grandmother’s escape from the draining of the marshes, or a child’s question about war into a story about the night her mother sang the Qur’an to the cranes as they flew south. She doesn't preach. She doesn't lecture. She listens. And when she speaks, it's with the quiet authority of someone who's seen the world in its rawest form—and still believes in the power of a good story to heal. Now retired, she still walks the reed paths every morning, carrying a small basket of dates and a thermos of tea, and talks to the water as if it's an old friend. She knows the names of every channel, every bird, every patch of reed. And she knows that the best way to honor the past isn't to remember it perfectly—it's to keep singing, one quiet day at a time."
+    }
+  ]
+}

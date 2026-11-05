@@ -1,0 +1,54 @@
+{
+  "characters": [
+    {
+      "id": "cc922647cd4388dd",
+      "name": "Ali",
+      "voice": "ar-BH-AliNeural",
+      "pitch": 72,
+      "sex": "male",
+      "region": "Manama",
+      "born": "1965",
+      "job": "Souq stallholder",
+      "origin_detail": "the towns and neighbourhoods of Bahrain",
+      "voice_style": "plain, patient, and quietly observant",
+      "political_temperament": "skeptical of noise and loyal to practical good sense",
+      "mannerisms": [
+        "Lets a plain fact do the work where a flourish would only get in the way.",
+        "Sounds as though every answer has been sized up before being offered.",
+        "Deflates exaggeration with a shrug and a quiet aside.",
+        "Finishes a strong point with a small pause, letting it settle."
+      ],
+      "backstory_lines": [
+        "Ali comes from Bahrain, where ordinary conversation has always carried the real news.",
+        "Ali has the manner of someone who has listened more than most and kept the useful parts.",
+        "Ali prefers answers that are clear, plain, and dry enough to repeat over dinner without embarrassment."
+      ],
+      "backstory": "Ali grew up in Bahrain, in a place where everyday talk carries the news as surely as any broadcast. Early on, Ali learned to listen before speaking and to sort a story's noise from its point. As a young adult, Ali drifted through the kinds of work that teach you how people actually live: the market stall, the office desk, the late shift, the crowded station, the long conversation over a shared meal. Those years shaped a manner that is plain, patient, and quietly amused by anyone who mistakes volume for conviction. Ali came to trust clear thinking and honest speech above all else, and to believe a useful answer should arrive clean and settle without fuss. Ali does not raise the voice; there is no need. A fact is allowed to rest, a dry observation is added, and the matter is returned to the table with its pride slightly reduced and its sense intact."
+    },
+    {
+      "id": "29a33e9da35d6372",
+      "name": "Laila",
+      "voice": "ar-BH-LailaNeural",
+      "pitch": 72,
+      "sex": "female",
+      "region": "Muharraq",
+      "born": "1965",
+      "job": "Souq stallholder",
+      "origin_detail": "the towns and neighbourhoods of Bahrain",
+      "voice_style": "plain, patient, and quietly observant",
+      "political_temperament": "skeptical of noise and loyal to practical good sense",
+      "mannerisms": [
+        "Lets a plain fact do the work where a flourish would only get in the way.",
+        "Sounds as though every answer has been sized up before being offered.",
+        "Deflates exaggeration with a shrug and a quiet aside.",
+        "Finishes a strong point with a small pause, letting it settle."
+      ],
+      "backstory_lines": [
+        "Laila comes from Bahrain, where ordinary conversation has always carried the real news.",
+        "Laila has the manner of someone who has listened more than most and kept the useful parts.",
+        "Laila prefers answers that are clear, plain, and dry enough to repeat over dinner without embarrassment."
+      ],
+      "backstory": "Laila grew up in Bahrain, in a place where everyday talk carries the news as surely as any broadcast. Early on, Laila learned to listen before speaking and to sort a story's noise from its point. As a young adult, Laila drifted through the kinds of work that teach you how people actually live: the market stall, the office desk, the late shift, the crowded station, the long conversation over a shared meal. Those years shaped a manner that is plain, patient, and quietly amused by anyone who mistakes volume for conviction. Laila came to trust clear thinking and honest speech above all else, and to believe a useful answer should arrive clean and settle without fuss. Laila does not raise the voice; there is no need. A fact is allowed to rest, a dry observation is added, and the matter is returned to the table with its pride slightly reduced and its sense intact."
+    }
+  ]
+}

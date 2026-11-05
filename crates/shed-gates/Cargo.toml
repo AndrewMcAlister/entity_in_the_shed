@@ -1,0 +1,15 @@
+[package]
+name = "shed-gates"
+version.workspace = true
+edition.workspace = true
+description = "Workspace-wide invariant gates: frozen assets, crate layering, env-read rule. Dev-only - no shipped crate may depend on this one."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+serde.workspace = true       # manifest + Cargo.toml models
+serde_json.workspace = true  # assets.manifest.json parsing
+sha2.workspace = true        # frozen-asset digests
+toml.workspace = true        # reads each crate's Cargo.toml

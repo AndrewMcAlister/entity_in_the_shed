@@ -1,0 +1,41 @@
+# Workspace root for the Rust clone of Entity In The Shed.
+#
+# Crates are created on demand: a crate appears in `crates/` only when a stage
+# gives it a production caller (plan decision D4, How_To_Code principle 16).
+# The complete layer map lives in crates/shed-gates/src/layers.rs and the
+# layering gate enforces it over whatever packages exist today.
+[workspace]
+resolver = "2"
+# "bins/*" joins members when Stage 1 creates bins/shed-server: cargo rejects
+# a glob whose parent directory does not exist, and an empty bins/ would not
+# survive a fresh clone (git does not track empty directories).
+members = ["crates/*"]
+
+# Only dependencies with a live consumer are listed here; later stages add
+# theirs as they write the code that uses them (principle 16). Each entry
+# names its consumer.
+[workspace.dependencies]
+sha2 = "0.10"           # shed-gates: frozen-asset manifest
+serde = { version = "1", features = ["derive"] } # shed-gates: manifest + layer model
+serde_json = "1"        # shed-gates: manifest parsing
+toml = "0.8"            # shed-gates: reads each crate's Cargo.toml
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+
+# Deny-by-default floor for every crate in the workspace (principle 16).
+# `clippy::pedantic` is deliberately NOT enabled as a group — it would import
+# lints this project does not want; wanted pedantic lints are named one by one
+# as stages earn them.
+[workspace.lints.rust]
+dead_code = "deny"
+unused = "deny"
+unused_crate_dependencies = "deny"
+unsafe_code = "deny"
+
+[workspace.lints.clippy]
+all = "deny"
+unwrap_used = "deny"
+expect_used = "deny"
+too_many_lines = "deny"      # paired with clippy.toml too-many-lines-threshold

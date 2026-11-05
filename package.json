@@ -2,7 +2,7 @@
   "name": "entity-in-the-shed",
   "version": "0.1.0",
   "private": true,
-  "description": "The eight browser suites copied byte-for-byte from the Python app. They drive static/app-helpers.js directly, which is why they live in tests/ next to static/ rather than under a Rust crate.",
+  "description": "The eight browser suites copied byte-for-byte from the Python app (decision D2). They drive static/app-helpers.js directly, which is why they live in tests/ next to static/ rather than under a Rust crate.",
   "scripts": {
     "test": "node --test \"tests/*.js\""
   },

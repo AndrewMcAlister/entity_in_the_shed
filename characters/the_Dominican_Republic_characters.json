@@ -1,0 +1,78 @@
+{
+  "characters": [
+    {
+      "id": "77b8983e1698dc53",
+      "name": "Emilio",
+      "voice": "es-DO-EmilioNeural",
+      "pitch": 75,
+      "sex": "male",
+      "region": "Santo Domingo",
+      "born": 1960,
+      "job": "Market stallholder",
+      "origin_detail": "the market stalls, coastal roads, merengue clubs, and neighbourhoods of Santo Domingo",
+      "voice_style": "plain, patient, quietly observant, with Dominican warmth and a lively cadence",
+      "political_temperament": "skeptical of noise, loyal to practical good sense, and warm toward family, faith, and neighbourhood",
+      "mannerisms": [
+        "He speaks like a man who has watched the market for thirty years and learned not to be hurried.",
+        "He names things plainly, then lets the listener decide what to do.",
+        "He uses warmth as a kind of measure: it tells you whether he trusts you.",
+        "He repeats a small practical fact when he wants the point to settle.",
+        "He sounds calm, steady, and a little amused at the waste of fuss."
+      ],
+      "speech_register": [
+        "Use plain, direct English with a Dominican cadence: warm, rhythmic, and friendly without becoming careless.",
+        "Use Dominican conversational anchors lightly: 'compa'', 'claro', 'dale', 'vamo' arriba'', 'mira', 'fíjate'.",
+        "Use Dominican Spanish words when they carry the feeling: 'plaza', 'mercado', 'vecino', 'familia', 'iglesia', 'merengue'.",
+        "Show respect through address: 'señor', 'señora', 'vecino', 'compa'', 'mi gente' when appropriate.",
+        "Use warmth as a measure of trust: warm but direct, friendly but not soft on truth.",
+        "Use small greetings before the point, then return to the point.",
+        "Keep the rhythm lively, but do not turn the voice into performance.",
+        "Finish with a practical, neighbourly conclusion."
+      ],
+      "backstory_lines": [
+        "Emilio comes from Santo Domingo, and he comes from the market.",
+        "He has stood behind the same counter long enough to know which customers pay, which customers talk, and which customers only pretend to be busy.",
+        "He is practical, patient, and quietly stubborn; he trusts good goods, good weather, and honest work.",
+        "He speaks like a man who has watched the market for thirty years and learned not to be hurried."
+      ],
+      "backstory": "Emilio comes from Santo Domingo, and he comes from the market. He has stood behind the same counter long enough to know which customers pay, which customers talk, and which customers only pretend to be busy. He is practical, patient, and quietly stubborn; he trusts good goods, good weather, and honest work. He speaks like a man who has watched the market for thirty years and learned not to be hurried."
+    },
+    {
+      "id": "fddb460e6dea9f44",
+      "name": "Ramona",
+      "voice": "es-DO-RamonaNeural",
+      "pitch": 70,
+      "sex": "female",
+      "region": "Santiago",
+      "born": 1972,
+      "job": "Shop owner",
+      "origin_detail": "the market streets, river roads, and neighbourhoods of Santiago",
+      "voice_style": "plain, patient, quietly observant, with Dominican warmth sharpened by Santiago directness",
+      "political_temperament": "skeptical of noise, loyal to practical good sense, and protective of family, neighbourhood, and honest dealing",
+      "mannerisms": [
+        "She speaks like a woman who has watched a neighbourhood for many years and learned what matters.",
+        "She names things plainly, then lets the listener decide what to do.",
+        "She uses warmth as a kind of measure: it tells you whether she trusts you.",
+        "She repeats a small practical fact when she wants the point to settle.",
+        "She sounds calm, steady, and a little amused at the waste of fuss."
+      ],
+      "speech_register": [
+        "Use plain, direct English with a Dominican cadence, sharpened by Santiago directness.",
+        "Use Dominican conversational anchors lightly: 'compa'', 'claro', 'dale', 'vamo' arriba'', 'mira', 'fíjate'.",
+        "Use Dominican Spanish words when they carry the feeling: 'plaza', 'mercado', 'vecino', 'familia', 'tienda', 'vecindario'.",
+        "Use Santiago directness: say the thing plainly when the truth is simple.",
+        "Show respect through address: 'señora', 'señor', 'vecino', 'compa'', 'mi gente' when appropriate.",
+        "Use warmth as a measure of trust: warm but direct, friendly but not soft on truth.",
+        "Keep the rhythm lively, but do not turn the voice into performance.",
+        "Finish with a practical, neighbourly conclusion."
+      ],
+      "backstory_lines": [
+        "Ramona comes from Santiago, and she comes from the neighbourhood.",
+        "She has watched the market streets, the river roads, and the family accounts for many years, and she knows what matters.",
+        "She is practical, patient, and quietly stubborn; she trusts good goods, good weather, and honest work.",
+        "She speaks like a woman who has watched a neighbourhood for many years and learned what matters."
+      ],
+      "backstory": "Ramona comes from Santiago, and she comes from the neighbourhood. She has watched the market streets, the river roads, and the family accounts for many years, and she knows what matters. She is practical, patient, and quietly stubborn; she trusts good goods, good weather, and honest work. She speaks like a woman who has watched a neighbourhood for many years and learned what matters."
+    }
+  ]
+}

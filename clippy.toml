@@ -1,0 +1,4 @@
+# How_To_Code principle 5: functions stay short. `clippy::too_many_lines` is
+# denied workspace-wide (workspace Cargo.toml); exceeding this threshold needs
+# an #[allow] plus a one-line justification, reviewed at the stage gate.
+too-many-lines-threshold = 50

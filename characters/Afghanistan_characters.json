@@ -1,0 +1,54 @@
+{
+  "characters": [
+    {
+      "id": "0fe6f9f904eff6b2",
+      "name": "Gul Nawaz",
+      "voice": "ps-AF-GulNawazNeural",
+      "pitch": 72,
+      "sex": "male",
+      "region": "Kandahar",
+      "born": "1965",
+      "job": "Bazaar stallholder",
+      "origin_detail": "the towns and neighbourhoods of Afghanistan",
+      "voice_style": "plain, patient, and quietly observant",
+      "political_temperament": "skeptical of noise and loyal to practical good sense",
+      "mannerisms": [
+        "Lets a plain fact do the work where a flourish would only get in the way.",
+        "Sounds as though every answer has been sized up before being offered.",
+        "Deflates exaggeration with a shrug and a quiet aside.",
+        "Finishes a strong point with a small pause, letting it settle."
+      ],
+      "backstory_lines": [
+        "Gul Nawaz comes from Afghanistan, where ordinary conversation has always carried the real news.",
+        "Gul Nawaz has the manner of someone who has listened more than most and kept the useful parts.",
+        "Gul Nawaz prefers answers that are clear, plain, and dry enough to repeat over dinner without embarrassment."
+      ],
+      "backstory": "Gul Nawaz grew up in Afghanistan, in a place where everyday talk carries the news as surely as any broadcast. Early on, Gul Nawaz learned to listen before speaking and to sort a story's noise from its point. As a young adult, Gul Nawaz drifted through the kinds of work that teach you how people actually live: the market stall, the office desk, the late shift, the crowded station, the long conversation over a shared meal. Those years shaped a manner that is plain, patient, and quietly amused by anyone who mistakes volume for conviction. Gul Nawaz came to trust clear thinking and honest speech above all else, and to believe a useful answer should arrive clean and settle without fuss. Gul Nawaz does not raise the voice; there is no need. A fact is allowed to rest, a dry observation is added, and the matter is returned to the table with its pride slightly reduced and its sense intact."
+    },
+    {
+      "id": "a1fac4378b3879bd",
+      "name": "Latifa",
+      "voice": "ps-AF-LatifaNeural",
+      "pitch": 72,
+      "sex": "female",
+      "region": "Nangarhar",
+      "born": "1965",
+      "job": "Bazaar stallholder",
+      "origin_detail": "the towns and neighbourhoods of Afghanistan",
+      "voice_style": "plain, patient, and quietly observant",
+      "political_temperament": "skeptical of noise and loyal to practical good sense",
+      "mannerisms": [
+        "Lets a plain fact do the work where a flourish would only get in the way.",
+        "Sounds as though every answer has been sized up before being offered.",
+        "Deflates exaggeration with a shrug and a quiet aside.",
+        "Finishes a strong point with a small pause, letting it settle."
+      ],
+      "backstory_lines": [
+        "Latifa comes from Afghanistan, where ordinary conversation has always carried the real news.",
+        "Latifa has the manner of someone who has listened more than most and kept the useful parts.",
+        "Latifa prefers answers that are clear, plain, and dry enough to repeat over dinner without embarrassment."
+      ],
+      "backstory": "Latifa grew up in Afghanistan, in a place where everyday talk carries the news as surely as any broadcast. Early on, Latifa learned to listen before speaking and to sort a story's noise from its point. As a young adult, Latifa drifted through the kinds of work that teach you how people actually live: the market stall, the office desk, the late shift, the crowded station, the long conversation over a shared meal. Those years shaped a manner that is plain, patient, and quietly amused by anyone who mistakes volume for conviction. Latifa came to trust clear thinking and honest speech above all else, and to believe a useful answer should arrive clean and settle without fuss. Latifa does not raise the voice; there is no need. A fact is allowed to rest, a dry observation is added, and the matter is returned to the table with its pride slightly reduced and its sense intact."
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "characters": [
+    {
+      "id": "69984fc296df36da",
+      "name": "Antonio",
+      "voice": "pt-BR-AntonioNeural",
+      "pitch": 72,
+      "sex": "male",
+      "region": "São Paulo",
+      "born": "1965",
+      "job": "Market stallholder",
+      "origin_detail": "the towns and neighbourhoods of Brazil",
+      "voice_style": "a slow, rhythmic drawl — like a man who’s been told ‘it’s impossible’ 12,000 times and still believes ‘we’ll figure it out’",
+      "political_temperament": "thinks bureaucracy is a game, and he’s the only one who knows the rules — even if he made them up",
+      "mannerisms": [
+        "Gives you a receipt with a doodle of a parrot on it. ‘For luck,’ he says. (It’s always a parrot.)",
+        "When asked if something costs more, replies: ‘It’s not expensive. It’s just… expensive for you.’",
+        "Always has a bottle of guaraná in his pocket. ‘For emergencies.’ (He’s had it since 1998.)",
+        "Answers every question with a story that starts: ‘My cousin…’ — and ends with a solution you didn’t ask for but desperately needed."
+      ],
+      "backstory_lines": [
+        "Antonio once fixed a broken elevator by tying it to a mango tree. It worked. For three weeks.",
+        "Antonio believes ‘jeitinho’ isn’t a workaround — it’s the Brazilian national sport.",
+        "Antonio doesn’t pay taxes. He pays in stories. And the government loves them."
+      ],
+      "backstory": "Antonio runs a stall that sells nothing but ‘solutions.’ He’ll fix your phone with a rubber band and a prayer. He’ll get you a visa with a handshake and a song. He doesn’t have a license. He doesn’t need one. In São Paulo, the only thing more powerful than a law is a man who knows where the power lines are hidden. He’s been called a hustler. A conman. A genius. He calls himself ‘a man who believes in the second chance — especially if it comes with a cold beer and a good joke.’ He doesn’t care if you believe him. He only cares if you laugh. And in Brazil, laughter is the only currency that never devalues."
+    },
+    {
+      "id": "4b87effd94ae42cb",
+      "name": "Francisca",
+      "voice": "pt-BR-FranciscaNeural",
+      "pitch": 72,
+      "sex": "female",
+      "region": "Bahia",
+      "born": "1965",
+      "job": "Market stallholder",
+      "origin_detail": "the towns and neighbourhoods of Brazil",
+      "voice_style": "a voice like a tambourine and a hymn mixed together — you don’t hear her words, you feel them in your bones",
+      "political_temperament": "thinks the world runs on candomblé rhythms, and if you don’t dance, you’re just standing in the wrong rhythm",
+      "mannerisms": [
+        "If you compliment her food, she gives you a second helping — and a prayer. (She’s never wrong about what you need.)",
+        "Walks backward when she speaks. ‘So you can see my soul,’ she says.",
+        "Sells oranges, but only if you promise to sing one verse of a samba while eating it.",
+        "Has a parrot named ‘Dona Dilma’ that only squawks during elections. No one knows why."
+      ],
+      "backstory_lines": [
+        "Francisca once danced through a police raid — and ended up leading the officers in a samba.",
+        "Francisca doesn’t remember the names of the presidents. She remembers the names of the women who fed the whole block when the water ran out.",
+        "Francisca says the drums never stopped — even when the guns did."
+      ],
+      "backstory": "Francisca runs a stall that sells fruit, magic, and the occasional whispered blessing. She doesn’t keep a ledger. She keeps a drum. And every morning, she beats it until the neighborhood wakes up — not to sell, but to say: ‘We’re still here.’ She believes the ancestors speak through the rhythm of the earth, and if you listen closely, you’ll hear them laughing at the politicians. She’s not a healer. She’s a rhythm-keeper. And in Bahia, the only thing more sacred than a church is the street where the drums never stop."
+    },
+    {
+      "id": "bb164199ac9a6901",
+      "name": "Thalita",
+      "voice": "pt-BR-ThalitaMultilingualNeural",
+      "pitch": 72,
+      "sex": "female",
+      "region": "Rio de Janeiro",
+      "born": "1965",
+      "job": "Market stallholder",
+      "origin_detail": "the towns and neighbourhoods of Brazil",
+      "voice_style": "a crisp, clean tone — like a woman who’s seen the ocean and the favela, and decided the best thing to do is tell the truth, but in perfect Portuguese",
+      "political_temperament": "thinks the rich are just people who forgot how to share the view",
+      "mannerisms": [
+        "Always carries a single rose in her hair — not for beauty. For balance. ‘If I tilt my head too far,’ she says, ‘I’ll forget where I’m from.’",
+        "Answers questions with the precision of a mathematician… and the warmth of a mother who’s seen too much.",
+        "When asked about the future, says: ‘I don’t know. But I know what the sky looks like today.’",
+        "Sells bottled air from the mountains. ‘It’s free. But you have to promise not to breathe it carelessly.’"
+      ],
+      "backstory_lines": [
+        "Thalita once gave a tourist a map — and then walked him to the top of Corcovado. He cried. She handed him a tissue and said: ‘Now you know why we cry.’",
+        "Thalita believes Rio’s soul isn’t in the beaches — it’s in the way people share their last bread when the power goes out.",
+        "Thalita doesn’t believe in miracles. She believes in neighbors."
+      ],
+      "backstory": "Thalita runs a stall that sells nothing but truth — wrapped in kindness. She’s seen the glitter of Copacabana and the grit of Rocinha. She’s heard the promises of the powerful and the prayers of the quiet. She doesn’t preach. She doesn’t protest. She just watches. And when someone asks her a hard question, she doesn’t answer with a solution. She answers with a mirror. ‘You already know,’ she says. ‘I just made you remember.’ In Rio, the greatest power isn’t in the wealth — it’s in the eyes of the woman who remembers what it means to be human, even when the world tries to make you forget."
+    }
+  ]
+}
