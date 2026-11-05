@@ -60,7 +60,15 @@ pub fn getenv_timeout_seconds(src: &EnvSource, name: &str, default: Option<i64>)
     };
     let normalized = raw.trim().to_lowercase();
     if [
-        "", "0", "none", "false", "off", "disable", "disabled", "infinite", "unlimited",
+        "",
+        "0",
+        "none",
+        "false",
+        "off",
+        "disable",
+        "disabled",
+        "infinite",
+        "unlimited",
     ]
     .contains(&normalized.as_str())
     {
@@ -143,9 +151,8 @@ pub fn parse_json_map(name: &str, raw: &str) -> Result<BTreeMap<String, String>,
 }
 
 fn parse_value(name: &str, raw: &str) -> Result<serde_json::Value, ConfigError> {
-    serde_json::from_str(raw).map_err(|error| {
-        ConfigError(format!("{name} must be valid JSON: {error}"))
-    })
+    serde_json::from_str(raw)
+        .map_err(|error| ConfigError(format!("{name} must be valid JSON: {error}")))
 }
 
 fn decode_error(name: &str, expected: &str) -> ConfigError {
@@ -193,13 +200,19 @@ mod tests {
         assert_eq!(getenv_float(&src(&[("K", "2")]), "K", 0.5), 2.0);
         assert_eq!(getenv_float(&src(&[("K", "-0.25")]), "K", 0.5), -0.25);
         assert_eq!(getenv_float(&src(&[("K", "abc")]), "K", 0.5), 0.5);
-        assert_eq!(getenv_float(&src(&[]), "SHED_TEST_FLOAT_MISSING", 1.75), 1.75);
+        assert_eq!(
+            getenv_float(&src(&[]), "SHED_TEST_FLOAT_MISSING", 1.75),
+            1.75
+        );
     }
 
     #[test]
     fn getenv_timeout_matches_python() {
         let none_default: Option<i64> = None;
-        assert_eq!(getenv_timeout_seconds(&src(&[]), "SHED_TEST_T_MISSING", Some(30)), Some(30));
+        assert_eq!(
+            getenv_timeout_seconds(&src(&[]), "SHED_TEST_T_MISSING", Some(30)),
+            Some(30)
+        );
         for disabled in ["0", "none", "off", "disabled", "infinite", "unlimited", ""] {
             assert_eq!(
                 getenv_timeout_seconds(&src(&[("K", disabled)]), "K", Some(30)),
@@ -207,10 +220,22 @@ mod tests {
                 "{disabled}"
             );
         }
-        assert_eq!(getenv_timeout_seconds(&src(&[("K", "25")]), "K", Some(30)), Some(25));
-        assert_eq!(getenv_timeout_seconds(&src(&[("K", "1")]), "K", Some(30)), Some(1));
-        assert_eq!(getenv_timeout_seconds(&src(&[("K", "-4")]), "K", Some(30)), Some(1));
-        assert_eq!(getenv_timeout_seconds(&src(&[("K", "abc")]), "K", Some(30)), Some(30));
+        assert_eq!(
+            getenv_timeout_seconds(&src(&[("K", "25")]), "K", Some(30)),
+            Some(25)
+        );
+        assert_eq!(
+            getenv_timeout_seconds(&src(&[("K", "1")]), "K", Some(30)),
+            Some(1)
+        );
+        assert_eq!(
+            getenv_timeout_seconds(&src(&[("K", "-4")]), "K", Some(30)),
+            Some(1)
+        );
+        assert_eq!(
+            getenv_timeout_seconds(&src(&[("K", "abc")]), "K", Some(30)),
+            Some(30)
+        );
     }
 
     #[test]

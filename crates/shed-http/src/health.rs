@@ -27,9 +27,10 @@ pub type AppState = Arc<AppConfig>;
 /// method-not-allowed for POST).
 pub async fn healthcheck(State(state): State<AppState>) -> Response<Body> {
     let mut response = Response::new(Body::from(payload_text(&state)));
-    response
-        .headers_mut()
-        .insert(header::CONTENT_TYPE, HeaderValue::from_static("application/json"));
+    response.headers_mut().insert(
+        header::CONTENT_TYPE,
+        HeaderValue::from_static("application/json"),
+    );
     response
 }
 
@@ -160,7 +161,10 @@ mod tests {
         };
         assert_eq!(response.status(), StatusCode::OK);
         assert_eq!(
-            response.headers().get(header::CONTENT_TYPE).map(HeaderValue::as_bytes),
+            response
+                .headers()
+                .get(header::CONTENT_TYPE)
+                .map(HeaderValue::as_bytes),
             Some(b"application/json".as_slice()),
             "Flask sends application/json with no charset"
         );

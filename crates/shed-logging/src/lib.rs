@@ -30,7 +30,9 @@ use shed_config::LogLevel;
 /// is a clean error, not a panic.
 pub fn install(level: LogLevel) -> Result<(), String> {
     let subscriber = tracing_subscriber::Registry::default()
-        .with(filter_fn(move |meta| permits(level, meta.target(), *meta.level())))
+        .with(filter_fn(move |meta| {
+            permits(level, meta.target(), *meta.level())
+        }))
         .with(
             tracing_subscriber::fmt::layer()
                 .with_writer(std::io::stderr)

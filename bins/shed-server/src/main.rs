@@ -87,7 +87,10 @@ async fn smoke(config: AppConfig) -> Result<(), String> {
         .ok_or_else(|| format!("smoke: response has no header terminator: {response:?}"))?;
     let (head, body) = response.split_at(split + "\r\n\r\n".len());
     if !head.starts_with("HTTP/1.1 200") {
-        return Err(format!("smoke: unexpected status line: {}", head.lines().next().unwrap_or("")));
+        return Err(format!(
+            "smoke: unexpected status line: {}",
+            head.lines().next().unwrap_or("")
+        ));
     }
     if !head.contains("application/json") {
         return Err(format!("smoke: missing json content-type in: {head}"));

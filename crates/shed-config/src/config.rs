@@ -8,9 +8,7 @@
 use std::path::{Path, PathBuf};
 
 use crate::envsrc::EnvSource;
-use crate::parse::{
-    getenv_int, getenv_str, normalize_model_name, parse_json_list, parse_json_map,
-};
+use crate::parse::{getenv_int, getenv_str, normalize_model_name, parse_json_list, parse_json_map};
 use crate::ConfigError;
 
 /// Clone default, deliberately distinct from the Python app's
@@ -104,7 +102,9 @@ impl McpConfig {
             transport_setting: getenv_str(src, "MCTRADER_MCP_TRANSPORT", "")
                 .trim()
                 .to_lowercase(),
-            command: getenv_str(src, "MCTRADER_MCP_COMMAND", "").trim().to_owned(),
+            command: getenv_str(src, "MCTRADER_MCP_COMMAND", "")
+                .trim()
+                .to_owned(),
             args: parse_json_list(
                 "MCTRADER_MCP_ARGS",
                 &getenv_str(src, "MCTRADER_MCP_ARGS", ""),
@@ -190,7 +190,9 @@ fn resolve_storage_dir(src: &EnvSource, base_dir: &Path) -> Result<PathBuf, Conf
 fn parse_port(src: &EnvSource) -> Result<u16, ConfigError> {
     let raw = getenv_str(src, "APP_PORT", "5005").trim().to_owned();
     raw.parse::<u16>().map_err(|_| {
-        ConfigError(format!("APP_PORT must be an integer between 1 and 65535: '{raw}'"))
+        ConfigError(format!(
+            "APP_PORT must be an integer between 1 and 65535: '{raw}'"
+        ))
     })
 }
 
@@ -283,7 +285,9 @@ mod tests {
             Some("MCTRADER_MCP_COMMAND is not configured".to_owned())
         );
         assert_eq!(
-            mcp(&[("MCTRADER_MCP_TRANSPORT", "streamable-http")]).validate().err(),
+            mcp(&[("MCTRADER_MCP_TRANSPORT", "streamable-http")])
+                .validate()
+                .err(),
             Some("MCTRADER_MCP_URL is not configured".to_owned())
         );
         let good = mcp(&[
@@ -374,14 +378,18 @@ mod tests {
     fn bad_port_names_the_key() {
         let root = std::env::temp_dir().join(format!("shed-config-port-{}", std::process::id()));
         let mut pairs: BTreeMap<String, String> = BTreeMap::new();
-        pairs.insert("STORAGE_ROOT".to_owned(), root.to_string_lossy().into_owned());
+        pairs.insert(
+            "STORAGE_ROOT".to_owned(),
+            root.to_string_lossy().into_owned(),
+        );
         pairs.insert("APP_PORT".to_owned(), "not-a-port".to_owned());
-        let error =
-            match AppConfig::from_source(&EnvSource::from_file_values(pairs), &std::env::temp_dir())
-            {
-                Ok(_) => panic!("a bad port must fail the load"),
-                Err(error) => error,
-            };
+        let error = match AppConfig::from_source(
+            &EnvSource::from_file_values(pairs),
+            &std::env::temp_dir(),
+        ) {
+            Ok(_) => panic!("a bad port must fail the load"),
+            Err(error) => error,
+        };
         let _ = std::fs::remove_dir_all(&root);
         assert!(error.0.contains("APP_PORT"), "{error}");
     }

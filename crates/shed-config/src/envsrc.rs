@@ -90,10 +90,7 @@ mod tests {
 
     #[test]
     fn loading_a_missing_file_is_fine() -> Result<(), Box<dyn std::error::Error>> {
-        let dir = std::env::temp_dir().join(format!(
-            "shed-config-envsrc-{}",
-            std::process::id()
-        ));
+        let dir = std::env::temp_dir().join(format!("shed-config-envsrc-{}", std::process::id()));
         std::fs::create_dir_all(&dir)?;
         let source = EnvSource::load(&dir.join("absent.env"));
         let _ = std::fs::remove_dir_all(&dir);

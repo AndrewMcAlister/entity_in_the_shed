@@ -6,12 +6,13 @@
 //! the full list, not just the first.
 //!
 //! Gates that exist today: frozen assets ([`assets`]), crate layering
-//! ([`layers`]), the env-read rule ([`env_read`]). The settings-template and
-//! guard-catalogue gates arrive with Stage 1 and with the first guard.
+//! ([`layers`]), the env-read rule ([`env_read`]) and the settings template
+//! ([`settings`]). The guard-catalogue gate arrives with the first guard.
 
 pub mod assets;
 pub mod env_read;
 pub mod layers;
+pub mod settings;
 
 use std::path::{Path, PathBuf};
 

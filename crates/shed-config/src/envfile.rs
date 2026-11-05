@@ -37,7 +37,9 @@ pub fn parse(text: &str, lookup: &dyn Fn(&str) -> Option<String>) -> BTreeMap<St
             let value = match value_kind(raw) {
                 Kind::Single(body) => body.to_owned(),
                 Kind::Double(body) => interpolate(&unescape(body), lookup, &entries),
-                Kind::Bare(body) => interpolate(strip_inline_comment(body).trim(), lookup, &entries),
+                Kind::Bare(body) => {
+                    interpolate(strip_inline_comment(body).trim(), lookup, &entries)
+                }
             };
             entries.insert(key, value);
         }
@@ -253,7 +255,10 @@ mod tests {
             entries.get("S").map(String::as_str),
             Some("literal \\n no ${X} ")
         );
-        assert_eq!(entries.get("D").map(String::as_str), Some("tab\there nl\nend"));
+        assert_eq!(
+            entries.get("D").map(String::as_str),
+            Some("tab\there nl\nend")
+        );
         assert_eq!(entries.get("E").map(String::as_str), Some("a\\$\\{X}b"));
     }
 
