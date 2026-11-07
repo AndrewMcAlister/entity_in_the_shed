@@ -228,8 +228,9 @@ mod tests {
 
     #[test]
     fn os_provided_names_are_exempt() {
-        // USERPROFILE is read by nothing today, but when Stage 8 reads it
-        // the gate must not demand it in the template.
+        // USERPROFILE and HOME are read by lm.rs to resolve the models
+        // directory, and both are names the machine sets rather than the
+        // operator: the gate must not demand either in the template.
         assert!(super::OS_PROVIDED.contains(&"USERPROFILE"));
         assert!(!super::OS_PROVIDED.contains(&"STORAGE_ROOT"));
     }

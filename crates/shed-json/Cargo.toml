@@ -1,0 +1,13 @@
+[package]
+name = "shed-json"
+version.workspace = true
+edition.workspace = true
+description = "JSON safety and strict response parsing: the guard in front of every LM Studio read."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+serde_json.workspace = true            # parse_json_response_strict returns a Value
+shed-text = { path = "../shed-text" }  # the body snippet the failure messages quote

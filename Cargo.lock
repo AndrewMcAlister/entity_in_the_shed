@@ -484,6 +484,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "shed-json"
+version = "0.1.0"
+dependencies = [
+ "serde_json",
+ "shed-text",
+]
+
+[[package]]
 name = "shed-logging"
 version = "0.1.0"
 dependencies = [
@@ -502,6 +510,10 @@ dependencies = [
  "shed-logging",
  "tokio",
 ]
+
+[[package]]
+name = "shed-text"
+version = "0.1.0"
 
 [[package]]
 name = "signal-hook-registry"

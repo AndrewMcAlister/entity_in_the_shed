@@ -12,10 +12,12 @@
 pub mod config;
 pub mod envfile;
 pub mod envsrc;
+pub mod lm;
 pub mod parse;
 
 pub use config::{AppConfig, LogLevel};
 pub use envsrc::EnvSource;
+pub use lm::{LmEngine, LmStudio};
 
 /// A startup configuration failure, always naming the key (or file) at fault.
 /// Python had no such type — bad values crashed deep inside import-time code.

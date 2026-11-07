@@ -15,7 +15,9 @@ use std::path::Path;
 /// dependency kind. External crates are not layer-checked here.
 pub const LAYERS: &[(&str, &[&str])] = &[
     ("shed-config", &[]),
-    ("shed-json", &["shed-config"]),
+    // `utils/json_util.py` imports `utils/text.py` (plan §2.2 cross-imports),
+    // so the strict parser may quote a body through the snippet helper.
+    ("shed-json", &["shed-config", "shed-text"]),
     ("shed-text", &["shed-config"]),
     ("shed-logging", &["shed-config"]),
     ("shed-store", &["shed-config", "shed-json"]),

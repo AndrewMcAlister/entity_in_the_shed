@@ -1,0 +1,11 @@
+[package]
+name = "shed-text"
+version.workspace = true
+edition.workspace = true
+description = "Text helpers: token estimation, tone-tag and markup normalisation, vocalisation respelling, bracket segmentation."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]

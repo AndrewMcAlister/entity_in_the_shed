@@ -2,12 +2,16 @@
 //!
 //! Stage 1 carries the slice the smoke-boot server needs: storage root, log
 //! level, model names, the MCP config block `/health` reports, and the bind
-//! address. Later stages extend this struct as they port their config regions
-//! (`agent.py:376–955`); the `.env.example` settings gate keeps the two in step.
+//! address. Stage 2 adds the LM Studio engine block — its address, the
+//! discovery timeout, the retry ladder and the models directory — because
+//! that is what model discovery reads. Later stages extend this struct as
+//! they port their config regions (`agent.py:376–955`); the `.env.example`
+//! settings gate keeps the two in step.
 
 use std::path::{Path, PathBuf};
 
 use crate::envsrc::EnvSource;
+use crate::lm::{LmEngine, LmStudio};
 use crate::parse::{getenv_int, getenv_str, normalize_model_name, parse_json_list, parse_json_map};
 use crate::ConfigError;
 
@@ -35,6 +39,10 @@ pub struct AppConfig {
     pub log_level: LogLevel,
     pub ai_model: String,
     pub lm_engine_normal_model: String,
+    /// The engine Stage 2 discovers models from: address, timeout, retry ladder.
+    pub lm: LmEngine,
+    /// Where the model files live on disk — the root the disk scan walks.
+    pub lm_studio: LmStudio,
     pub mcp: McpConfig,
     pub host: String,
     pub port: u16,
@@ -61,6 +69,8 @@ impl AppConfig {
                 &getenv_str(src, "LM_ENGINE_NORMAL_MODEL", ""),
                 "",
             ),
+            lm: LmEngine::from_source(src),
+            lm_studio: LmStudio::from_source(src),
             mcp: McpConfig::from_source(src)?,
             host: getenv_str(src, "APP_HOST", "0.0.0.0").trim().to_owned(),
             port: parse_port(src)?,
@@ -336,7 +346,7 @@ mod tests {
     }
 
     #[test]
-    fn full_load_reads_every_stage_one_key() -> Result<(), ConfigError> {
+    fn full_load_reads_every_configured_key() -> Result<(), ConfigError> {
         let root = std::env::temp_dir().join(format!("shed-config-load-{}", std::process::id()));
         let root_text = root.to_string_lossy().into_owned();
         let pairs = [
@@ -344,6 +354,8 @@ mod tests {
             ("LOG_LEVEL", "warning"),
             ("AI_MODEL", " model:latest "),
             ("LM_ENGINE_NORMAL_MODEL", "registry:5000/m:latest"),
+            ("LM_ENGINE_HOST", "http://127.0.0.1:8080/"),
+            ("LMSTUDIO_MODELS_DIR", r" D:\Models "),
             ("MCTRADER_MCP_URL", "http://127.0.0.1:8100/mcp"),
             ("MCTRADER_MCP_TRANSPORT", "streamable-http"),
             ("APP_HOST", " 127.0.0.1 "),
@@ -355,6 +367,11 @@ mod tests {
         assert_eq!(config.log_level, LogLevel::Warn);
         assert_eq!(config.ai_model, "model:latest");
         assert_eq!(config.lm_engine_normal_model, "registry:5000/m");
+        assert_eq!(config.lm.host, "http://127.0.0.1:8080");
+        assert_eq!(
+            config.lm_studio.models_dir,
+            Some(std::path::PathBuf::from(r"D:\Models"))
+        );
         assert!(config.mcp.validate().is_ok());
         assert_eq!(config.host, "127.0.0.1");
         assert_eq!(config.port, 5199);
