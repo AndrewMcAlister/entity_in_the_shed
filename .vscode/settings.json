@@ -1,4 +1,4 @@
 {
     "lmstudioCode.permissionMode": "bypass",
-    "lmstudioCode.minContextLength": 131072
+    "lmstudioCode.minContextLength": 65536
 }
