@@ -15,14 +15,30 @@ members = ["crates/*", "bins/*"]
 axum = "0.8"            # shed-http: router + /health; shed-server: serve
 fancy-regex = "0.20"    # shed-models: the name-size pattern needs a lookbehind, which `regex`'s RE2 cannot express
 http-body-util = "0.1"  # shed-http tests: collect the response body
+rand = "0.9"            # shed-llm: `random.randint(0, LM_ENGINE_RETRY_JITTER_MS)`, the wait's jitter
+# `default-features = false` because the defaults pull in `charset` (a charset sniffer no shed
+# response needs — every body here is UTF-8 JSON), `http2` (the engine is an HTTP/1.1 server), and
+# `system-proxy` (a Windows registry proxy lookup that would send a local engine's traffic through
+# whatever the machine is configured for). `gzip` replaces `requests`' own `Accept-Encoding: gzip,
+# deflate` (`agent.py:1549`, `1176`); `stream` is the response-body streaming the SSE reader reads
+# an engine's reply off (`agent.py:1176`'s `stream=True`); `json` is the `json=payload` argument the
+# streamed chat POST passes (`agent.py:1172`), which serialises the body and sets its content type
+# the same way `requests` does; `rustls-tls-native-roots` is `requests`'
+# certificate trust, from the OS store rather than a bundled set, so an `https` `LM_ENGINE_HOST` is
+# as reachable here as it is in the source.
+reqwest = { version = "0.12", default-features = false, features = ["gzip", "json", "stream", "rustls-tls-native-roots"] } # shed-llm: the engine transport
 serde = { version = "1", features = ["derive"] } # shed-gates: manifest + layer model
 serde_json = "1"        # shed-config: JSON env values; shed-http: /health payload
 sha2 = "0.10"           # shed-gates: frozen-asset manifest
-tokio = { version = "1", features = ["io-util", "macros", "net", "rt-multi-thread", "signal"] } # shed-server: runtime + bind + raw smoke socket + ctrl-c
+tokio = { version = "1", features = ["io-util", "macros", "net", "rt-multi-thread", "signal", "time"] } # shed-server: runtime + bind + raw smoke socket + ctrl-c; shed-llm: the retry ladder's sleep
 tower = { version = "0.5", features = ["util"] } # shed-http tests: oneshot the router
 toml = "0.8"            # shed-gates: reads each crate's Cargo.toml
 tracing = "0.1"         # shed-logging + every crate's app lines
 tracing-subscriber = { version = "0.3", default-features = false, features = ["fmt", "registry"] } # shed-logging
+
+# `v4` is what `uuid4()` needs: `agent.py:982`'s `uuid4().hex` is the id a boot prints in brackets
+# before there is a request to read one off.
+uuid = { version = "1", features = ["v4"] } # shed-llm: request_id.rs
 
 [workspace.package]
 version = "0.1.0"

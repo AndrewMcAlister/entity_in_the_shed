@@ -1,0 +1,28 @@
+[package]
+name = "shed-llm"
+version.workspace = true
+edition.workspace = true
+description = "The transport to LM Studio: the retry ladder in front of every engine call, the streamed reply reader, and the one endpoint that asks the engine what it is holding."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+# `rand` is `random.randint(0, LM_ENGINE_RETRY_JITTER_MS)` (`agent.py:1051`, `1060`, `1224`): the
+# jitter the ladder adds to each wait, so two restarts do not retry in step.
+rand.workspace = true
+# The engine transport. Its features are named once, in the workspace pin.
+reqwest.workspace = true
+# The SSE event bodies an engine streams are parsed here; the strict parse of a whole JSON response
+# is `shed-json`'s, and the parsed discovery document this crate hands on is a `Value`.
+serde_json.workspace = true
+tokio.workspace = true     # `tokio::time::sleep` is `time.sleep(backoff_ms / 1000.0)` (1055, 1065, 1229); the tests' fake engine is a `tokio::net` listener
+tracing.workspace = true     # every retry line the source writes at 1053, 1062, 1226 is a warning here
+# `v4` is `uuid4().hex` at `agent.py:982`, the id `current_request_id` generates when nothing has
+# been set.
+uuid.workspace = true
+shed-config = { path = "../shed-config" } # the engine settings the ladder reads
+shed-json = { path = "../shed-json" }     # the strict parse of the discovery document
+shed-models = { path = "../shed-models" } # the catalog half of discovery, which this crate hands the payload to
+shed-text = { path = "../shed-text" }     # `safe_body_snippet`, the body quoted in a rejection or a skipped-event line
