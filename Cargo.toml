@@ -13,6 +13,7 @@ members = ["crates/*", "bins/*"]
 # names its consumer.
 [workspace.dependencies]
 axum = "0.8"            # shed-http: router + /health; shed-server: serve
+fancy-regex = "0.20"    # shed-models: the name-size pattern needs a lookbehind, which `regex`'s RE2 cannot express
 http-body-util = "0.1"  # shed-http tests: collect the response body
 serde = { version = "1", features = ["derive"] } # shed-gates: manifest + layer model
 serde_json = "1"        # shed-config: JSON env values; shed-http: /health payload

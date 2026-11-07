@@ -1,0 +1,16 @@
+[package]
+name = "shed-models"
+version.workspace = true
+edition.workspace = true
+description = "The model catalog: what the app believes is on the machine, how it learned that, and where it keeps that knowledge between boots."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+# `fancy-regex`, not `regex`: the name-size pattern (`utils/models.py:11`) uses a negative
+# lookbehind, which RE2 in the `regex` crate cannot express.
+fancy-regex.workspace = true  # size.rs: parse_model_size_billions
+serde_json.workspace = true   # the discovery document an engine answers with is a Value
+tracing.workspace = true      # the discovery pass reports what it found and what it fell back to

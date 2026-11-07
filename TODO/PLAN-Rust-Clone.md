@@ -274,7 +274,7 @@ The deferred-chat flow (202 + job polling), sentence-by-sentence streaming from 
 |---|---|
 | 1 | One implementation per behaviour; Python never called at runtime; no `#[deprecated]` shims, no compat routes (§7.1). Fallbacks only where principle 1 allows: external systems (LM Studio, Edge TTS, mctrader, DuckDuckGo). |
 | 2, 5 | `clippy::too_many_lines` denied, `clippy.toml: too-many-lines-threshold = 50`. An exceedance needs an `#[allow]` + one-line justification, reviewed at the stage gate. |
-| 3, 12 | `serde` structs/enums for every request/response/record/tool payload. `serde_json::Value` banned outside `shed-json` and the MCP argument layer. Newtypes: `ClientId`, `DeliveryId`, `JobId`, `CharacterId`, `ModelName`, `Seconds`, `Percent`. |
+| 3, 12 | `serde` structs/enums for every request/response/record/tool payload. `serde_json::Value` banned outside `shed-json` and the MCP argument layer, with one recorded exception: `shed-models` reads an engine's discovery document as `Value`, because the shapes `parse_discovery_candidates` accepts are the engine's, not the app's (§3.2, Stage 2). Newtypes: `ClientId`, `DeliveryId`, `JobId`, `CharacterId`, `ModelName`, `Seconds`, `Percent`. |
 | 4, 10 | The crate map §3.2 + direction §3.3. `agent.py`'s 730 top-level nodes become collaborators behind small facades (`OutboxStore`, `TtsAudioCache`, `MindState`, `ToolRegistry`, `LlmClient`, `TurnGate`). |
 | 6 | Crate-private modules; `pub` only what another crate needs; `#[cfg(test)]`-only accessors. |
 | 7 | The 24 `utils/` modules port as free functions; state lives in named owners, never globals. |
