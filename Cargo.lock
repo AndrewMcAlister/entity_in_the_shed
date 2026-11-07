@@ -1269,7 +1269,9 @@ dependencies = [
  "axum",
  "shed-config",
  "shed-http",
+ "shed-llm",
  "shed-logging",
+ "shed-models",
  "tokio",
 ]
 

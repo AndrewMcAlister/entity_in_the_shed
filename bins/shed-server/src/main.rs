@@ -1,9 +1,11 @@
 //! The service binary (plan D9: Windows service `entity_in_the_shed`).
 //!
 //! Startup order clones `run_http_server` (`agent.py:11553–11592`): load and
-//! validate configuration first, install logging, print the banner, serve.
-//! Every startup failure is one clean line naming the key or address at
-//! fault — Python printed a traceback from deep inside import-time code.
+//! validate configuration first, install logging, discover the models, print
+//! the banner, serve. The schedulers the source starts between discovery and
+//! the banner arrive with the stages that port what they run. Every startup
+//! failure is one clean line naming the key or address at fault — Python
+//! printed a traceback from deep inside import-time code.
 //!
 //! `--smoke` boots the real router on an ephemeral loopback port, fetches
 //! `/health` over a raw HTTP/1.1 request (no HTTP client dependency),
@@ -17,6 +19,8 @@ use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use tokio::net::{TcpListener, TcpStream};
 
 use shed_config::AppConfig;
+use shed_llm::{discover_lm_studio_models, new_request_id, LmTransport};
+use shed_models::ModelCatalog;
 
 #[tokio::main]
 async fn main() -> std::process::ExitCode {
@@ -33,10 +37,41 @@ async fn main() -> std::process::ExitCode {
 async fn run(args: &[String]) -> Result<(), String> {
     let config = AppConfig::load().map_err(|error| error.to_string())?;
     shed_logging::install(config.log_level)?;
+    // `--smoke` skips discovery on purpose: the installer's probe must pass on
+    // a machine with LM Studio switched off, and `/health` answers without a
+    // catalog. Everything else boots the way the source boots.
     if args.iter().any(|arg| arg == "--smoke") {
         return smoke(config).await;
     }
+    discover_models(&config).await;
     serve(config).await
+}
+
+/// Model discovery: `run_http_server`'s `discover_lm_studio_models()`
+/// (`agent.py:11559`), the step before the banner.
+///
+/// Best-effort like the source: a silent engine is not a failed boot, because
+/// the fallback chain inside `shed_models::apply_discovered_payload` — cache
+/// file, then disk scan — runs whatever the engine answered, and every branch
+/// of it says in its own log line which way it took.
+///
+/// The catalog itself is dropped here, which is not waste but timing: no route
+/// answers with a model name before Stage 3, so the catalog has no reader yet
+/// (`How_To_Code` principle 16), and what survives this boot is the cache file
+/// the discovery persisted — the same file the next boot's fallback chain
+/// restores, exactly as it does in the source across a restart. The named
+/// owner that carries the catalog across requests arrives with the routes.
+async fn discover_models(config: &AppConfig) {
+    let mut catalog = ModelCatalog::default();
+    let transport = LmTransport::new(&config.lm);
+    discover_lm_studio_models(
+        &transport,
+        &mut catalog,
+        &config.storage_root,
+        config.lm_studio.models_dir.as_deref(),
+        &new_request_id(),
+    )
+    .await;
 }
 
 /// The banner and the listener. Python printed the banner before binding,
