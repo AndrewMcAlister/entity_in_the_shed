@@ -12,21 +12,20 @@
 //! clone reports the validation message or `""`. `tool_count`/`tools` are the
 //! empty values Python shows when the server is unreachable.
 
-use std::sync::Arc;
-
 use axum::body::Body;
 use axum::extract::State;
 use axum::http::{header, HeaderValue, Response};
 use serde_json::{json, Value};
+
 use shed_config::AppConfig;
 
-pub type AppState = Arc<AppConfig>;
+use crate::state::AppState;
 
 /// The handler. Flask also answers HEAD on a GET route; the browser never
 /// sends one, so the clone keeps plain GET (405 otherwise, matching Flask's
 /// method-not-allowed for POST).
 pub async fn healthcheck(State(state): State<AppState>) -> Response<Body> {
-    let mut response = Response::new(Body::from(payload_text(&state)));
+    let mut response = Response::new(Body::from(payload_text(&state.config)));
     response.headers_mut().insert(
         header::CONTENT_TYPE,
         HeaderValue::from_static("application/json"),
@@ -35,6 +34,11 @@ pub async fn healthcheck(State(state): State<AppState>) -> Response<Body> {
 }
 
 /// The full body bytes: compact JSON plus the newline `jsonify` appends.
+///
+/// `&AppConfig` rather than `&AppState`: `bins/shed-server --smoke` prints the
+/// same bytes the running server will, and it does that before the model
+/// discovery the full state needs has happened. The health payload reads only
+/// configuration, so it takes only configuration.
 #[must_use]
 pub fn payload_text(config: &AppConfig) -> String {
     // Value's Display is the compact serialisation; it cannot fail, unlike
@@ -73,11 +77,14 @@ mod tests {
     use axum::http::{header, HeaderValue, Request, StatusCode};
     use http_body_util::BodyExt;
     use shed_config::{AppConfig, EnvSource};
+    use shed_models::ModelCatalog;
     use tower::ServiceExt;
+
+    use crate::state::AppCore;
 
     /// Build a config through the real parser; the storage root points at a
     /// temp directory so the test never touches the default one.
-    fn config(pairs: &[(&str, &str)]) -> Arc<AppConfig> {
+    fn config(pairs: &[(&str, &str)]) -> AppConfig {
         let root = std::env::temp_dir().join(format!("shed-http-health-{}", std::process::id()));
         let root_text = root.to_string_lossy().into_owned();
         let mut owned: Vec<(&str, &str)> = pairs.to_vec();
@@ -89,9 +96,15 @@ mod tests {
                 .collect(),
         );
         match AppConfig::from_source(&source, Path::new(".")) {
-            Ok(config) => Arc::new(config),
+            Ok(config) => config,
             Err(error) => panic!("synthetic config must parse: {error}"),
         }
+    }
+
+    /// The router's state. `/health` reads configuration only, so the catalog
+    /// it is handed is the empty one.
+    fn app_state(pairs: &[(&str, &str)]) -> crate::state::AppState {
+        Arc::new(AppCore::new(config(pairs), ModelCatalog::default()))
     }
 
     /// Byte parity with a live capture's shape: sorted keys, compact
@@ -150,8 +163,8 @@ mod tests {
 
     #[tokio::test]
     async fn get_health_serves_the_contract_headers() {
-        let state = config(&[("MCTRADER_MCP_URL", "http://127.0.0.1:8100/mcp")]);
-        let expected = payload_text(&state);
+        let state = app_state(&[("MCTRADER_MCP_URL", "http://127.0.0.1:8100/mcp")]);
+        let expected = payload_text(&state.config);
         let response = match crate::build_router(state)
             .oneshot(request(Request::get("/health")))
             .await
@@ -173,7 +186,7 @@ mod tests {
 
     #[tokio::test]
     async fn other_requests_get_flask_like_statuses() {
-        let state = config(&[]);
+        let state = app_state(&[]);
         let response = match crate::build_router(state)
             .oneshot(request(Request::post("/health")))
             .await

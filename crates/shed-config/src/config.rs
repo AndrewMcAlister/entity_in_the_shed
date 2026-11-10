@@ -4,15 +4,20 @@
 //! level, model names, the MCP config block `/health` reports, and the bind
 //! address. Stage 2 adds the LM Studio engine block — its address, the
 //! discovery timeout, the retry ladder and the models directory — because
-//! that is what model discovery reads. Later stages extend this struct as
-//! they port their config regions (`agent.py:376–955`); the `.env.example`
-//! settings gate keeps the two in step.
+//! that is what model discovery reads. Stage 3 adds the settings the browser
+//! routes read: the reply watchdog and context-window sizes (with the engine
+//! block), the OpenAI key `/api/models` appends on, the two flags the page is
+//! rendered with, and the TTS block `/api/voices` answers from. Later stages
+//! extend this struct as they port their config regions (`agent.py:376–955`);
+//! the `.env.example` settings gate keeps the two in step.
 
 use std::path::{Path, PathBuf};
 
 use crate::envsrc::EnvSource;
 use crate::lm::{LmEngine, LmStudio};
-use crate::parse::{getenv_int, getenv_str, normalize_model_name, parse_json_list, parse_json_map};
+use crate::parse::{
+    getenv_int, getenv_str, normalize_model_name, parse_bool, parse_json_list, parse_json_map,
+};
 use crate::ConfigError;
 
 /// Clone default, deliberately distinct from the Python app's
@@ -34,6 +39,10 @@ pub enum LogLevel {
 /// Everything the process knows about its configuration, parsed once.
 #[derive(Debug, Clone)]
 pub struct AppConfig {
+    /// `BASE_DIR` (`agent.py:44`): the executable's folder, the root every
+    /// bundled directory hangs off — `CHARACTER_PROFILES_DIR` is
+    /// `BASE_DIR / "characters"` (`agent.py:349`).
+    pub base_dir: PathBuf,
     /// Resolved and created at startup; never read again from the environment.
     pub storage_root: PathBuf,
     pub log_level: LogLevel,
@@ -46,6 +55,14 @@ pub struct AppConfig {
     pub mcp: McpConfig,
     pub host: String,
     pub port: u16,
+    /// `OPENAI_API_KEY` (`agent.py:458`): non-blank is the only thing
+    /// `/api/models` tests for before it appends the two OpenAI entries.
+    pub openai_api_key: String,
+    /// `MODEL_SELECTION_REQUIRES_PASSWORD` (`agent.py:590`): the page hides
+    /// its model picker behind a password when this is true.
+    pub model_selection_requires_password: bool,
+    /// The TTS block `/api/voices` answers from.
+    pub tts: TtsSettings,
 }
 
 impl AppConfig {
@@ -54,15 +71,25 @@ impl AppConfig {
     /// merged over the process environment, then validated in full
     /// (principle 14).
     pub fn load() -> Result<Self, ConfigError> {
-        let base_dir = base_dir()?;
+        Self::load_from(&base_dir()?)
+    }
+
+    /// The same load with the home directory named from outside: the
+    /// `--base-dir` a dev run passes, so `cargo run` reads the repository's
+    /// `.env`, `templates/`, `styles/`, `static/` and `characters/` rather
+    /// than the empty `target/debug` the exe sits in. The installed layout
+    /// needs no flag because the Stage 8 installer puts those files beside
+    /// the executable, which is what [`AppConfig::load`] uses.
+    pub fn load_from(base_dir: &Path) -> Result<Self, ConfigError> {
         let source = EnvSource::load(&base_dir.join(".env"))?;
-        Self::from_source(&source, &base_dir)
+        Self::from_source(&source, base_dir)
     }
 
     /// Test seam: build from an injected source and base directory.
     pub fn from_source(src: &EnvSource, base_dir: &Path) -> Result<Self, ConfigError> {
         Ok(Self {
             storage_root: resolve_storage_dir(src, base_dir)?,
+            base_dir: base_dir.to_path_buf(),
             log_level: LogLevel::from_setting(&getenv_str(src, "LOG_LEVEL", "INFO")),
             ai_model: normalize_model_name(&getenv_str(src, "AI_MODEL", ""), ""),
             lm_engine_normal_model: normalize_model_name(
@@ -74,7 +101,45 @@ impl AppConfig {
             mcp: McpConfig::from_source(src)?,
             host: getenv_str(src, "APP_HOST", "0.0.0.0").trim().to_owned(),
             port: parse_port(src)?,
+            openai_api_key: getenv_str(src, "OPENAI_API_KEY", "").trim().to_owned(),
+            model_selection_requires_password: parse_bool(
+                src.get("MODEL_SELECTION_REQUIRES_PASSWORD"),
+                false,
+            ),
+            tts: TtsSettings::from_source(src),
         })
+    }
+}
+
+/// The text-to-speech settings the voice routes read (`agent.py:557-564`).
+/// The rest of the `TTS_*` block — the timeout, the cache caps, the default
+/// rate and pitch the audition sends — arrives with the stage that synthesises
+/// speech.
+#[derive(Debug, Clone)]
+pub struct TtsSettings {
+    /// `TTS_PROVIDER` (`agent.py:557`): which provider's voices the catalog
+    /// lists. The source's default is `windows`; `edge` and `auto` widen it,
+    /// and any other name lists nothing (`shed_tts::catalog::list_available_voices`).
+    pub provider: String,
+    /// `TTS_DEFAULT_VOICE` (`agent.py:558`): the voice `choose_tts_voice`
+    /// prefers when it is in the catalog; blank defers to the scored order.
+    pub default_voice: String,
+    /// `TTS_BROWSER_FALLBACK` (`agent.py:564`) as the page sees it: the source
+    /// reads an int and `index()` renders `bool(…)`, so any nonzero value —
+    /// not just 1 — enables the browser's own speech synthesis.
+    pub browser_fallback: bool,
+}
+
+impl TtsSettings {
+    #[must_use]
+    pub fn from_source(src: &EnvSource) -> Self {
+        Self {
+            provider: getenv_str(src, "TTS_PROVIDER", "windows")
+                .trim()
+                .to_lowercase(),
+            default_voice: getenv_str(src, "TTS_DEFAULT_VOICE", "").trim().to_owned(),
+            browser_fallback: getenv_int(src, "TTS_BROWSER_FALLBACK", 1) != 0,
+        }
     }
 }
 
@@ -360,6 +425,13 @@ mod tests {
             ("MCTRADER_MCP_TRANSPORT", "streamable-http"),
             ("APP_HOST", " 127.0.0.1 "),
             ("APP_PORT", "5199"),
+            ("OPENAI_API_KEY", "  sk-test  "),
+            ("MODEL_SELECTION_REQUIRES_PASSWORD", "yes"),
+            ("TTS_PROVIDER", " EDGE "),
+            ("TTS_DEFAULT_VOICE", " en-AU-NatashaNeural "),
+            ("TTS_BROWSER_FALLBACK", "0"),
+            ("LM_ENGINE_NUM_CTX", "65536"),
+            ("LM_ENGINE_REPLY_TIMEOUT", "none"),
         ];
         let config = AppConfig::from_source(&src(&pairs), Path::new("."))?;
         assert_eq!(config.storage_root, root);
@@ -375,6 +447,39 @@ mod tests {
         assert!(config.mcp.validate().is_ok());
         assert_eq!(config.host, "127.0.0.1");
         assert_eq!(config.port, 5199);
+        assert_eq!(config.openai_api_key, "sk-test");
+        assert!(config.model_selection_requires_password);
+        assert_eq!(config.tts.provider, "edge");
+        assert_eq!(config.tts.default_voice, "en-AU-NatashaNeural");
+        assert!(!config.tts.browser_fallback, "0 is server voices only");
+        assert_eq!(config.lm.num_ctx, 65_536);
+        assert_eq!(
+            config.lm.reply_timeout_seconds, None,
+            "`none` is the source's own no-timer word, and the page is handed no timer"
+        );
+        let _ = std::fs::remove_dir_all(&root);
+        Ok(())
+    }
+
+    #[test]
+    fn the_page_and_voice_settings_default_to_what_the_source_boots_with() -> Result<(), ConfigError>
+    {
+        // The three values `index()` renders, and the two the voice routes read, with
+        // nothing configured: the picker is open to everyone, the browser may speak a
+        // voice the server cannot make, and the voice list is the machine's own.
+        let root = std::env::temp_dir().join(format!("shed-config-page-{}", std::process::id()));
+        let config = AppConfig::from_source(
+            &src(&[("STORAGE_ROOT", root.to_string_lossy().as_ref())]),
+            Path::new("."),
+        )?;
+        assert_eq!(config.openai_api_key, "");
+        assert!(!config.model_selection_requires_password);
+        assert_eq!(config.tts.provider, "windows");
+        assert_eq!(config.tts.default_voice, "");
+        assert!(
+            config.tts.browser_fallback,
+            "the source reads an int that defaults to 1, and bool(1) is true"
+        );
         let _ = std::fs::remove_dir_all(&root);
         Ok(())
     }
@@ -386,6 +491,37 @@ mod tests {
         pairs.insert("STORAGE_ROOT".to_owned(), "nested/deep".to_owned());
         let config = AppConfig::from_source(&EnvSource::from_file_values(pairs), &base)?;
         assert_eq!(config.storage_root, base.join("nested").join("deep"));
+        assert!(config.storage_root.is_dir());
+        let _ = std::fs::remove_dir_all(&base);
+        Ok(())
+    }
+
+    #[test]
+    fn load_from_reads_the_env_file_of_the_named_base_dir() -> Result<(), ConfigError> {
+        // The dev run's lever: `--base-dir` sends the whole load — the `.env`
+        // and every path resolved against the base — to the repository, whose
+        // files the executable's own `target/debug` folder has none of.
+        let base = std::env::temp_dir().join(format!("shed-config-base-{}", std::process::id()));
+        let storage = base.join("store");
+        if let Err(error) = std::fs::create_dir_all(&base) {
+            panic!("cannot create {}: {error}", base.display());
+        }
+        // An unquoted value keeps its backslashes (python-dotenv's grammar,
+        // which this parser clones), so the temp path goes in as it stands.
+        let env_text = format!(
+            "STORAGE_ROOT={}\nAPP_PORT=5299\n",
+            storage.to_string_lossy()
+        );
+        if let Err(error) = std::fs::write(base.join(".env"), env_text) {
+            panic!("cannot write {}: {error}", base.join(".env").display());
+        }
+        let config = AppConfig::load_from(&base)?;
+        assert_eq!(config.base_dir, base, "the named directory is the home");
+        assert_eq!(
+            config.port, 5299,
+            "the named base dir's .env is the one read"
+        );
+        assert_eq!(config.storage_root, storage);
         assert!(config.storage_root.is_dir());
         let _ = std::fs::remove_dir_all(&base);
         Ok(())

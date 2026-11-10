@@ -1,0 +1,14 @@
+[package]
+name = "shed-tts"
+version.workspace = true
+edition.workspace = true
+description = "The voice catalog: which voices the app believes it can speak with, how good each one is, and which one a request gets."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+serde_json.workspace = true   # catalog entries are JSON objects end to end
+shed-text = { path = "../shed-text" } # locale.rs: a voice's locale collapses through the same rules a browser head does
+tracing.workspace = true      # the catalog reports a snapshot it could not read

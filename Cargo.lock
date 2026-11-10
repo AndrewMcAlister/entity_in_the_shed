@@ -1192,6 +1192,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "shed-characters"
+version = "0.1.0"
+dependencies = [
+ "fancy-regex",
+ "serde_json",
+ "sha2",
+ "shed-text",
+ "tracing",
+]
+
+[[package]]
 name = "shed-config"
 version = "0.1.0"
 dependencies = [
@@ -1214,10 +1225,18 @@ version = "0.1.0"
 dependencies = [
  "axum",
  "http-body-util",
+ "serde",
  "serde_json",
+ "shed-characters",
  "shed-config",
+ "shed-llm",
+ "shed-models",
+ "shed-text",
+ "shed-tts",
  "tokio",
  "tower",
+ "tracing",
+ "uuid",
 ]
 
 [[package]]
@@ -1259,7 +1278,18 @@ version = "0.1.0"
 dependencies = [
  "fancy-regex",
  "serde_json",
+ "shed-config",
  "tracing",
+]
+
+[[package]]
+name = "shed-prompts"
+version = "0.1.0"
+dependencies = [
+ "fancy-regex",
+ "serde_json",
+ "sha2",
+ "shed-text",
 ]
 
 [[package]]
@@ -1278,6 +1308,18 @@ dependencies = [
 [[package]]
 name = "shed-text"
 version = "0.1.0"
+dependencies = [
+ "serde_json",
+]
+
+[[package]]
+name = "shed-tts"
+version = "0.1.0"
+dependencies = [
+ "serde_json",
+ "shed-text",
+ "tracing",
+]
 
 [[package]]
 name = "shlex"

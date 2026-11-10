@@ -13,4 +13,5 @@ workspace = true
 # lookbehind, which RE2 in the `regex` crate cannot express.
 fancy-regex.workspace = true  # size.rs: parse_model_size_billions
 serde_json.workspace = true   # the discovery document an engine answers with is a Value
+shed-config = { path = "../shed-config" } # context.rs: AI_MODEL and the three LM_ENGINE_* context settings
 tracing.workspace = true      # the discovery pass reports what it found and what it fell back to

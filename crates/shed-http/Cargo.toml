@@ -2,18 +2,25 @@
 name = "shed-http"
 version.workspace = true
 edition.workspace = true
-description = "The axum router: routes and response shapes byte-matched to the Flask app."
-publish = false
+
+[dependencies]
+axum = { workspace = true }
+serde = { workspace = true } # api/mod.rs: `#[derive(Deserialize)]` for the query args
+serde_json = { workspace = true }
+shed-characters = { path = "../shed-characters" }
+shed-config = { path = "../shed-config" }
+shed-llm = { path = "../shed-llm" } # api/models.rs: /api/refresh-models re-runs discovery
+shed-models = { path = "../shed-models" }
+shed-text = { path = "../shed-text" }
+shed-tts = { path = "../shed-tts" }
+tracing = { workspace = true }
+uuid = { workspace = true }
+
+[dev-dependencies]
+# Byte-parity tests: oneshot the router and read the response body.
+http-body-util = { workspace = true }
+tokio = { workspace = true }
+tower = { workspace = true }
 
 [lints]
 workspace = true
-
-[dependencies]
-axum.workspace = true
-serde_json.workspace = true    # /health payload: Value Display is the compact form
-shed-config = { path = "../shed-config" } # AppConfig the handlers read
-
-[dev-dependencies]
-http-body-util.workspace = true # collect the oneshotted response body
-tokio.workspace = true          # #[tokio::test]
-tower.workspace = true          # ServiceExt::oneshot drives the router

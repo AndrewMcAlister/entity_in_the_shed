@@ -1,0 +1,16 @@
+[package]
+name = "shed-characters"
+version.workspace = true
+edition.workspace = true
+description = "The character catalog: country files, picker rosters, identity rules, and the persona a character profile is built from."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+fancy-regex.workspace = true # voice_human_name's camel-split needs a lookbehind, which `regex`'s RE2 cannot express
+serde_json.workspace = true  # country files, roster entries and profiles are JSON objects end to end
+sha2.workspace = true        # character_cache_id is the sha256 digest `utils/characters.py:101` takes
+shed-text = { path = "../shed-text" } # locale.rs for a voice's locale; value_text.rs for the `str(x or "")` idiom; voice_depth.rs for authored pitches
+tracing.workspace = true     # the country-file caches and the roster warn about unreadable files and unshipped voices

@@ -74,8 +74,10 @@ impl ModelCatalog {
     /// was handed and dropping blank and repeated names.
     ///
     /// Two parts of the source function are not here. `MODEL_PATHS` (1258) waits for its first
-    /// reader at Stage 4; the browser tail (1260-1264) waits for `BROWSER_MODEL_OPTIONS` and
-    /// `BROWSER_DEFAULT_MODEL` at Stage 3.
+    /// reader at Stage 4. The browser tail (1260-1264) is not ported at all: `BROWSER_MODEL_OPTIONS`
+    /// and `BROWSER_DEFAULT_MODEL` are written here and again at 2192-2193 and read by nothing but
+    /// tests, so the clone keeps one catalog rather than two copies of it
+    /// (`docs/PARITY.md`, "Surfaces the clone does not carry").
     pub(crate) fn apply_known_models(
         &mut self,
         ordered: &[String],
@@ -107,6 +109,21 @@ impl ModelCatalog {
     /// tries to learn anything new (`agent.py:1539-1540`).
     pub(crate) fn snapshot(&self) -> (Vec<String>, BTreeMap<String, ModelMetadata>) {
         (self.known_models.clone(), self.metadata.clone())
+    }
+
+    /// `KNOWN_MODELS` in the order the discovery pass sorted it — smallest model first, which is
+    /// the order the model picker shows them in (`agent.py:8550`).
+    #[must_use]
+    pub fn known_models(&self) -> &[String] {
+        &self.known_models
+    }
+
+    /// `MODEL_METADATA.get(name)`: `None` is the state the source's `or` chains fall through, so
+    /// callers that reproduce one of those chains (`crate::context::record_for`, the picker's
+    /// `meta.get("display") or name`) do it on this `Option` rather than on an empty record.
+    #[must_use]
+    pub fn metadata_for(&self, name: &str) -> Option<&ModelMetadata> {
+        self.metadata.get(name)
     }
 }
 

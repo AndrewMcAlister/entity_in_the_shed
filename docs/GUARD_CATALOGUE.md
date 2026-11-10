@@ -50,5 +50,5 @@ Workspace gates already live (these guard the repo, not the runtime):
 | Frozen assets match `tests/assets.manifest.json` (both directions) | `shed-gates::assets` | **ported** |
 | Crate layering + dev-only rules + map completeness | `shed-gates::layers` | **ported** |
 | Only `shed-config` reads the environment | `shed-gates::env_read` | **ported** |
-| `.env.example` documents exactly the read-set | `shed-gates::settings` | pending (Stage 1) |
+| `.env.example` documents exactly the read-set | `shed-gates::settings` | **ported** |
 | Guard-catalogue honesty (stale locations, missing entries) | `shed-gates::guards` | pending (first guard) |

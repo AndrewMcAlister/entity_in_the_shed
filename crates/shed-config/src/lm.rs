@@ -3,19 +3,20 @@
 //! live on disk.
 //!
 //! Ported from `agent.py:393` (`LM_ENGINE_HOST`), `455` (`AI_MODEL_DISCOVERY_TIMEOUT`),
-//! `491` (`LM_ENGINE_TRANSIENT_RETRIES`), `516-517` (the retry backoff) and
+//! `491` (`LM_ENGINE_TRANSIENT_RETRIES`), `516-517` (the retry backoff),
+//! `398-402` (the context-window sizes), `461` (`LM_ENGINE_REPLY_TIMEOUT`) and
 //! `1312-1324` (`lmstudio_models_root`).
 //!
-//! Only the six settings Stage 2 reads are carried. The rest of the `LM_ENGINE_*`
-//! block — `LM_ENGINE_KEEP_ALIVE`, the sampler temperatures, the context-window
-//! sizes, `LM_ENGINE_STREAM_CHAT` — arrives with the stage that sends a chat
-//! request, which is why this file is a slice of `agent.py`'s engine block rather
-//! than the whole of it.
+//! Only the settings the shipped stages read are carried. The rest of the
+//! `LM_ENGINE_*` block — `LM_ENGINE_KEEP_ALIVE`, the sampler temperatures,
+//! `LM_ENGINE_STREAM_CHAT` — arrives with the stage that sends a chat request,
+//! which is why this file is a slice of `agent.py`'s engine block rather than
+//! the whole of it.
 
 use std::path::PathBuf;
 
 use crate::envsrc::EnvSource;
-use crate::parse::{getenv_int, getenv_str};
+use crate::parse::{getenv_float, getenv_int, getenv_str, getenv_timeout_seconds};
 
 /// `LM_ENGINE_HOST`'s fallback (`agent.py:393`): the address LM Studio answers on
 /// when nobody has moved it.
@@ -44,6 +45,23 @@ pub const MIN_RETRY_BASE_MS: u64 = 50;
 /// `max(0, …)`, which [`getenv_int`] already applies.
 pub const DEFAULT_RETRY_JITTER_MS: u64 = 150;
 
+/// `LM_ENGINE_NUM_CTX`'s fallback (`agent.py:398`): the token window assumed
+/// for a model whose record does not carry one.
+pub const DEFAULT_NUM_CTX: i64 = 32768;
+
+/// `LM_ENGINE_LARGE_MODEL_CTX`'s fallback (`agent.py:401`): the window a model
+/// over the size threshold below is capped to, so it stays within VRAM.
+pub const DEFAULT_LARGE_MODEL_CTX: i64 = 16384;
+
+/// `LM_ENGINE_LARGE_MODEL_SIZE_GB`'s fallback (`agent.py:402`): the file size
+/// above which a model counts as large enough to need that cap.
+pub const DEFAULT_LARGE_MODEL_SIZE_GB: f64 = 12.0;
+
+/// `LM_ENGINE_REPLY_TIMEOUT`'s fallback (`agent.py:461`), in seconds, and
+/// `None` is one of its legal values — the disable words turn the reply
+/// watchdog off rather than setting it short.
+pub const DEFAULT_REPLY_TIMEOUT_SECONDS: i64 = 500;
+
 /// The engine settings Stage 2 needs in order to reach `GET {host}/v1/models` and
 /// retry it.
 #[derive(Debug, Clone)]
@@ -57,10 +75,29 @@ pub struct LmEngine {
     pub transient_retries: u64,
     pub retry_base_ms: u64,
     pub retry_jitter_ms: u64,
+    /// `LM_ENGINE_NUM_CTX` (`agent.py:398`): the window `resolve_model_context_window`
+    /// falls back to when a model's record carries none.
+    ///
+    /// The source reads the three context settings with a bare `int(os.getenv(...))`,
+    /// so a value that does not parse is a `ValueError` at import — the app does not
+    /// start. The clone reads them like every other setting: unparseable means the
+    /// documented default, and a negative means zero rather than a negative window
+    /// (`docs/PARITY.md`, "Structural changes").
+    pub num_ctx: i64,
+    /// `LM_ENGINE_LARGE_MODEL_CTX` (`agent.py:401`): the cap applied to a model
+    /// whose file is bigger than [`LmEngine::large_model_size_gb`] gigabytes.
+    pub large_model_ctx: i64,
+    /// `LM_ENGINE_LARGE_MODEL_SIZE_GB` (`agent.py:402`), compared against the
+    /// byte count a discovery payload reported.
+    pub large_model_size_gb: f64,
+    /// `LM_ENGINE_REPLY_TIMEOUT` (`agent.py:461`): the reply watchdog the page
+    /// is told about as `chat_request_timeout_ms`. `None` — the disable words,
+    /// or the source's own falsy branch — says the page waits without a timer.
+    pub reply_timeout_seconds: Option<i64>,
 }
 
 impl LmEngine {
-    /// Read the five settings. Each read is written on its own line with its name
+    /// Read the nine settings. Each read is written on its own line with its name
     /// spelled out, which is what lets the settings gate match a shipped read to
     /// the name it reads (`shed-gates/src/settings.rs`).
     #[must_use]
@@ -89,6 +126,18 @@ impl LmEngine {
             transient_retries: clamped(retries, 0),
             retry_base_ms: clamped(base, MIN_RETRY_BASE_MS),
             retry_jitter_ms: clamped(jitter, 0),
+            num_ctx: getenv_int(src, "LM_ENGINE_NUM_CTX", DEFAULT_NUM_CTX),
+            large_model_ctx: getenv_int(src, "LM_ENGINE_LARGE_MODEL_CTX", DEFAULT_LARGE_MODEL_CTX),
+            large_model_size_gb: getenv_float(
+                src,
+                "LM_ENGINE_LARGE_MODEL_SIZE_GB",
+                DEFAULT_LARGE_MODEL_SIZE_GB,
+            ),
+            reply_timeout_seconds: getenv_timeout_seconds(
+                src,
+                "LM_ENGINE_REPLY_TIMEOUT",
+                Some(DEFAULT_REPLY_TIMEOUT_SECONDS),
+            ),
         }
     }
 }
@@ -260,6 +309,95 @@ mod tests {
         assert_eq!(
             broken.transient_retries, 0,
             "getenv_int clamps a parsed value at zero"
+        );
+    }
+
+    #[test]
+    fn the_three_context_settings_default_to_the_sources_own_numbers() {
+        let engine = LmEngine::from_source(&src(&[]));
+        assert_eq!(engine.num_ctx, DEFAULT_NUM_CTX);
+        assert_eq!(engine.large_model_ctx, DEFAULT_LARGE_MODEL_CTX);
+        assert_eq!(engine.large_model_size_gb, DEFAULT_LARGE_MODEL_SIZE_GB);
+        assert_eq!(
+            engine.reply_timeout_seconds,
+            Some(DEFAULT_REPLY_TIMEOUT_SECONDS)
+        );
+    }
+
+    #[test]
+    fn a_context_window_is_read_as_written_and_a_negative_is_floored() {
+        let engine = LmEngine::from_source(&src(&[
+            ("LM_ENGINE_NUM_CTX", "131072"),
+            ("LM_ENGINE_LARGE_MODEL_CTX", "8192"),
+            ("LM_ENGINE_LARGE_MODEL_SIZE_GB", "24.5"),
+        ]));
+        assert_eq!(engine.num_ctx, 131_072);
+        assert_eq!(engine.large_model_ctx, 8_192);
+        assert_eq!(engine.large_model_size_gb, 24.5);
+
+        // `agent.py:398` keeps a negative (`int()` does not clamp), which would plan a
+        // request with a negative window. The clone reads it through `getenv_int`,
+        // whose floor is 0 — the same answer no-window produces everywhere it is read
+        // (`docs/PARITY.md`, "Structural changes").
+        assert_eq!(
+            LmEngine::from_source(&src(&[("LM_ENGINE_NUM_CTX", "-1")])).num_ctx,
+            0
+        );
+    }
+
+    #[test]
+    fn an_unreadable_context_setting_is_the_documented_default_not_a_startup_crash() {
+        // `int(os.getenv("LM_ENGINE_NUM_CTX", "32768"))` raises on `big`, and it runs at
+        // import time, so the source's service never boots. The clone keeps the
+        // documented default and starts (`docs/PARITY.md`, "Structural changes").
+        let engine = LmEngine::from_source(&src(&[
+            ("LM_ENGINE_NUM_CTX", "big"),
+            ("LM_ENGINE_LARGE_MODEL_CTX", "16k"),
+            ("LM_ENGINE_LARGE_MODEL_SIZE_GB", "twelve"),
+        ]));
+        assert_eq!(engine.num_ctx, DEFAULT_NUM_CTX);
+        assert_eq!(engine.large_model_ctx, DEFAULT_LARGE_MODEL_CTX);
+        assert_eq!(engine.large_model_size_gb, DEFAULT_LARGE_MODEL_SIZE_GB);
+    }
+
+    #[test]
+    fn the_reply_timeout_names_its_disable_words() {
+        // `LM_ENGINE_REPLY_TIMEOUT` is the one setting here that can mean "no timer",
+        // and it is the one the page is handed back as `chat_request_timeout_ms`, so
+        // the words that mean it are contract text.
+        for word in [
+            "",
+            "0",
+            "none",
+            "false",
+            "off",
+            "disable",
+            "disabled",
+            "infinite",
+            "unlimited",
+        ] {
+            assert_eq!(
+                LmEngine::from_source(&src(&[("LM_ENGINE_REPLY_TIMEOUT", word)]))
+                    .reply_timeout_seconds,
+                None,
+                "{word:?} means the page waits as long as the engine takes"
+            );
+        }
+
+        assert_eq!(
+            LmEngine::from_source(&src(&[("LM_ENGINE_REPLY_TIMEOUT", "30")])).reply_timeout_seconds,
+            Some(30)
+        );
+        assert_eq!(
+            LmEngine::from_source(&src(&[("LM_ENGINE_REPLY_TIMEOUT", "1")])).reply_timeout_seconds,
+            Some(1),
+            "the floor is the source's own max(1, …)"
+        );
+        assert_eq!(
+            LmEngine::from_source(&src(&[("LM_ENGINE_REPLY_TIMEOUT", "later")]))
+                .reply_timeout_seconds,
+            Some(DEFAULT_REPLY_TIMEOUT_SECONDS),
+            "garbage falls back to the default rather than to no timer at all"
         );
     }
 

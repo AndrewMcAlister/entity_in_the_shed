@@ -1,0 +1,15 @@
+[package]
+name = "shed-prompts"
+version.workspace = true
+edition.workspace = true
+description = "Prompt templates and their variables, the language and tone guidance blocks, and Strata's named prompt-cache blocks."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+fancy-regex.workspace = true # the variable and block-reference patterns are substituted through, and `regex` is not a workspace dependency
+serde_json.workspace = true  # profiles, facts and message payloads arrive as JSON values
+sha2.workspace = true        # user_info_block_key is the sha256 digest `utils/prompt_cache.py:59` takes
+shed-text = { path = "../shed-text" } # locale.rs for the language names; value_text.rs for the `str(x or "")` idiom; py_text.rs for `str.title()`/`str.splitlines()`

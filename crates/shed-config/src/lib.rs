@@ -15,7 +15,7 @@ pub mod envsrc;
 pub mod lm;
 pub mod parse;
 
-pub use config::{AppConfig, LogLevel};
+pub use config::{AppConfig, LogLevel, TtsSettings};
 pub use envsrc::EnvSource;
 pub use lm::{LmEngine, LmStudio};
 
