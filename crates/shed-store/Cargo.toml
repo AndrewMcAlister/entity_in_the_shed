@@ -1,0 +1,15 @@
+[package]
+name = "shed-store"
+version.workspace = true
+edition.workspace = true
+description = "Durable JSON storage primitives: a write a reader either sees whole or not at all, and the client id that names a browser's files."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+serde.workspace = true       # json_doc.rs: the payload is any Serialize, so a typed record and a Value write through one path
+serde_json.workspace = true  # json_doc.rs: json.dumps(payload, indent=2, ensure_ascii=False)
+uuid.workspace = true        # json_doc.rs: the temp file's random name, the suffix tempfile.mkstemp picks
+tracing.workspace = true     # json_doc.rs: a backup that could not be copied is reported, not fatal
