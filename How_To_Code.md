@@ -88,7 +88,7 @@ Methods should be short enough to understand without scrolling.
 
 As a guideline:
 
-Functions over 50 lines should be reviewed.
+Functions over ~50 lines should be reviewed.
 Large methods are usually hiding multiple responsibilities.
 
 If a function requires extensive comments to explain its flow, it likely needs decomposition.
@@ -349,7 +349,7 @@ Performance
 
 Only optimize for performance after correctness and clarity have been achieved.
 
-21. When a plan is finished, delete the plan, but any important CODING (not config) parts that were deferred should be added to TODO/Loose-Ends.md separated by a line of ********************************
+21. When a plan is finished, append `_DONE` to the plan file's name, and any important CODING (not config) parts that were deferred should be added to TODO/Loose-Ends.md separated by a line of ********************************
 
 22. When creating database tables, don't automatically use the largest fields available, use the minimum size with about 50% headroom.  Eg only use varchar(max) for really large json columns.  Most json can be held comfortably in a varchar(5000).
 Only use nvarchar if international characters might be stored.
@@ -377,3 +377,11 @@ Check for duplicate implementations.
 Verify dependencies.
 Search for existing abstractions.
 Do not implement until architecture is understood.
+
+26. Work in slices that end in a commit.
+
+A slice is the smallest piece of a plan that compiles, passes the gate and can be committed on its own. Finish it, run the gate, commit, and stop. Do not start the next slice in the same turn: work carried across a turn without a commit is the work that gets lost, and a slow turn with nothing committed is indistinguishable from a stalled one.
+
+Read the region the plan or brief names, not the whole file. Reading an entire source file to port one function spends the turn's budget before a line is written.
+
+A turn that cannot finish its slice ends by reporting the failing gate output or the disagreement with the source. It does not widen the slice, and it does not leave work uncommitted for the next session to rediscover.
