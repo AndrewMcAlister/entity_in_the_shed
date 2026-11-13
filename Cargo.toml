@@ -13,6 +13,13 @@ members = ["crates/*", "bins/*"]
 # names its consumer.
 [workspace.dependencies]
 axum = "0.8"            # shed-http: router + /health; shed-server: serve
+# shed-conversation: the stored stamps are ISO-8601 with an optional offset, and Python's
+# `fromisoformat` accepts a grammar rather than one format string. chrono's parse ladder,
+# `FixedOffset` and `NaiveDateTime` are what slice 4b's `timestamp.rs` builds on. This is the
+# workspace's first date/time dependency, added with its first consumer (principle 16).
+# `default-features = false` drops `clock` and `wasmbind`: the crate never reads the wall clock
+# (every "now" arrives as an argument), so it needs neither `Local::now` nor a system clock.
+chrono = { version = "0.4", default-features = false, features = ["std"] }
 fancy-regex = "0.20"    # shed-models: the name-size pattern needs a lookbehind, which `regex`'s RE2 cannot express
 http-body-util = "0.1"  # shed-http tests: collect the response body
 rand = "0.9"            # shed-llm: `random.randint(0, LM_ENGINE_RETRY_JITTER_MS)`, the wait's jitter

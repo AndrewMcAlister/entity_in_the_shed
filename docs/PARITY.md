@@ -59,6 +59,17 @@ no Python tests — all three port at Stage 8 with **new** Rust tests.
 | The four no-store routes send no `ETag`/`Last-Modified` and never answer 304 | Werkzeug builds the ETag from the file's mtime as a float two runtimes cannot agree on byte-for-byte, and every response already says `no-store`, so a conformant client never revalidates; measured against the running app (`asset.rs`) |
 | A query parameter repeated in one URL takes its **last** value where Flask's `.get()` takes its first | `axum::Query` deserialises over a `MultiMap`; the frozen client sends each name once, so there is no defined behaviour to match (`api/mod.rs`) |
 
+### Stored conversation stamps (Stage 4)
+
+| Difference | Why | Evidence |
+|---|---|---|
+| A time-only stamp (`"12:00:00"`) is unreadable here; Python 3.11+ reads it as today at noon | a bare time names no day, so it cannot order a transcript, and every stamp this app stores is an `isoformat()` date-plus-time | `timestamp.rs`, `an_absent_or_unreadable_stamp_is_none` |
+| A short offset (`+02`, `+0230`) parses in Python and not through RFC 3339 | the app writes only the full `±HH:MM`; `DateTime::parse_from_rfc3339` refuses the short forms | `timestamp.rs` |
+| A fraction longer than nine digits is refused here and accepted by Python | `isoformat()` emits at most six digits, and chrono's `%.f` caps at nine | `timestamp.rs` |
+| An aware stamp against a naive cutoff answers "recent" (and no gap); Python raises `TypeError` | Rust must not panic where Python raises, and the pair is unreachable from the app: every cutoff comes from `datetime.now(timezone.utc)` and every stored stamp carries the offset that clock wrote. "Recent" is the same answer an unreadable stamp gets | `timestamp.rs`, `an_aware_stamp_against_a_naive_cutoff_is_recent_rather_than_a_crash` |
+| A row that is not a JSON object fails when the record is loaded (slice 4d) rather than being skipped per loop | `unprofiled_messages` takes `&[ConversationMessage]`, so the row shape settles at parse time; the source tolerates a bad row because it reads raw JSON | `freshness.rs` |
+
+Not a divergence, and pinned by a test: where the source does `parsed.replace(tzinfo=cutoff.tzinfo)`, the clone **attaches** the aware side's offset to the naive wall time instead of converting the instant, so the two answers agree even far from UTC (`timestamp.rs`, `a_naive_stamp_takes_the_aware_cutoffs_offset_rather_than_converting`).
 ### What must **not** change
 
 `CONTRACT.md` in full: the queue-**and**-push delivery door, the single-turn

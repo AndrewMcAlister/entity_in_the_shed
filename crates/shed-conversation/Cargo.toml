@@ -11,6 +11,7 @@ workspace = true
 [dependencies]
 shed-store = { path = "../shed-store" } # client_id.rs: this crate is normalize_client_id's first production caller
 serde.workspace = true # record.rs: the four typed records, stored as the JSON the source stores
+chrono.workspace = true # timestamp.rs: the fromisoformat ladder and the FixedOffset a stored stamp may carry
 
 [dev-dependencies]
 serde_json.workspace = true # tests/records.rs: the round-trip that pins the absent-optional-field rule

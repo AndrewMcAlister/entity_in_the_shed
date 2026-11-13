@@ -14,6 +14,7 @@
 // The test binary links these crates through the library but names none of them
 // itself; the workspace's `unused_crate_dependencies` lint judges the binary on its
 // own uses.
+use chrono as _;
 use serde as _;
 use shed_store as _;
 

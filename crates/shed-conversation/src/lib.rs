@@ -28,10 +28,11 @@
 //! | `conversation_client_id` (135), `conversation_identity` (148) | here, in `identity.rs` |
 //! | `conversation_filename` (164), `names_a_conversation` (181) | here, in `filename.rs` |
 //! | `message_window_start_index` (206) | here, in `window.rs` |
-//! | `_parse_timestamp` (219), `_is_at_or_after` (228), `unprofiled_messages` (242), `newest_message_timestamp` (272), `conversation_reopened` (293) | slice 4b, in a `stamp` module: they need the permissive `datetime.fromisoformat` equivalent, which is that slice's spike |
+//! | `_parse_timestamp` (219), `_is_at_or_after` (228) | here, in `timestamp.rs`: the `fromisoformat` ladder, and the one comparison rule the freshness rules share |
+//! | `unprofiled_messages` (242), `newest_message_timestamp` (272), `conversation_reopened` (293) | here, in `freshness.rs` |
 //! | `USER_DETAILS_*` (314-321), `normalize_user_details` (340) | slice 4c, which also owns whether `user_details` keeps a `BTreeMap` or gains insertion order |
 //! | `plan_conversation_compaction` (375) | slice 4c |
-//! | the record paths, load/save, delivery style, history assembly (`agent.py:3785-4174`) | slice 4b — the I/O half, which is where `shed_store::atomic_write_json` gets its first caller |
+//! | the record paths, load/save, delivery style, history assembly (`agent.py:3785-4174`) | slice 4d — the I/O half, which is where `shed_store::atomic_write_json` gets its first caller |
 //!
 //! ## Why this crate is the one that pays for `shed-store`
 //!
@@ -59,16 +60,20 @@ use serde_json as _;
 
 mod address;
 mod filename;
+mod freshness;
 mod identity;
 mod record;
+mod timestamp;
 mod window;
 
 pub use address::{normalize_client_ip, resolve_client_ip};
 pub use filename::{conversation_filename, names_a_conversation, ConversationKeyError};
+pub use freshness::{conversation_reopened, newest_message_timestamp, unprofiled_messages};
 pub use identity::{conversation_client_id, conversation_identity, CONVERSATION_CLIENT_PREFIX};
 pub use record::{
     ConversationCompactionPlan, ConversationMessage, ConversationRecord, ConversationSummary,
 };
+pub use timestamp::{is_at_or_after, Timestamp};
 pub use window::message_window_start_index;
 
 /// Python's `str.strip()` with no argument.
