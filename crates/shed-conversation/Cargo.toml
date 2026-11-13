@@ -1,0 +1,16 @@
+[package]
+name = "shed-conversation"
+version.workspace = true
+edition.workspace = true
+description = "Conversation records and the pure rules that name them: who a request came from, which file that is, and how much of the exact transcript it may hold."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+shed-store = { path = "../shed-store" } # client_id.rs: this crate is normalize_client_id's first production caller
+serde.workspace = true # record.rs: the four typed records, stored as the JSON the source stores
+
+[dev-dependencies]
+serde_json.workspace = true # tests/records.rs: the round-trip that pins the absent-optional-field rule

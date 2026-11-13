@@ -1210,6 +1210,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "shed-conversation"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "shed-store",
+]
+
+[[package]]
 name = "shed-gates"
 version = "0.1.0"
 dependencies = [
