@@ -10,7 +10,12 @@ fails: pass the full `D:\Entity_In_The_Shed\...` path to the files tool, and sta
 command with `cd /d D:\Entity_In_The_Shed && `.
 
 - Reference app: `D:\Entity-In-The-Shed` (hyphen). Clone: `D:\Entity_In_The_Shed` (underscore).
-- Plan: `TODO/PLAN-Rust-Clone.md` §8.2 (this is slice 4c), §3.2/§3.3.
+- Plan: `TODO/PLAN-Rust-Clone.md` §8.2, where this slice is already written down at **line 374**:
+  `| **4c** | User-details profile + compaction plan | :314-445 |`. You do not need to search for
+  it, and if a `findstr` for it comes back empty the search was wrong, not the plan. §3.2/§3.3
+  hold the crate map and layers.
+- **Do not spend a round confirming the slice exists.** There is no other copy of this task to
+  find: the brief in your hands is it. Read it, open the two named files, write the two modules.
 - Rules: `How_To_Code.md`. Workspace lints deny `dead_code`, `unused`,
   `unused_crate_dependencies`, `clippy::unwrap_used`, `clippy::expect_used` **including test
   targets**.
