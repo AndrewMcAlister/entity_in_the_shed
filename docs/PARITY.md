@@ -70,6 +70,14 @@ no Python tests — all three port at Stage 8 with **new** Rust tests.
 | A row that is not a JSON object fails when the record is loaded (slice 4d) rather than being skipped per loop | `unprofiled_messages` takes `&[ConversationMessage]`, so the row shape settles at parse time; the source tolerates a bad row because it reads raw JSON | `freshness.rs` |
 
 Not a divergence, and pinned by a test: where the source does `parsed.replace(tzinfo=cutoff.tzinfo)`, the clone **attaches** the aware side's offset to the naive wall time instead of converting the instant, so the two answers agree even far from UTC (`timestamp.rs`, `a_naive_stamp_takes_the_aware_cutoffs_offset_rather_than_converting`).
+
+### Profile facts and the compaction plan (Stage 4)
+
+| Difference | Why | Evidence |
+|---|---|---|
+| A profile that reaches `normalize_user_details` as a parsed JSON value leaves it in **key** order, where the source's dict leaves it in the order the model listed its topics | `serde_json`'s object is a `BTreeMap`, so the model's own order is gone before the function is called, and that order is only ever read off a value on this path. The half the ordered `UserDetails` exists for is intact: a profile **loaded from a file** keeps that file's order, and the cap counts the same topics either way (`other` is kept apart from it in both). Turning on `preserve_order` would swap the map type of every `Value` in the workspace to save one line of a rendered prompt, so the asymmetry is recorded rather than worked around. What is visible is the order of the profile's lines, for a model that listed more than one topic | `profile.rs` module doc, `a_profile_keeps_the_documents_order_and_a_duplicate_once`, `tests/records.rs` |
+| Not a divergence, recorded because it is the silent one: the two phrase limits are 200 and 512 **characters**, cut with `chars().take(n)` | Python slices by code point, so a value of 300 `é`s keeps 200 of them where a byte-indexed cut keeps 100 — a difference that lands only on a person whose name or note is not ASCII, which is why it is pinned rather than trusted | `profile.rs`, `a_limit_counts_characters_not_bytes` |
+
 ### What must **not** change
 
 `CONTRACT.md` in full: the queue-**and**-push delivery door, the single-turn

@@ -35,7 +35,7 @@ rand = "0.9"            # shed-llm: `random.randint(0, LM_ENGINE_RETRY_JITTER_MS
 # as reachable here as it is in the source.
 reqwest = { version = "0.12", default-features = false, features = ["gzip", "json", "stream", "rustls-tls-native-roots"] } # shed-llm: the engine transport
 serde = { version = "1", features = ["derive"] } # shed-gates: manifest + layer model; shed-http: query args
-serde_json = "1"        # shed-config: JSON env values; shed-text: Python `str()` over values; shed-http: /health payload
+serde_json = "1"        # shed-config: JSON env values; shed-text: Python `str()` over values; shed-http: /health payload; shed-conversation: profile.rs reads whatever the model returned as one `Value`
 sha2 = "0.10"           # shed-gates: frozen-asset manifest
 tokio = { version = "1", features = ["io-util", "macros", "net", "rt-multi-thread", "signal", "time"] } # shed-server: runtime + bind + raw smoke socket + ctrl-c; shed-llm: the retry ladder's sleep
 tower = { version = "0.5", features = ["util"] } # shed-http tests: oneshot the router

@@ -12,6 +12,8 @@ workspace = true
 shed-store = { path = "../shed-store" } # client_id.rs: this crate is normalize_client_id's first production caller
 serde.workspace = true # record.rs: the four typed records, stored as the JSON the source stores
 chrono.workspace = true # timestamp.rs: the fromisoformat ladder and the FixedOffset a stored stamp may carry
-
-[dev-dependencies]
-serde_json.workspace = true # tests/records.rs: the round-trip that pins the absent-optional-field rule
+# profile.rs: `normalize_user_details` reads the JSON value a model's reply parsed to, because that is
+# the only type that carries a string, a number, a list and an object in one place. The crate needed
+# serde_json in its test binary only until slice 4c made the profile production code; `tests/records.rs`
+# still uses it, for the round-trip that pins the absent-optional-field rule.
+serde_json.workspace = true

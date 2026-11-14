@@ -27,20 +27,25 @@
 //! All three are optional because records written before they existed carry none,
 //! and those files are still the person's memory.
 //!
-//! ## Two things this file deliberately does not decide
+//! ## The decision this file used to leave open, and the one it still does
 //!
-//! `user_details` is a `BTreeMap` for now: Python dicts keep insertion order and
-//! the prompt may render the facts in it, so **slice 4c owns that decision** and
-//! may replace the map (SLICE-4a-BRIEF decision 1). Nothing here orders or renders
-//! the facts in the meantime.
+//! `user_details` is [`UserDetails`] rather than a `BTreeMap`, which is the
+//! decision `SLICE-4a-BRIEF` deferred to slice 4c: Python's dict keeps the order
+//! the model wrote its topics in, that order is what the file stores and what the
+//! rendered profile shows, and a map would silently sort it — so every rewrite of
+//! an old record would reorder the person's own facts. The type, its two impls and
+//! the function that fills it are `profile.rs`; what this file decides is only
+//! which field of the record that profile is, and that it is optional.
 //!
-//! `messages` and `summaries` are required, as the `TypedDict` declares them.
-//! Tolerating a stored file that carries neither is the loader's job, and the
-//! loader is slice 4b (`agent.py:3785-4174`).
-
-use std::collections::BTreeMap;
+//! What is still not decided here is tolerance rather than shape: `messages` and
+//! `summaries` are required, as the `TypedDict` declares them, and tolerating a
+//! stored file that carries neither is the loader's job — the loader is slice 4d
+//! (`agent.py:3785-4174`), and a row that is not an object fails when the record is
+//! parsed rather than being skipped per loop (`docs/PARITY.md`).
 
 use serde::{Deserialize, Serialize};
+
+use crate::profile::UserDetails;
 
 /// One row of the exact transcript: what was said, and when.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -76,10 +81,10 @@ pub struct ConversationRecord {
     /// the field existed, and on one whose first turn has not ended yet.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub delivery_style: Option<String>,
-    /// The profile of the person: short topic-to-phrase facts. Absent until the
-    /// first idle pass fills it in.
+    /// The profile of the person: one short phrase per topic, in the order they
+    /// were written. Absent until the first idle pass fills it in.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub user_details: Option<BTreeMap<String, String>>,
+    pub user_details: Option<UserDetails>,
     /// The newest message the profile has read. A timestamp, not a count, because
     /// trimming removes rows from the front.
     #[serde(default, skip_serializing_if = "Option::is_none")]

@@ -3,9 +3,14 @@
 //! `How_To_Code` principle 15, and the one thing `SLICE-4a-BRIEF` decision 1 calls
 //! out as silently gettable wrong: the source's three `NotRequired` fields must load
 //! from a record written before they existed **and** be written back absent, not
-//! `null`. A `null` is a value, and the loader slice 4b writes would then have to
+//! `null`. A `null` is a value, and the loader slice 4d writes would then have to
 //! distinguish `null` from absent to tell "the profile is empty" from "there has
 //! never been a profile" — a distinction the file on disk does make.
+//!
+//! The same test carries the other half of the profile decision slice 4c took: the
+//! stored `user_details` below lists its topics in an order a map would not sort
+//! them into, so the round-trip pins that a record's profile keeps the order its
+//! file wrote it in.
 //!
 //! Lives in its own integration test rather than in `record.rs`'s module because it
 //! is about the *stored bytes*: the record type and its JSON are one claim, and this
@@ -18,16 +23,18 @@ use chrono as _;
 use serde as _;
 use shed_store as _;
 
-use std::collections::BTreeMap;
-
-use shed_conversation::{ConversationMessage, ConversationRecord, ConversationSummary};
+use shed_conversation::{
+    ConversationMessage, ConversationRecord, ConversationSummary, UserDetails,
+};
 
 /// The oldest shape a conversation record has ever had on disk: two keys.
 const OLD_RECORD: &str = r#"{"messages":[{"role":"user","content":"question 1","timestamp":"2026-10-27T12:00:00+00:00"}],"summaries":[{"start_timestamp":"2026-10-20T09:00:00+00:00","end_timestamp":"2026-10-26T18:00:00+00:00","summary":"We talked about the shed."}]}"#;
 
 /// The same record after a turn that set a style and one idle pass that filled in a
-/// profile — the three extra keys, in the order the source writes them.
-const CURRENT_RECORD: &str = r#"{"messages":[{"role":"user","content":"question 1","timestamp":"2026-10-27T12:00:00+00:00"}],"summaries":[{"start_timestamp":"2026-10-20T09:00:00+00:00","end_timestamp":"2026-10-26T18:00:00+00:00","summary":"We talked about the shed."}],"delivery_style":"warm","user_details":{"name":"Andrew"},"user_details_covered_through":"2026-10-27T12:00:00+00:00"}"#;
+/// profile — the three extra keys, in the order the source writes them. The profile
+/// lists `name` before `family`, which is not the order a map would store them in,
+/// so these bytes are also the proof that the profile is not sorted on the way out.
+const CURRENT_RECORD: &str = r#"{"messages":[{"role":"user","content":"question 1","timestamp":"2026-10-27T12:00:00+00:00"}],"summaries":[{"start_timestamp":"2026-10-20T09:00:00+00:00","end_timestamp":"2026-10-26T18:00:00+00:00","summary":"We talked about the shed."}],"delivery_style":"warm","user_details":{"name":"Andrew","family":"a sick mum"},"user_details_covered_through":"2026-10-27T12:00:00+00:00"}"#;
 
 #[test]
 fn a_record_written_before_the_optional_fields_existed_reads_and_writes_without_them(
@@ -57,9 +64,12 @@ fn a_record_written_before_the_optional_fields_existed_reads_and_writes_without_
     // Absent, not null: rewriting an old record must not add the keys it never had.
     assert_eq!(serde_json::to_string(&record)?, OLD_RECORD);
 
-    // A record that does carry all three keeps them, and reads back unchanged.
-    let mut details = BTreeMap::new();
-    details.insert("name".to_owned(), "Andrew".to_owned());
+    // A record that does carry all three keeps them, and reads back unchanged —
+    // including the profile's order, which a `BTreeMap` field would have sorted.
+    let details = UserDetails::new(vec![
+        ("name".to_owned(), "Andrew".to_owned()),
+        ("family".to_owned(), "a sick mum".to_owned()),
+    ]);
     let current = ConversationRecord {
         messages: record.messages,
         summaries: record.summaries,
