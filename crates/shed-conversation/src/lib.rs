@@ -3,8 +3,10 @@
 //!
 //! Ported from `utils/conversation_history.py`, which is pure — no Flask, no
 //! `agent` import, nothing but the stdlib and `normalize_client_id` — and this
-//! crate keeps that purity: no paths opened, no settings read, no model called.
-//! Everything is a function of what the caller hands it.
+//! crate keeps that purity everywhere except `store.rs`: no settings read, no model
+//! called, and every function a function of what the caller hands it. `store.rs` is
+//! the one module that opens a file, and even it takes its root as a value rather
+//! than reaching for a module global.
 //!
 //! ## The two rules the source's docstring states, and this slice implements
 //!
@@ -32,7 +34,9 @@
 //! | `unprofiled_messages` (242), `newest_message_timestamp` (272), `conversation_reopened` (293) | here, in `freshness.rs` |
 //! | `USER_DETAILS_*` (314-321), `_detail_value_text` (324), `_detail_label` (336), `normalize_user_details` (340) | here, in `profile.rs`, which is also where `user_details` gained the insertion order a `BTreeMap` would have sorted away |
 //! | `plan_conversation_compaction` (375) | here, in `compaction.rs`: the two cuts, what each one summarizes, and the summary blocks the record keeps |
-//! | the record paths, load/save, delivery style, history assembly (`agent.py:3785-4174`) | slice 4d — the I/O half, which is where `shed_store::atomic_write_json` gets its first caller |
+//! | the record paths, load/save, delivery style (`agent.py:3785-3930`) | here, in `store.rs`, which is `shed_store::atomic_write_json`'s first caller and writes with `Backup::Skip` |
+//! | the history assembly (`agent.py:4082-4174`) | here, in `history.rs`: the profile and the remembered talk become the two system messages the model reads before the exact tail, or one named prompt-cache block when a plan is passed |
+//! | the legacy address record's adoption (`agent.py:3815-3841`) | here, in `store.rs`, as a function over the client records it is given — the client-file store is Stage 7's |
 //!
 //! ## Why this crate is the one that pays for `shed-store`
 //!
@@ -41,6 +45,13 @@
 //! is `client-` plus that id, and the key becomes a filename. The layer map
 //! (`shed-gates`'s `LAYERS`) allows `shed-conversation → shed-store` for exactly
 //! this reason.
+//!
+//! The same table has always allowed `shed-conversation → shed-prompts`, and
+//! `history.rs` is the first caller: the two memory texts become one named block
+//! through `shed_prompts::blocks` when the caller is assembling a prompt-cache plan.
+//! The block is *named* here and *stored* by whoever holds the engine, which is why
+//! this crate still never speaks to one — and why the crate it depends on is the one
+//! that knows nothing about engines either.
 //!
 //! ## The `str(value or "")` half
 //!
@@ -62,9 +73,11 @@ mod address;
 mod compaction;
 mod filename;
 mod freshness;
+mod history;
 mod identity;
 mod profile;
 mod record;
+mod store;
 mod timestamp;
 mod window;
 
@@ -72,6 +85,9 @@ pub use address::{normalize_client_ip, resolve_client_ip};
 pub use compaction::plan_conversation_compaction;
 pub use filename::{conversation_filename, names_a_conversation, ConversationKeyError};
 pub use freshness::{conversation_reopened, newest_message_timestamp, unprofiled_messages};
+pub use history::{
+    build_summary_system_text, build_user_details_system_text, conversation_history, HistoryMessage,
+};
 pub use identity::{conversation_client_id, conversation_identity, CONVERSATION_CLIENT_PREFIX};
 pub use profile::{
     normalize_user_details, UserDetails, USER_DETAILS_MAX_FACTS, USER_DETAILS_MAX_VALUE_CHARS,
@@ -79,6 +95,10 @@ pub use profile::{
 };
 pub use record::{
     ConversationCompactionPlan, ConversationMessage, ConversationRecord, ConversationSummary,
+};
+pub use store::{
+    claim_legacy_conversation, client_ids_seen_from_address, read_conversation_record_file,
+    write_conversation_record_file, ConversationRoot,
 };
 pub use timestamp::{is_at_or_after, Timestamp};
 pub use window::message_window_start_index;

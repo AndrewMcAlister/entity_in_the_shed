@@ -10,6 +10,11 @@ workspace = true
 
 [dependencies]
 shed-store = { path = "../shed-store" } # client_id.rs: this crate is normalize_client_id's first production caller
+# history.rs: the profile and the remembered talk become one named block through `blocks::{user_info_block_key,
+# PromptCachePlan}` when the caller is assembling a prompt-cache plan. The block is *named* here and *stored* by
+# whoever holds the engine, so this crate still never speaks to one — the reason the layer map has allowed this
+# edge since Stage 3 and nothing used it until slice 4d.
+shed-prompts = { path = "../shed-prompts" }
 serde.workspace = true # record.rs: the four typed records, stored as the JSON the source stores
 chrono.workspace = true # timestamp.rs: the fromisoformat ladder and the FixedOffset a stored stamp may carry
 # profile.rs: `normalize_user_details` reads the JSON value a model's reply parsed to, because that is

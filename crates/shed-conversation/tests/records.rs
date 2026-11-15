@@ -18,9 +18,11 @@
 
 // The test binary links these crates through the library but names none of them
 // itself; the workspace's `unused_crate_dependencies` lint judges the binary on its
-// own uses.
+// own uses. `shed-prompts` joined the list with slice 4d, which gave the library its
+// first use of it — this binary still says nothing about prompt blocks.
 use chrono as _;
 use serde as _;
+use shed_prompts as _;
 use shed_store as _;
 
 use shed_conversation::{

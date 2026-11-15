@@ -71,7 +71,13 @@ pub struct ConversationSummary {
 }
 
 /// A conversation as stored: the exact tail and the memory behind it.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+///
+/// `Default` is the empty record — `{"messages": [], "summaries": []}` — which is
+/// what `store.rs` reads a missing, unreadable or unparseable file as: the honest
+/// reading of a conversation nobody can read. It is also the record a conversation
+/// that has not had its first turn yet would be written as, and the two are the same
+/// shape on purpose.
+#[derive(Debug, Default, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ConversationRecord {
     /// The exact transcript, oldest row first. Trimming takes rows from the front.
     pub messages: Vec<ConversationMessage>,
