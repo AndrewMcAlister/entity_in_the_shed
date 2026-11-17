@@ -14,17 +14,20 @@ Nothing here overrides `How_To_Code.md`.
 
 ## Tools — the way this goes wrong
 
-- The tools are named exactly as the `<tools>` block in your system prompt names them: `read_file`,
-  `write_file`, `edit_file`, `grep_files`, `list_dir`, `glob_files`, `run_command`. Those names are
-  bare.
-- **Never prefix a tool with its server** (`files__read_file`, `terminal__run_command`). A name that
-  is not declared is refused, the call goes back to the chat as text, and the turn ends with nothing
-  done — which looks exactly like the model having stopped.
+- Use the exact `name` from the `<tools>` block in your system prompt. In this install the tools come
+  from MCP servers, so they carry the server prefix: `files__read_file`, `files__write_file`,
+  `files__edit_file`, `files__grep_files`, `files__list_dir`, `files__glob_files`,
+  `terminal__run_command`. Do not shorten them to the bare tool name and do not invent a spelling —
+  what `/mcp` lists is what is declared.
+- A name that is not declared is refused, the call goes back to the chat as text, and the turn ends
+  with nothing done — which looks exactly like the model having stopped. The same happens when a turn
+  is cut short (a small `max_tokens`, or the 24-round cap that used to exist): the last call is shown
+  but never run.
 - The call format is the one your template documents:
 
   ```
   <tool_call>
-  <function=edit_file>
+  <function=files__edit_file>
   <parameter=path>
   D:\Entity_In_The_Shed\...
   </parameter>
