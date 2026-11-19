@@ -17,7 +17,7 @@ files tool, and start every terminal command with `cd /d D:\Entity_In_The_Shed &
   7760-8417, 9389-9510 | test_api_chat, test_reply_* (4), test_sentence_splitter, test_glm4* |
   Stage 4's own exit gate: a chat turn streams sentences to the frozen client, and the busy path
   reproduces under two simultaneous requests. **Expect this to split again when it is reached** |`.
-- `main` is the branch. 4a–4c and 4d are committed; 4e is the slice in flight.
+- `main` is the branch. 4a–4e are committed (HEAD `dc74524`); **4f-1's implementation brief is`n  `TODO/SLICE-4f1-BRIEF.md`**, with its source pasted and verified.
 
 ## Why it splits — the numbers
 
@@ -126,7 +126,7 @@ and the plan says so itself. The split is by **layer**, so each sub-slice is ind
 
 ## How to start
 
-When 4e is committed, write `TODO/SLICE-4f1-BRIEF.md` in the same shape as 4d/4e: header, mission,
+`TODO/SLICE-4f1-BRIEF.md` is written (2026-11-20) in the same shape as 4d/4e — header, mission,
 the source pasted verbatim (verified byte-identical against `utils/reply.py` and
 `agent.py:5504-6202` — write a small checker rather than trusting the paste), the test list from
 `test_reply_utils`/`test_reply_stream_scanner`/`test_reply_stream_publisher`/`test_sentence_splitter`,
