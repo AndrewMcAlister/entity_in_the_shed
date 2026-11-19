@@ -17,6 +17,7 @@ files tool, and start every terminal command with `cd /d D:\Entity_In_The_Shed &
   7760-8417, 9389-9510 | test_api_chat, test_reply_* (4), test_sentence_splitter, test_glm4* |
   Stage 4's own exit gate: a chat turn streams sentences to the frozen client, and the busy path
   reproduces under two simultaneous requests. **Expect this to split again when it is reached** |`.
+- `main` is the branch. 4a–4e are committed (HEAD `dc74524`); **4f-1's implementation brief is
   `TODO/SLICE-4f1-BRIEF.md`, with its source pasted and verified.
 
 ## Why it splits — the numbers
