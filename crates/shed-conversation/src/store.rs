@@ -79,6 +79,15 @@ use crate::identity::conversation_client_id;
 use crate::py_strip;
 use crate::record::ConversationRecord;
 
+/// The name a character's own outline is stored under, beside their transcripts.
+///
+/// `CHARACTER_OUTLINE_FILENAME`. Spelled here rather than borrowed from
+/// `shed-characters` — which this crate's layer position does not include — because the
+/// only thing this crate needs it for is *exclusion*: a walk of the store must not
+/// mistake it for a conversation. [`crate::names_a_conversation`] refuses it by shape as
+/// well, so a caller that reads a name rather than a path is covered twice.
+pub const CHARACTER_OUTLINE_FILENAME: &str = "character-outline.json";
+
 /// The folder every conversation is stored under.
 ///
 /// The source's `MEMORY_DIR`: bare records at the top, and one folder per character
@@ -149,6 +158,71 @@ impl ConversationRoot {
         }
 
         Ok(candidates.into_iter().max().map(|(_mtime, path)| path))
+    }
+
+    /// Every stored conversation record: the root's first, then each character folder's.
+    ///
+    /// `iter_conversation_record_files` (`agent.py:3388`), and the source's own reason for
+    /// existing: three callers walk the store (retention, clearing, the idle sweep), and
+    /// three different globs is how a file survives one rule and is swept by another. It is
+    /// a `Vec` rather than an iterator because the sweep needs the whole list twice — once
+    /// to walk, once to say which of its entries have gone away.
+    ///
+    /// The outline is skipped by name, which is the only rule that cannot be read off a
+    /// path: it is a `.json` in a character folder and looks exactly like a transcript. A
+    /// legacy session-keyed record *is* returned — "what is stored" and "what is worth
+    /// summarizing" are different questions, and [`crate::names_a_conversation`] is where
+    /// the second one is asked.
+    ///
+    /// Both levels are sorted by name. The source takes whatever order the directory
+    /// handed it, which on Windows is the filesystem's index order and on Linux the
+    /// creation order; a sweep whose order changes between two runs is a sweep whose model
+    /// calls cannot be reproduced from the store.
+    ///
+    /// # Errors
+    ///
+    /// The [`io::ErrorKind`] of a root that cannot be listed for a reason other than not
+    /// existing. A root that does not exist yet answers empty — an app that has stored
+    /// nothing has no records, which is the same answer [`ConversationRoot::record_for_key`]
+    /// gives for one identity. A *character* folder that cannot be listed is skipped rather
+    /// than failing the walk: the source's `glob` yields nothing for it, and stopping at
+    /// the first folder this process cannot read would leave every folder after it
+    /// unswept forever.
+    pub fn record_files(&self) -> io::Result<Vec<PathBuf>> {
+        let mut records = Vec::new();
+        let mut folders = Vec::new();
+        match std::fs::read_dir(&self.memory_dir) {
+            Ok(entries) => {
+                for entry in entries {
+                    let path = entry?.path();
+                    if path.is_dir() {
+                        folders.push(path);
+                    } else if names_a_record_file(&path) {
+                        records.push(path);
+                    }
+                }
+            }
+            Err(error) if error.kind() == io::ErrorKind::NotFound => return Ok(records),
+            Err(error) => return Err(error),
+        }
+        records.sort();
+        folders.sort();
+
+        for folder in folders {
+            let Ok(entries) = std::fs::read_dir(&folder) else {
+                continue;
+            };
+            let mut nested = Vec::new();
+            for entry in entries {
+                let path = entry?.path();
+                if names_a_record_file(&path) {
+                    nested.push(path);
+                }
+            }
+            nested.sort();
+            records.extend(nested);
+        }
+        Ok(records)
     }
 
     /// The record stored under `filename` at the root, or the empty record.
@@ -247,6 +321,19 @@ fn push_candidate(candidates: &mut Vec<(Option<SystemTime>, PathBuf)>, path: Pat
         return;
     };
     candidates.push((metadata.modified().ok(), path));
+}
+
+/// Whether `path` is one of the `.json` files a walk of the store should hand back.
+///
+/// The outline is the one thing excluded by name rather than by shape. Everything else
+/// that lives in the store — a `.bak`, a legacy record whose name has no `.json`, a
+/// character's portrait — is refused by the extension or by not being a file.
+fn names_a_record_file(path: &Path) -> bool {
+    path.is_file()
+        && path.extension().is_some_and(|ext| ext == "json")
+        && path
+            .file_name()
+            .is_some_and(|name| name != CHARACTER_OUTLINE_FILENAME)
 }
 
 /// Every browser id already recorded against one address.

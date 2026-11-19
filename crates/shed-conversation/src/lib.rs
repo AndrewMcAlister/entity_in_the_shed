@@ -74,6 +74,7 @@ mod compaction;
 mod filename;
 mod freshness;
 mod history;
+mod housekeeping;
 mod identity;
 mod profile;
 mod record;
@@ -88,6 +89,16 @@ pub use freshness::{conversation_reopened, newest_message_timestamp, unprofiled_
 pub use history::{
     build_summary_system_text, build_user_details_system_text, conversation_history, HistoryMessage,
 };
+pub use housekeeping::{
+    character_profile, housekeep_conversation_record_file, load_conversation_record_strict,
+    profile_conversation_worker, profile_prompt_json, profile_transcript, profile_work_for,
+    reply_content, run_housekeeping, schedule_conversation_profile_update, spawn,
+    summarize_conversation_messages, summary_transcript, update_conversation_profile,
+    update_conversation_user_details, BackgroundModel, CharacterName, ChatMessage, Housekeeper,
+    HousekeepingError, HousekeepingSettings, HousekeepingState, ModelError, ProfileWork,
+    ProfileWorkKind, ProfileWorkers, SweepFailure, TranscriptStyle, PROFILE_PURPOSE,
+    SUMMARY_PURPOSE,
+};
 pub use identity::{conversation_client_id, conversation_identity, CONVERSATION_CLIENT_PREFIX};
 pub use profile::{
     normalize_user_details, UserDetails, USER_DETAILS_MAX_FACTS, USER_DETAILS_MAX_VALUE_CHARS,
@@ -98,7 +109,7 @@ pub use record::{
 };
 pub use store::{
     claim_legacy_conversation, client_ids_seen_from_address, read_conversation_record_file,
-    write_conversation_record_file, ConversationRoot,
+    write_conversation_record_file, ConversationRoot, CHARACTER_OUTLINE_FILENAME,
 };
 pub use timestamp::{is_at_or_after, Timestamp};
 pub use window::message_window_start_index;
