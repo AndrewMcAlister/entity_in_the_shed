@@ -62,20 +62,14 @@ pub const LAYERS: &[(&str, &[&str])] = &[
         "shed-mcp",
         &["shed-config", "shed-json", "shed-text", "shed-store"],
     ),
-    (
-        "shed-chat",
-        &[
-            "shed-config",
-            "shed-json",
-            "shed-text",
-            "shed-models",
-            "shed-llm",
-            "shed-prompts",
-            "shed-tools",
-            "shed-mcp",
-            "shed-conversation",
-        ],
-    ),
+    // Slice 4f-1 writes the reply layer, and the reply layer reads one internal crate:
+    // `shed-text`, for `text_or_empty` (`str(value or "")`). The plan's layer map lets this
+    // crate down to `config, json, text, models, llm, prompts, tools, mcp, conversation`, but
+    // the rest of that set belongs to 4f-2's `run_agent` (the engine, the tools, the
+    // conversation record) — and an edge with no `use` behind it is a claim the code does not
+    // support. `shed-chat` may not depend on `shed-http` or `shed-server`: the composition root
+    // is above it, not below. Widen this list in the slice that writes the `use`.
+    ("shed-chat", &["shed-text"]),
     ("shed-tts", &["shed-config", "shed-text", "shed-store"]),
     ("shed-entity", &["shed-config", "shed-json", "shed-store"]),
     (

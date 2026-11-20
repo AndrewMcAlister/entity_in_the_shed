@@ -1,0 +1,2678 @@
+{
+  "max_preamble_chars": 256,
+  "keys": [
+    "reply",
+    "response"
+  ],
+  "cases": [
+    {
+      "document": "{\"reply\": \"Hello there.\", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"Hello there.\", \"tool_calls\": []}"
+          ],
+          "text": "Hello there.",
+          "reply": "Hello there.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "H",
+            "e",
+            "l",
+            "l",
+            "o",
+            " ",
+            "t",
+            "h",
+            "e",
+            "r",
+            "e",
+            ".",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "text": "Hello there.",
+          "reply": "Hello there.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"Hello there.\", \"to",
+            "ol_calls\"",
+            ": []}"
+          ],
+          "text": "Hello there.",
+          "reply": "Hello there.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"reply\": \"",
+            "Hello there.\", ",
+            "\"tool_cal",
+            "ls\": [",
+            "]}"
+          ],
+          "text": "Hello there.",
+          "reply": "Hello there.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"One two three.\", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"One two three.\", \"tool_calls\": []}"
+          ],
+          "text": "One two three.",
+          "reply": "One two three.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "O",
+            "n",
+            "e",
+            " ",
+            "t",
+            "w",
+            "o",
+            " ",
+            "t",
+            "h",
+            "r",
+            "e",
+            "e",
+            ".",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "text": "One two three.",
+          "reply": "One two three.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"One two three.\", \"",
+            "tool_call",
+            "s\": []}"
+          ],
+          "text": "One two three.",
+          "reply": "One two three.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"reply\": \"",
+            "One two three.\"",
+            ", \"tool_c",
+            "alls\":",
+            " []}"
+          ],
+          "text": "One two three.",
+          "reply": "One two three.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"response\": \"Still fine.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"response\": \"Still fine.\"}"
+          ],
+          "text": "Still fine.",
+          "reply": "Still fine.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "s",
+            "p",
+            "o",
+            "n",
+            "s",
+            "e",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "S",
+            "t",
+            "i",
+            "l",
+            "l",
+            " ",
+            "f",
+            "i",
+            "n",
+            "e",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "Still fine.",
+          "reply": "Still fine.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"response\": \"S",
+            "till",
+            " fine.\"}"
+          ],
+          "text": "Still fine.",
+          "reply": "Still fine.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"resp",
+            "onse\": ",
+            "\"Still fine",
+            ".\"",
+            "}"
+          ],
+          "text": "Still fine.",
+          "reply": "Still fine.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{  \"reply\"\n\t:\n  \"Spaced out.\"  }",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{  \"reply\"\n\t:\n  \"Spaced out.\"  }"
+          ],
+          "text": "Spaced out.",
+          "reply": "Spaced out.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            " ",
+            " ",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            "\n",
+            "\t",
+            ":",
+            "\n",
+            " ",
+            " ",
+            "\"",
+            "S",
+            "p",
+            "a",
+            "c",
+            "e",
+            "d",
+            " ",
+            "o",
+            "u",
+            "t",
+            ".",
+            "\"",
+            " ",
+            " ",
+            "}"
+          ],
+          "text": "Spaced out.",
+          "reply": "Spaced out.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{  \"reply\"\n\t:\n ",
+            " \"Sp",
+            "aced out.\"  }"
+          ],
+          "text": "Spaced out.",
+          "reply": "Spaced out.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{  \"re",
+            "ply\"\n\t:",
+            "\n  \"Spaced ",
+            "ou",
+            "t.\"  }"
+          ],
+          "text": "Spaced out.",
+          "reply": "Spaced out.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "```json\n{\"reply\": \"Fenced.\"}\n```",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "```json\n{\"reply\": \"Fenced.\"}\n```"
+          ],
+          "text": "Fenced.",
+          "reply": "Fenced.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "`",
+            "`",
+            "`",
+            "j",
+            "s",
+            "o",
+            "n",
+            "\n",
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "F",
+            "e",
+            "n",
+            "c",
+            "e",
+            "d",
+            ".",
+            "\"",
+            "}",
+            "\n",
+            "`",
+            "`",
+            "`"
+          ],
+          "text": "Fenced.",
+          "reply": "Fenced.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "```json\n{\"reply",
+            "\": \"",
+            "Fenced.\"}\n```"
+          ],
+          "text": "Fenced.",
+          "reply": "Fenced.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "```jso",
+            "n\n{\"rep",
+            "ly\": \"Fence",
+            "d.",
+            "\"}\n```"
+          ],
+          "text": "Fenced.",
+          "reply": "Fenced.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"Line\\nbreak \\\"quoted\\\" tab\\tend.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"Line\\nbreak \\\"quoted\\\" tab\\tend.\"}"
+          ],
+          "text": "Line\nbreak \"quoted\" tab\tend.",
+          "reply": "Line\nbreak \"quoted\" tab\tend.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "L",
+            "i",
+            "n",
+            "e",
+            "\\",
+            "n",
+            "b",
+            "r",
+            "e",
+            "a",
+            "k",
+            " ",
+            "\\",
+            "\"",
+            "q",
+            "u",
+            "o",
+            "t",
+            "e",
+            "d",
+            "\\",
+            "\"",
+            " ",
+            "t",
+            "a",
+            "b",
+            "\\",
+            "t",
+            "e",
+            "n",
+            "d",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "Line\nbreak \"quoted\" tab\tend.",
+          "reply": "Line\nbreak \"quoted\" tab\tend.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"Line\\nbreak \\\"quot",
+            "ed\\\" tab\\",
+            "tend.\"}"
+          ],
+          "text": "Line\nbreak \"quoted\" tab\tend.",
+          "reply": "Line\nbreak \"quoted\" tab\tend.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"reply\": \"",
+            "Line\\nbreak \\\"q",
+            "uoted\\\" t",
+            "ab\\ten",
+            "d.\"}"
+          ],
+          "text": "Line\nbreak \"quoted\" tab\tend.",
+          "reply": "Line\nbreak \"quoted\" tab\tend.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"caf\\u00e9 done.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"caf\\u00e9 done.\"}"
+          ],
+          "text": "café done.",
+          "reply": "café done.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "c",
+            "a",
+            "f",
+            "\\",
+            "u",
+            "0",
+            "0",
+            "e",
+            "9",
+            " ",
+            "d",
+            "o",
+            "n",
+            "e",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "café done.",
+          "reply": "café done.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"caf\\",
+            "u00e",
+            "9 done.\"}"
+          ],
+          "text": "café done.",
+          "reply": "café done.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"repl",
+            "y\": \"ca",
+            "f\\u00e9 don",
+            "e.",
+            "\"}"
+          ],
+          "text": "café done.",
+          "reply": "café done.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"wave \\uD83D\\uDE00 end.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"wave \\uD83D\\uDE00 end.\"}"
+          ],
+          "text": "wave 😀 end.",
+          "reply": "wave 😀 end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "w",
+            "a",
+            "v",
+            "e",
+            " ",
+            "\\",
+            "u",
+            "D",
+            "8",
+            "3",
+            "D",
+            "\\",
+            "u",
+            "D",
+            "E",
+            "0",
+            "0",
+            " ",
+            "e",
+            "n",
+            "d",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "wave 😀 end.",
+          "reply": "wave 😀 end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"wave \\uD83D\\uDE00 ",
+            "end.\"",
+            "}"
+          ],
+          "text": "wave 😀 end.",
+          "reply": "wave 😀 end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"rep",
+            "ly",
+            "\": \"",
+            "wave \\uD83D\\uDE",
+            "00 end.\"}"
+          ],
+          "text": "wave 😀 end.",
+          "reply": "wave 😀 end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"broken \\uD83D end.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"broken \\uD83D end.\"}"
+          ],
+          "text": "broken � end.",
+          "reply": "broken � end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "b",
+            "r",
+            "o",
+            "k",
+            "e",
+            "n",
+            " ",
+            "\\",
+            "u",
+            "D",
+            "8",
+            "3",
+            "D",
+            " ",
+            "e",
+            "n",
+            "d",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "broken � end.",
+          "reply": "broken � end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"brok",
+            "en \\",
+            "uD83D end.\"}"
+          ],
+          "text": "broken � end.",
+          "reply": "broken � end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"repl",
+            "y\": \"br",
+            "oken \\uD83D",
+            " e",
+            "nd.\"}"
+          ],
+          "text": "broken � end.",
+          "reply": "broken � end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"unfinished \\uD83D",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"unfinished \\uD83D"
+          ],
+          "text": "unfinished �",
+          "reply": "unfinished �",
+          "done": false,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "u",
+            "n",
+            "f",
+            "i",
+            "n",
+            "i",
+            "s",
+            "h",
+            "e",
+            "d",
+            " ",
+            "\\",
+            "u",
+            "D",
+            "8",
+            "3",
+            "D"
+          ],
+          "text": "unfinished �",
+          "reply": "unfinished �",
+          "done": false,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"unfi",
+            "nish",
+            "ed \\uD83D"
+          ],
+          "text": "unfinished �",
+          "reply": "unfinished �",
+          "done": false,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"repl",
+            "y\": \"un",
+            "finished \\u",
+            "D8",
+            "3D"
+          ],
+          "text": "unfinished �",
+          "reply": "unfinished �",
+          "done": false,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"Stop here.\", \"tool_calls\": [{\"tool\": \"x\"}]}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"Stop here.\", \"tool_calls\": [{\"tool\": \"x\"}]}"
+          ],
+          "text": "Stop here.",
+          "reply": "Stop here.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "S",
+            "t",
+            "o",
+            "p",
+            " ",
+            "h",
+            "e",
+            "r",
+            "e",
+            ".",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "{",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "x",
+            "\"",
+            "}",
+            "]",
+            "}"
+          ],
+          "text": "Stop here.",
+          "reply": "Stop here.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"Stop here.\", \"tool",
+            "_calls\": ",
+            "[{\"tool\": \"x\"}]}"
+          ],
+          "text": "Stop here.",
+          "reply": "Stop here.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"reply\": \"",
+            "Stop here.\", \"t",
+            "ool_calls\": [{\"tool\":",
+            " \"x\"}",
+            "]}"
+          ],
+          "text": "Stop here.",
+          "reply": "Stop here.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"tool_calls\": [{\"tool\": \"search_web\"}], \"reply\": \"Late.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"tool_calls\": [{\"tool\": \"search_web\"}], \"reply\": \"Late.\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "{",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "s",
+            "e",
+            "a",
+            "r",
+            "c",
+            "h",
+            "_",
+            "w",
+            "e",
+            "b",
+            "\"",
+            "}",
+            "]",
+            ",",
+            " ",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "L",
+            "a",
+            "t",
+            "e",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"tool_calls\": [{\"tool\": \"sea",
+            "rch_web\"}",
+            "], \"reply\": \"Late.\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"tool_call",
+            "s\": [{\"tool\": \"",
+            "search_web\"}], \"reply",
+            "\": \"L",
+            "ate.\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "Sure, here is my answer: {\"reply\": \"Ignored.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "Sure, here is my answer: {\"reply\": \"Ignored.\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "S",
+            "u",
+            "r",
+            "e",
+            ",",
+            " ",
+            "h",
+            "e",
+            "r",
+            "e",
+            " ",
+            "i",
+            "s",
+            " ",
+            "m",
+            "y",
+            " ",
+            "a",
+            "n",
+            "s",
+            "w",
+            "e",
+            "r",
+            ":",
+            " ",
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "I",
+            "g",
+            "n",
+            "o",
+            "r",
+            "e",
+            "d",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "Sure, here is my answer: {\"re",
+            "ply\": \"Ig",
+            "nored.\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "Sure, here ",
+            "is my answer: {",
+            "\"reply\": ",
+            "\"Ignor",
+            "ed.\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "The answer is forty-two.",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "The answer is forty-two."
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "T",
+            "h",
+            "e",
+            " ",
+            "a",
+            "n",
+            "s",
+            "w",
+            "e",
+            "r",
+            " ",
+            "i",
+            "s",
+            " ",
+            "f",
+            "o",
+            "r",
+            "t",
+            "y",
+            "-",
+            "t",
+            "w",
+            "o",
+            "."
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "The answer is f",
+            "orty",
+            "-two."
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "The an",
+            "swer is",
+            " fort",
+            "y-t",
+            "wo."
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": 42}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": 42}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "4",
+            "2",
+            "}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\"",
+            ": ",
+            "42}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"r",
+            "eply",
+            "\":",
+            " 42",
+            "}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x",
+            "x"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "xxxxxxxxxxxx",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "nonsense",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "nonsense"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "n",
+            "o",
+            "n",
+            "s",
+            "e",
+            "n",
+            "s",
+            "e"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "nons",
+            "e",
+            "nse"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "n",
+            "o",
+            "ns",
+            "en",
+            "se"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"a \\q b.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"a \\q b.\"}"
+          ],
+          "text": "a q b.",
+          "reply": "a q b.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "a",
+            " ",
+            "\\",
+            "q",
+            " ",
+            "b",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "a q b.",
+          "reply": "a q b.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"a \\q",
+            " b",
+            ".\"}"
+          ],
+          "text": "a q b.",
+          "reply": "a q b.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"r",
+            "e",
+            "pl",
+            "y\": \"a ",
+            "\\q b.\"}"
+          ],
+          "text": "a q b.",
+          "reply": "a q b.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"First \n second.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"First \n second.\"}"
+          ],
+          "text": "First \n second.",
+          "reply": "First \n second.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "F",
+            "i",
+            "r",
+            "s",
+            "t",
+            " ",
+            "\n",
+            " ",
+            "s",
+            "e",
+            "c",
+            "o",
+            "n",
+            "d",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "First \n second.",
+          "reply": "First \n second.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"Firs",
+            "t \n ",
+            "second.\"}"
+          ],
+          "text": "First \n second.",
+          "reply": "First \n second.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"repl",
+            "y\": \"Fi",
+            "rst \n secon",
+            "d.",
+            "\"}"
+          ],
+          "text": "First \n second.",
+          "reply": "First \n second.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "\"",
+            "}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\"",
+            ": ",
+            "\"\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"r",
+            "eply",
+            "\":",
+            " \"\"",
+            "}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"a \\ubad\\u0041 b.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"a \\ubad\\u0041 b.\"}"
+          ],
+          "text": "a \\ubadA b.",
+          "reply": "a \\ubadA b.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "a",
+            " ",
+            "\\",
+            "u",
+            "b",
+            "a",
+            "d",
+            "\\",
+            "u",
+            "0",
+            "0",
+            "4",
+            "1",
+            " ",
+            "b",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "a \\ubadA b.",
+          "reply": "a \\ubadA b.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"a \\u",
+            "bad\\",
+            "u0041 b.\"}"
+          ],
+          "text": "a \\ubadA b.",
+          "reply": "a \\ubadA b.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"repl",
+            "y\": \"a ",
+            "\\ubad\\u0041",
+            " b",
+            ".\"}"
+          ],
+          "text": "a \\ubadA b.",
+          "reply": "a \\ubadA b.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"tail \\uD83D\\u0041 end.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"tail \\uD83D\\u0041 end.\"}"
+          ],
+          "text": "tail �A end.",
+          "reply": "tail �A end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "t",
+            "a",
+            "i",
+            "l",
+            " ",
+            "\\",
+            "u",
+            "D",
+            "8",
+            "3",
+            "D",
+            "\\",
+            "u",
+            "0",
+            "0",
+            "4",
+            "1",
+            " ",
+            "e",
+            "n",
+            "d",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "tail �A end.",
+          "reply": "tail �A end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"tail \\uD83D\\u0041 ",
+            "end.\"",
+            "}"
+          ],
+          "text": "tail �A end.",
+          "reply": "tail �A end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"rep",
+            "ly",
+            "\": \"",
+            "tail \\uD83D\\u00",
+            "41 end.\"}"
+          ],
+          "text": "tail �A end.",
+          "reply": "tail �A end.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"\\udc00 lone low.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"\\udc00 lone low.\"}"
+          ],
+          "text": "� lone low.",
+          "reply": "� lone low.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "\\",
+            "u",
+            "d",
+            "c",
+            "0",
+            "0",
+            " ",
+            "l",
+            "o",
+            "n",
+            "e",
+            " ",
+            "l",
+            "o",
+            "w",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "� lone low.",
+          "reply": "� lone low.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"\\udc",
+            "00 l",
+            "one low.\"}"
+          ],
+          "text": "� lone low.",
+          "reply": "� lone low.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"repl",
+            "y\": \"\\u",
+            "dc00 lone l",
+            "ow",
+            ".\"}"
+          ],
+          "text": "� lone low.",
+          "reply": "� lone low.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"Reply\": \"wrong case.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"Reply\": \"wrong case.\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "R",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "w",
+            "r",
+            "o",
+            "n",
+            "g",
+            " ",
+            "c",
+            "a",
+            "s",
+            "e",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"Reply\": \"wron",
+            "g ca",
+            "se.\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"Repl",
+            "y\": \"wr",
+            "ong c",
+            "ase",
+            ".\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"rep\": \"prefix that is not a key.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"rep\": \"prefix that is not a key.\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "p",
+            "r",
+            "e",
+            "f",
+            "i",
+            "x",
+            " ",
+            "t",
+            "h",
+            "a",
+            "t",
+            " ",
+            "i",
+            "s",
+            " ",
+            "n",
+            "o",
+            "t",
+            " ",
+            "a",
+            " ",
+            "k",
+            "e",
+            "y",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"rep\": \"prefix that is not a",
+            " key.",
+            "\"}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"rep",
+            "\": \"pr",
+            "efix that is no",
+            "t a key.\"",
+            "}"
+          ],
+          "text": "",
+          "reply": "",
+          "done": false,
+          "aborted": true,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "  \n\t {\"reply\": \"lead whitespace.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "  \n\t {\"reply\": \"lead whitespace.\"}"
+          ],
+          "text": "lead whitespace.",
+          "reply": "lead whitespace.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            " ",
+            " ",
+            "\n",
+            "\t",
+            " ",
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "l",
+            "e",
+            "a",
+            "d",
+            " ",
+            "w",
+            "h",
+            "i",
+            "t",
+            "e",
+            "s",
+            "p",
+            "a",
+            "c",
+            "e",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "lead whitespace.",
+          "reply": "lead whitespace.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "  \n\t {\"reply\": \"lead whit",
+            "espa",
+            "ce.\"}"
+          ],
+          "text": "lead whitespace.",
+          "reply": "lead whitespace.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "  \n\t ",
+            "{\"",
+            "repl",
+            "y\": \"lead white",
+            "space.\"}"
+          ],
+          "text": "lead whitespace.",
+          "reply": "lead whitespace.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "```json {\"reply\": \"fence with a space.\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "```json {\"reply\": \"fence with a space.\"}"
+          ],
+          "text": "fence with a space.",
+          "reply": "fence with a space.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "`",
+            "`",
+            "`",
+            "j",
+            "s",
+            "o",
+            "n",
+            " ",
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "f",
+            "e",
+            "n",
+            "c",
+            "e",
+            " ",
+            "w",
+            "i",
+            "t",
+            "h",
+            " ",
+            "a",
+            " ",
+            "s",
+            "p",
+            "a",
+            "c",
+            "e",
+            ".",
+            "\"",
+            "}"
+          ],
+          "text": "fence with a space.",
+          "reply": "fence with a space.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "```json {\"reply\": \"fence with",
+            " a space.",
+            "\"}"
+          ],
+          "text": "fence with a space.",
+          "reply": "fence with a space.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "```json {\"r",
+            "eply\": \"fence w",
+            "ith a spa",
+            "c",
+            "e.\"}"
+          ],
+          "text": "fence with a space.",
+          "reply": "fence with a space.",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    },
+    {
+      "document": "{\"reply\": \"ends with a backslash \\\\\"}",
+      "sequences": [
+        {
+          "label": "whole",
+          "chunks": [
+            "{\"reply\": \"ends with a backslash \\\\\"}"
+          ],
+          "text": "ends with a backslash \\",
+          "reply": "ends with a backslash \\",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "one-character",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "e",
+            "n",
+            "d",
+            "s",
+            " ",
+            "w",
+            "i",
+            "t",
+            "h",
+            " ",
+            "a",
+            " ",
+            "b",
+            "a",
+            "c",
+            "k",
+            "s",
+            "l",
+            "a",
+            "s",
+            "h",
+            " ",
+            "\\",
+            "\\",
+            "\"",
+            "}"
+          ],
+          "text": "ends with a backslash \\",
+          "reply": "ends with a backslash \\",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"ends with a backsl",
+            "ash \\",
+            "\\\"}"
+          ],
+          "text": "ends with a backslash \\",
+          "reply": "ends with a backslash \\",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"reply\": \"",
+            "ends with a bac",
+            "kslash \\\\",
+            "\"",
+            "}"
+          ],
+          "text": "ends with a backslash \\",
+          "reply": "ends with a backslash \\",
+          "done": true,
+          "aborted": false,
+          "same_as_whole": true
+        }
+      ]
+    }
+  ],
+  "empty_and_none_chunks": {
+    "feed_empty": "",
+    "feed_none": "",
+    "reply": "",
+    "aborted": false
+  },
+  "abort_is_terminal": {
+    "chunks": [
+      "nonsense"
+    ],
+    "text": "",
+    "reply": "",
+    "done": false,
+    "aborted": true,
+    "later_feed": "",
+    "later_reply": ""
+  }
+}

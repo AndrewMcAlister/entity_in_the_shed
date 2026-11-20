@@ -1,0 +1,1300 @@
+{
+  "reply_document_keys": [
+    "reply",
+    "replies",
+    "response",
+    "tool_calls"
+  ],
+  "parse_model_reply_document": [
+    {
+      "input": "",
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": null,
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "   ",
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"Plain JSON reply.\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "Plain JSON reply.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"One beat.\", \"replies\": [\"First beat.\", \"Second beat.\"]}",
+      "expected": {
+        "reply": "First beat.\n\nSecond beat.",
+        "replies": [
+          "First beat.",
+          "Second beat."
+        ],
+        "reply_segments": [
+          "First beat.",
+          "Second beat."
+        ],
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"Explicit wins.\", \"replies\": [\"Only one.\"]}",
+      "expected": {
+        "reply": "Explicit wins.",
+        "replies": [
+          "Only one."
+        ],
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"response\": \"The alias key.\"}",
+      "expected": {
+        "response": "The alias key.",
+        "reply": "The alias key.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{'reply': 'A Python dict repr', 'tool_calls': [],}",
+      "expected": {
+        "reply": "A Python dict repr",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{'reply': 'None valued', 'tool_calls': None}",
+      "expected": {
+        "reply": "None valued",
+        "tool_calls": null
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"A double encoded document.\"}",
+      "expected": {
+        "reply": "A double encoded document.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "\"{\\\"reply\\\": \\\"Double encoded, really.\\\", \\\"tool_calls\\\": []}\"",
+      "expected": {
+        "reply": "\"{\\\"reply\\\": \\\"Double encoded, really.\\\", \\\"tool_calls\\\": []}\"",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "```json\n{\"reply\": \"Fenced.\", \"tool_calls\": []}\n```",
+      "expected": {
+        "reply": "Fenced.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "```\n{\"reply\": \"Fenced without a tag.\", \"tool_calls\": []}\n```",
+      "expected": {
+        "reply": "Fenced without a tag.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "Sure — here you go: {\"reply\": \"After a preamble.\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "After a preamble.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "Prose then a broken doc: {\"reply\": \"no closing brace\"",
+      "expected": {
+        "reply": "no closing brace",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"truncated reply, no quote at all",
+      "expected": {
+        "reply": "truncated reply, no quote at all",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"truncated then tool_calls\", \"tool_calls\": [\"x\"",
+      "expected": {
+        "reply": "truncated then tool_calls",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "Not JSON at all, just a reply.",
+      "expected": {
+        "reply": "Not JSON at all, just a reply.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "Let me look. {tool_calls}{\"tool\": \"search_web\", \"args\": {\"query\": \"x\"}}{/tool_calls}",
+      "expected": {
+        "reply": "Let me look. {tool_calls}{\"tool\": \"search_web\", \"args\": {\"query\": \"x\"}}{/tool_calls}",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"Now {tool_calls}\\\"tool\\\": \\\"lookup\\\" more\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "Now {tool_calls}\"tool\": \"lookup\" more",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"A lone {tool_calls} tag stays out.\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "A lone {tool_calls} tag stays out.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"One\\nTwo\\n\\nThree\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "One\nTwo\n\nThree",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"replies\": [\"Only one segment.\"]}",
+      "expected": {
+        "replies": [
+          "Only one segment."
+        ],
+        "reply": "Only one segment.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": 42}",
+      "expected": {
+        "reply": "42",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": null, \"tool_calls\": []}",
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"tool_calls\": [{\"tool\": \"get_positions\", \"args\": {\"brokerId\": 1}}], \"reply\": \"Tool first.\"}",
+      "expected": {
+        "tool_calls": [
+          {
+            "tool": "get_positions",
+            "args": {
+              "brokerId": 1
+            }
+          }
+        ],
+        "reply": "Tool first."
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"Fetching positions...\", \"tool_calls\": [{\"tool\": \"get_positions\", \"args\": {\"brokerId\": 1}}]}",
+      "expected": {
+        "reply": "Fetching positions...",
+        "tool_calls": [
+          {
+            "tool": "get_positions",
+            "args": {
+              "brokerId": 1
+            }
+          }
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"Mr. Smith said it.Did he agree?\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "Mr. Smith said it.  Did he agree?",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"extra_key\": \"kept\", \"reply\": \"With an extra key.\", \"tool_calls\": []}",
+      "expected": {
+        "extra_key": "kept",
+        "reply": "With an extra key.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"Segments {tool_calls}\\\"tool\\\": \\\"a\\\" {/tool_calls} here.\", \"replies\": [\"First {tool_calls}\\\"tool\\\": \\\"a\\\" {/tool_calls}\", \"Second clean.\"]}",
+      "expected": {
+        "reply": "First {tool_calls}\"tool\": \"a\" {/tool_calls}\n\nSecond clean.",
+        "replies": [
+          "First {tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "reply_segments": [
+          "First {tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"replies\": [\"{tool_calls}\\\"tool\\\": \\\"a\\\" {/tool_calls}\", \"Second clean.\"]}",
+      "expected": {
+        "replies": [
+          "{tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "reply_segments": [
+          "{tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "reply": "{tool_calls}\"tool\": \"a\" {/tool_calls}\n\nSecond clean.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "[1, 2, 3]",
+      "expected": {
+        "reply": "[1, 2, 3]",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "\"a bare string\"",
+      "expected": {
+        "reply": "\"a bare string\"",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "5",
+      "expected": {
+        "reply": "5",
+        "tool_calls": []
+      },
+      "warnings": []
+    }
+  ],
+  "parse_model_json_content": [
+    {
+      "input": "",
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": null,
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "   ",
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"Plain JSON reply.\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "Plain JSON reply.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"One beat.\", \"replies\": [\"First beat.\", \"Second beat.\"]}",
+      "expected": {
+        "reply": "First beat.\n\nSecond beat.",
+        "replies": [
+          "First beat.",
+          "Second beat."
+        ],
+        "reply_segments": [
+          "First beat.",
+          "Second beat."
+        ],
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"Explicit wins.\", \"replies\": [\"Only one.\"]}",
+      "expected": {
+        "reply": "Explicit wins.",
+        "replies": [
+          "Only one."
+        ],
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"response\": \"The alias key.\"}",
+      "expected": {
+        "response": "The alias key.",
+        "reply": "The alias key.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{'reply': 'A Python dict repr', 'tool_calls': [],}",
+      "expected": {
+        "reply": "A Python dict repr",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{'reply': 'None valued', 'tool_calls': None}",
+      "expected": {
+        "reply": "None valued",
+        "tool_calls": null
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"A double encoded document.\"}",
+      "expected": {
+        "reply": "A double encoded document.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "\"{\\\"reply\\\": \\\"Double encoded, really.\\\", \\\"tool_calls\\\": []}\"",
+      "expected": {
+        "reply": "\"{\\\"reply\\\": \\\"Double encoded, really.\\\", \\\"tool_calls\\\": []}\"",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "```json\n{\"reply\": \"Fenced.\", \"tool_calls\": []}\n```",
+      "expected": {
+        "reply": "Fenced.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "```\n{\"reply\": \"Fenced without a tag.\", \"tool_calls\": []}\n```",
+      "expected": {
+        "reply": "Fenced without a tag.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "Sure — here you go: {\"reply\": \"After a preamble.\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "After a preamble.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "Prose then a broken doc: {\"reply\": \"no closing brace\"",
+      "expected": {
+        "reply": "no closing brace",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"truncated reply, no quote at all",
+      "expected": {
+        "reply": "truncated reply, no quote at all",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"truncated then tool_calls\", \"tool_calls\": [\"x\"",
+      "expected": {
+        "reply": "truncated then tool_calls",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "Not JSON at all, just a reply.",
+      "expected": {
+        "reply": "Not JSON at all, just a reply.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "Let me look. {tool_calls}{\"tool\": \"search_web\", \"args\": {\"query\": \"x\"}}{/tool_calls}",
+      "expected": {
+        "reply": "Let me look.",
+        "tool_calls": [
+          {
+            "tool": "search_web",
+            "args": {
+              "query": "x"
+            }
+          }
+        ]
+      },
+      "warnings": [
+        [
+          "Prose tool-call envelope in the reply: tools=%s text=%r",
+          [
+            [
+              "search_web"
+            ],
+            "Let me look. {tool_calls}{\"tool\": \"search_web\", \"args\": {\"query\": \"x\"}}{/tool_calls}"
+          ]
+        ]
+      ]
+    },
+    {
+      "input": "{\"reply\": \"Now {tool_calls}\\\"tool\\\": \\\"lookup\\\" more\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "Now  \"tool\": \"lookup\" more",
+        "tool_calls": []
+      },
+      "warnings": [
+        [
+          "Prose tool-call envelope in the reply: tools=%s text=%r",
+          [
+            [],
+            "Now {tool_calls}\"tool\": \"lookup\" more"
+          ]
+        ]
+      ]
+    },
+    {
+      "input": "{\"reply\": \"A lone {tool_calls} tag stays out.\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "A lone   tag stays out.",
+        "tool_calls": []
+      },
+      "warnings": [
+        [
+          "Prose tool-call envelope in the reply: tools=%s text=%r",
+          [
+            [],
+            "A lone {tool_calls} tag stays out."
+          ]
+        ]
+      ]
+    },
+    {
+      "input": "{\"reply\": \"One\\nTwo\\n\\nThree\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "One\nTwo\n\nThree",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"replies\": [\"Only one segment.\"]}",
+      "expected": {
+        "replies": [
+          "Only one segment."
+        ],
+        "reply": "Only one segment.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": 42}",
+      "expected": {
+        "reply": "42",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": null, \"tool_calls\": []}",
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"tool_calls\": [{\"tool\": \"get_positions\", \"args\": {\"brokerId\": 1}}], \"reply\": \"Tool first.\"}",
+      "expected": {
+        "tool_calls": [
+          {
+            "tool": "get_positions",
+            "args": {
+              "brokerId": 1
+            }
+          }
+        ],
+        "reply": "Tool first."
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"Fetching positions...\", \"tool_calls\": [{\"tool\": \"get_positions\", \"args\": {\"brokerId\": 1}}]}",
+      "expected": {
+        "reply": "Fetching positions...",
+        "tool_calls": [
+          {
+            "tool": "get_positions",
+            "args": {
+              "brokerId": 1
+            }
+          }
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"Mr. Smith said it.Did he agree?\", \"tool_calls\": []}",
+      "expected": {
+        "reply": "Mr. Smith said it.  Did he agree?",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"extra_key\": \"kept\", \"reply\": \"With an extra key.\", \"tool_calls\": []}",
+      "expected": {
+        "extra_key": "kept",
+        "reply": "With an extra key.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "{\"reply\": \"Segments {tool_calls}\\\"tool\\\": \\\"a\\\" {/tool_calls} here.\", \"replies\": [\"First {tool_calls}\\\"tool\\\": \\\"a\\\" {/tool_calls}\", \"Second clean.\"]}",
+      "expected": {
+        "reply": "First\n\nSecond clean.",
+        "replies": [
+          "First {tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "reply_segments": [
+          "First",
+          "Second clean."
+        ],
+        "tool_calls": []
+      },
+      "warnings": [
+        [
+          "Prose tool-call envelope in the reply: tools=%s text=%r",
+          [
+            [],
+            "First {tool_calls}\"tool\": \"a\" {/tool_calls}\n\nSecond clean."
+          ]
+        ]
+      ]
+    },
+    {
+      "input": "{\"replies\": [\"{tool_calls}\\\"tool\\\": \\\"a\\\" {/tool_calls}\", \"Second clean.\"]}",
+      "expected": {
+        "replies": [
+          "{tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "reply": "Second clean.",
+        "tool_calls": []
+      },
+      "warnings": [
+        [
+          "Prose tool-call envelope in the reply: tools=%s text=%r",
+          [
+            [],
+            "{tool_calls}\"tool\": \"a\" {/tool_calls}\n\nSecond clean."
+          ]
+        ]
+      ]
+    },
+    {
+      "input": "[1, 2, 3]",
+      "expected": {
+        "reply": "[1, 2, 3]",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "\"a bare string\"",
+      "expected": {
+        "reply": "\"a bare string\"",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": "5",
+      "expected": {
+        "reply": "5",
+        "tool_calls": []
+      },
+      "warnings": []
+    }
+  ],
+  "settle_prose_tool_calls": [
+    {
+      "input": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "Plain JSON reply.",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "Plain JSON reply.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "First beat.\n\nSecond beat.",
+        "replies": [
+          "First beat.",
+          "Second beat."
+        ],
+        "reply_segments": [
+          "First beat.",
+          "Second beat."
+        ],
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "First beat.\n\nSecond beat.",
+        "replies": [
+          "First beat.",
+          "Second beat."
+        ],
+        "reply_segments": [
+          "First beat.",
+          "Second beat."
+        ],
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "Explicit wins.",
+        "replies": [
+          "Only one."
+        ],
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "Explicit wins.",
+        "replies": [
+          "Only one."
+        ],
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "response": "The alias key.",
+        "reply": "The alias key.",
+        "tool_calls": []
+      },
+      "expected": {
+        "response": "The alias key.",
+        "reply": "The alias key.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "A Python dict repr",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "A Python dict repr",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "None valued",
+        "tool_calls": null
+      },
+      "expected": {
+        "reply": "None valued",
+        "tool_calls": null
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "A double encoded document.",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "A double encoded document.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "\"{\\\"reply\\\": \\\"Double encoded, really.\\\", \\\"tool_calls\\\": []}\"",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "\"{\\\"reply\\\": \\\"Double encoded, really.\\\", \\\"tool_calls\\\": []}\"",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "Fenced.",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "Fenced.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "Fenced without a tag.",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "Fenced without a tag.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "After a preamble.",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "After a preamble.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "no closing brace",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "no closing brace",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "truncated reply, no quote at all",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "truncated reply, no quote at all",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "truncated then tool_calls",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "truncated then tool_calls",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "Not JSON at all, just a reply.",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "Not JSON at all, just a reply.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "Let me look. {tool_calls}{\"tool\": \"search_web\", \"args\": {\"query\": \"x\"}}{/tool_calls}",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "Let me look.",
+        "tool_calls": [
+          {
+            "tool": "search_web",
+            "args": {
+              "query": "x"
+            }
+          }
+        ]
+      },
+      "warnings": [
+        [
+          "Prose tool-call envelope in the reply: tools=%s text=%r",
+          [
+            [
+              "search_web"
+            ],
+            "Let me look. {tool_calls}{\"tool\": \"search_web\", \"args\": {\"query\": \"x\"}}{/tool_calls}"
+          ]
+        ]
+      ]
+    },
+    {
+      "input": {
+        "reply": "Now {tool_calls}\"tool\": \"lookup\" more",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "Now  \"tool\": \"lookup\" more",
+        "tool_calls": []
+      },
+      "warnings": [
+        [
+          "Prose tool-call envelope in the reply: tools=%s text=%r",
+          [
+            [],
+            "Now {tool_calls}\"tool\": \"lookup\" more"
+          ]
+        ]
+      ]
+    },
+    {
+      "input": {
+        "reply": "A lone {tool_calls} tag stays out.",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "A lone   tag stays out.",
+        "tool_calls": []
+      },
+      "warnings": [
+        [
+          "Prose tool-call envelope in the reply: tools=%s text=%r",
+          [
+            [],
+            "A lone {tool_calls} tag stays out."
+          ]
+        ]
+      ]
+    },
+    {
+      "input": {
+        "reply": "One\nTwo\n\nThree",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "One\nTwo\n\nThree",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "replies": [
+          "Only one segment."
+        ],
+        "reply": "Only one segment.",
+        "tool_calls": []
+      },
+      "expected": {
+        "replies": [
+          "Only one segment."
+        ],
+        "reply": "Only one segment.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "42",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "42",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "tool_calls": [
+          {
+            "tool": "get_positions",
+            "args": {
+              "brokerId": 1
+            }
+          }
+        ],
+        "reply": "Tool first."
+      },
+      "expected": {
+        "tool_calls": [
+          {
+            "tool": "get_positions",
+            "args": {
+              "brokerId": 1
+            }
+          }
+        ],
+        "reply": "Tool first."
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "Fetching positions...",
+        "tool_calls": [
+          {
+            "tool": "get_positions",
+            "args": {
+              "brokerId": 1
+            }
+          }
+        ]
+      },
+      "expected": {
+        "reply": "Fetching positions...",
+        "tool_calls": [
+          {
+            "tool": "get_positions",
+            "args": {
+              "brokerId": 1
+            }
+          }
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "Mr. Smith said it.  Did he agree?",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "Mr. Smith said it.  Did he agree?",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "extra_key": "kept",
+        "reply": "With an extra key.",
+        "tool_calls": []
+      },
+      "expected": {
+        "extra_key": "kept",
+        "reply": "With an extra key.",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "First {tool_calls}\"tool\": \"a\" {/tool_calls}\n\nSecond clean.",
+        "replies": [
+          "First {tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "reply_segments": [
+          "First {tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "First\n\nSecond clean.",
+        "replies": [
+          "First {tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "reply_segments": [
+          "First",
+          "Second clean."
+        ],
+        "tool_calls": []
+      },
+      "warnings": [
+        [
+          "Prose tool-call envelope in the reply: tools=%s text=%r",
+          [
+            [],
+            "First {tool_calls}\"tool\": \"a\" {/tool_calls}\n\nSecond clean."
+          ]
+        ]
+      ]
+    },
+    {
+      "input": {
+        "replies": [
+          "{tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "reply_segments": [
+          "{tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "reply": "{tool_calls}\"tool\": \"a\" {/tool_calls}\n\nSecond clean.",
+        "tool_calls": []
+      },
+      "expected": {
+        "replies": [
+          "{tool_calls}\"tool\": \"a\" {/tool_calls}",
+          "Second clean."
+        ],
+        "reply": "Second clean.",
+        "tool_calls": []
+      },
+      "warnings": [
+        [
+          "Prose tool-call envelope in the reply: tools=%s text=%r",
+          [
+            [],
+            "{tool_calls}\"tool\": \"a\" {/tool_calls}\n\nSecond clean."
+          ]
+        ]
+      ]
+    },
+    {
+      "input": {
+        "reply": "[1, 2, 3]",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "[1, 2, 3]",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "\"a bare string\"",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "\"a bare string\"",
+        "tool_calls": []
+      },
+      "warnings": []
+    },
+    {
+      "input": {
+        "reply": "5",
+        "tool_calls": []
+      },
+      "expected": {
+        "reply": "5",
+        "tool_calls": []
+      },
+      "warnings": []
+    }
+  ],
+  "parse_structured_candidate": [
+    {
+      "input": "{\"reply\": \"json\"}",
+      "expected": {
+        "reply": "json"
+      }
+    },
+    {
+      "input": "{'reply': 'literal'}",
+      "expected": {
+        "reply": "literal"
+      }
+    },
+    {
+      "input": "{'reply': 'trailing', 'tool_calls': [],}",
+      "expected": {
+        "reply": "trailing",
+        "tool_calls": []
+      }
+    },
+    {
+      "input": "{'reply': None, 'tool_calls': None}",
+      "expected": {
+        "reply": null,
+        "tool_calls": null
+      }
+    },
+    {
+      "input": "{'other': 'no reply key'}",
+      "expected": null
+    },
+    {
+      "input": "{not a literal at all}",
+      "expected": null
+    },
+    {
+      "input": "[1, 2]",
+      "expected": null
+    },
+    {
+      "input": "5",
+      "expected": null
+    },
+    {
+      "input": "{'nested': {'a': [1, (2, 3), True, None]}}",
+      "expected": null
+    },
+    {
+      "input": "{\"reply\": \"json\", \"tool_calls\": [{\"tool\": \"x\", \"args\": {}}]}",
+      "expected": {
+        "reply": "json",
+        "tool_calls": [
+          {
+            "tool": "x",
+            "args": {}
+          }
+        ]
+      }
+    },
+    {
+      "input": "",
+      "expected": null
+    },
+    {
+      "input": "'just a string'",
+      "expected": null
+    }
+  ],
+  "reply_without_prose_tool_calls": [
+    {
+      "input": "Nothing to strip here.",
+      "expected": "Nothing to strip here."
+    },
+    {
+      "input": "Let me look. {tool_calls}{\"tool\": \"search_web\", \"args\": {}}{/tool_calls}",
+      "expected": "Let me look."
+    },
+    {
+      "input": "Let me look. {tool_calls}",
+      "expected": "Let me look."
+    },
+    {
+      "input": "Mr. Smith said it.Did he agree?",
+      "expected": "Mr. Smith said it.Did he agree?"
+    },
+    {
+      "input": "",
+      "expected": ""
+    },
+    {
+      "input": "{tool_calls}{}{/tool_calls}",
+      "expected": ""
+    }
+  ]
+}

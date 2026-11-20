@@ -1,0 +1,154 @@
+{
+  "normalize_reply_text": [
+    {
+      "input": "",
+      "expected": ""
+    },
+    {
+      "input": null,
+      "expected": ""
+    },
+    {
+      "input": "Hello there.",
+      "expected": "Hello there."
+    },
+    {
+      "input": "literal backslash n:\\nsecond line",
+      "expected": "literal backslash n:\nsecond line"
+    },
+    {
+      "input": "literal crlf:\\r\\nsecond line",
+      "expected": "literal crlf:\nsecond line"
+    },
+    {
+      "input": "real\r\nnewline\nand one",
+      "expected": "real\nnewline\nand one"
+    },
+    {
+      "input": "one\n\n\n\n\nfour in a row",
+      "expected": "one\n\nfour in a row"
+    },
+    {
+      "input": "trailing spaces   ",
+      "expected": "trailing spaces"
+    },
+    {
+      "input": "Mr. Smith said hello.Did he agree?He did.",
+      "expected": "Mr. Smith said hello.  Did he agree?  He did."
+    },
+    {
+      "input": "Wait,hold on;then,go",
+      "expected": "Wait, hold on; then, go"
+    },
+    {
+      "input": "Dr. Jones and Mr. Smith left.Both of them.",
+      "expected": "Dr. Jones and Mr. Smith left.  Both of them."
+    },
+    {
+      "input": "See https://example.com, and after it.",
+      "expected": "See https://example.com, and after it."
+    },
+    {
+      "input": "Mail me at a.b+tag@example.com,please.",
+      "expected": "Mail me at a.b+tag@example.com, please."
+    },
+    {
+      "input": "www.example.com/some/path, next",
+      "expected": "www.example.com/some/path, next"
+    },
+    {
+      "input": "e.g. this, and i.e. that",
+      "expected": "e.g. this, and i.e. that"
+    },
+    {
+      "input": "A sentence.  Two spaces kept?No.Say it.",
+      "expected": "A sentence.  Two spaces kept?  No.Say it."
+    },
+    {
+      "input": "U.S. markets rose.IR38a is fine.",
+      "expected": "U.S.  markets rose.  IR38a is fine."
+    },
+    {
+      "input": "{\"reply\": \"nested \\n escapes\"}",
+      "expected": "{\"reply\": \"nested \n escapes\"}"
+    },
+    {
+      "input": "tabs\tand  double  spaces after a stop.Next.",
+      "expected": "tabs\tand  double  spaces after a stop.  Next."
+    },
+    {
+      "input": "end with three dots...",
+      "expected": "end with three dots..."
+    },
+    {
+      "input": "3.14 is a number.Ends here.",
+      "expected": "3.14 is a number.  Ends here."
+    },
+    {
+      "input": "nothing to normalise, just words",
+      "expected": "nothing to normalise, just words"
+    },
+    {
+      "input": "  leading and trailing\n",
+      "expected": "leading and trailing"
+    },
+    {
+      "input": "Quote after stop.\"Like this\",and on.",
+      "expected": "Quote after stop.  \"Like this\", and on."
+    },
+    {
+      "input": "Version 2. It works.",
+      "expected": "Version 2.  It works."
+    }
+  ],
+  "markdown_to_ssml": [
+    {
+      "input": "",
+      "expected": ""
+    },
+    {
+      "input": "plain text",
+      "expected": "plain text"
+    },
+    {
+      "input": "**strong** words",
+      "expected": "<emphasis level=\"strong\">strong</emphasis> words"
+    },
+    {
+      "input": "*moderate* words",
+      "expected": "<emphasis level=\"moderate\">moderate</emphasis> words"
+    },
+    {
+      "input": "_softer_ words",
+      "expected": "<prosody pitch=\"-7%\">softer</prosody> words"
+    },
+    {
+      "input": "**a** and *b* and _c_",
+      "expected": "<emphasis level=\"strong\">a</emphasis> and <emphasis level=\"moderate\">b</emphasis> and <prosody pitch=\"-7%\">c</prosody>"
+    },
+    {
+      "input": "*not closed",
+      "expected": "*not closed"
+    },
+    {
+      "input": "**a*b*c**",
+      "expected": "*<emphasis level=\"moderate\">a</emphasis>b<emphasis level=\"moderate\">c</emphasis>*"
+    },
+    {
+      "input": "snake_case_word inside",
+      "expected": "snake<prosody pitch=\"-7%\">case</prosody>word inside"
+    },
+    {
+      "input": "**nested _soft_** together",
+      "expected": "<emphasis level=\"strong\">nested <prosody pitch=\"-7%\">soft</prosody></emphasis> together"
+    },
+    {
+      "input": "*one* *two*",
+      "expected": "<emphasis level=\"moderate\">one</emphasis> <emphasis level=\"moderate\">two</emphasis>"
+    },
+    {
+      "input": "no markup at all.",
+      "expected": "no markup at all."
+    }
+  ]
+}

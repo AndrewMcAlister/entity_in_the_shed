@@ -88,7 +88,7 @@ Methods should be short enough to understand without scrolling.
 
 As a guideline:
 
-Functions over ~50 lines should be reviewed.
+Functions over about 50 lines should be reviewed and split if there are multiple discrete logical parts.
 Large methods are usually hiding multiple responsibilities.
 
 If a function requires extensive comments to explain its flow, it likely needs decomposition.

@@ -1,0 +1,1672 @@
+{
+  "min_sentence_chars": 12,
+  "max_sentence_chars": 240,
+  "common_non_terminal_abbreviations": [
+    "dr",
+    "e.g",
+    "etc",
+    "i.e",
+    "jr",
+    "mr",
+    "mrs",
+    "ms",
+    "prof",
+    "sr",
+    "st",
+    "vs"
+  ],
+  "cases": [
+    {
+      "label": "terminators",
+      "text": "Let me check that for you. It is forty-two! Are you sure?",
+      "whole": [
+        "Let me check that for you.",
+        "It is forty-two!",
+        "Are you sure?"
+      ],
+      "by_chunk_size": {
+        "1": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ],
+        "2": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ],
+        "3": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ],
+        "5": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ],
+        "7": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ],
+        "30": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ],
+        "40": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ],
+        "50": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ],
+        "100": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ],
+        "1000": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ],
+        "47424": [
+          "Let me check that for you.",
+          "It is forty-two!",
+          "Are you sure?"
+        ]
+      },
+      "feed_groups": [
+        [
+          "Let me check that for you."
+        ],
+        [
+          "It is forty-two!"
+        ]
+      ],
+      "flush": [
+        "Are you sure?"
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "chunking",
+      "text": "First sentence here. Second sentence there. Third one to finish.",
+      "whole": [
+        "First sentence here.",
+        "Second sentence there.",
+        "Third one to finish."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ],
+        "2": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ],
+        "3": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ],
+        "5": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ],
+        "7": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ],
+        "30": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ],
+        "40": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ],
+        "50": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ],
+        "100": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ],
+        "1000": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ],
+        "47424": [
+          "First sentence here.",
+          "Second sentence there.",
+          "Third one to finish."
+        ]
+      },
+      "feed_groups": [
+        [
+          "First sentence here."
+        ],
+        [
+          "Second sentence there."
+        ]
+      ],
+      "flush": [
+        "Third one to finish."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "abbreviations",
+      "text": "I spoke to Mr. Smith about it. He agreed with me.",
+      "whole": [
+        "I spoke to Mr. Smith about it.",
+        "He agreed with me."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ],
+        "2": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ],
+        "3": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ],
+        "5": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ],
+        "7": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ],
+        "30": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ],
+        "40": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ],
+        "50": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ],
+        "100": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ],
+        "1000": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ],
+        "47424": [
+          "I spoke to Mr. Smith about it.",
+          "He agreed with me."
+        ]
+      },
+      "feed_groups": [
+        [
+          "I spoke to Mr. Smith about it."
+        ]
+      ],
+      "flush": [
+        "He agreed with me."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "dotted_acronyms",
+      "text": "The U.S. market is up today. That is good news.",
+      "whole": [
+        "The U.S. market is up today.",
+        "That is good news."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ],
+        "2": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ],
+        "3": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ],
+        "5": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ],
+        "7": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ],
+        "30": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ],
+        "40": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ],
+        "50": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ],
+        "100": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ],
+        "1000": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ],
+        "47424": [
+          "The U.S. market is up today.",
+          "That is good news."
+        ]
+      },
+      "feed_groups": [
+        [
+          "The U.S. market is up today."
+        ]
+      ],
+      "flush": [
+        "That is good news."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "decimals",
+      "text": "The value is 3.5 percent higher. That matters.",
+      "whole": [
+        "The value is 3.5 percent higher.",
+        "That matters."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ],
+        "2": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ],
+        "3": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ],
+        "5": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ],
+        "7": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ],
+        "30": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ],
+        "40": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ],
+        "50": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ],
+        "100": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ],
+        "1000": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ],
+        "47424": [
+          "The value is 3.5 percent higher.",
+          "That matters."
+        ]
+      },
+      "feed_groups": [
+        [
+          "The value is 3.5 percent higher."
+        ]
+      ],
+      "flush": [
+        "That matters."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "version_numbers",
+      "text": "We are on version 2. It works well enough.",
+      "whole": [
+        "We are on version 2.",
+        "It works well enough."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "We are on version 2.",
+          "It works well enough."
+        ],
+        "2": [
+          "We are on version 2.",
+          "It works well enough."
+        ],
+        "3": [
+          "We are on version 2.",
+          "It works well enough."
+        ],
+        "5": [
+          "We are on version 2.",
+          "It works well enough."
+        ],
+        "7": [
+          "We are on version 2.",
+          "It works well enough."
+        ],
+        "30": [
+          "We are on version 2.",
+          "It works well enough."
+        ],
+        "40": [
+          "We are on version 2.",
+          "It works well enough."
+        ],
+        "50": [
+          "We are on version 2.",
+          "It works well enough."
+        ],
+        "100": [
+          "We are on version 2.",
+          "It works well enough."
+        ],
+        "1000": [
+          "We are on version 2.",
+          "It works well enough."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "We are on version 2.",
+          "It works well enough."
+        ],
+        "47424": [
+          "We are on version 2.",
+          "It works well enough."
+        ]
+      },
+      "feed_groups": [
+        [
+          "We are on version 2."
+        ]
+      ],
+      "flush": [
+        "It works well enough."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "ellipsis",
+      "text": "Well now then... that is a long story indeed. Sit down.",
+      "whole": [
+        "Well now then...",
+        "that is a long story indeed.",
+        "Sit down."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ],
+        "2": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ],
+        "3": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ],
+        "5": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ],
+        "7": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ],
+        "30": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ],
+        "40": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ],
+        "50": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ],
+        "100": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ],
+        "1000": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ],
+        "47424": [
+          "Well now then...",
+          "that is a long story indeed.",
+          "Sit down."
+        ]
+      },
+      "feed_groups": [
+        [
+          "Well now then..."
+        ],
+        [
+          "that is a long story indeed."
+        ]
+      ],
+      "flush": [
+        "Sit down."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "short_fragments",
+      "text": "Ha. Yes. That is very funny indeed.",
+      "whole": [
+        "Ha. Yes. That is very funny indeed."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "Ha. Yes. That is very funny indeed."
+        ],
+        "2": [
+          "Ha. Yes. That is very funny indeed."
+        ],
+        "3": [
+          "Ha. Yes. That is very funny indeed."
+        ],
+        "5": [
+          "Ha. Yes. That is very funny indeed."
+        ],
+        "7": [
+          "Ha. Yes. That is very funny indeed."
+        ],
+        "30": [
+          "Ha. Yes. That is very funny indeed."
+        ],
+        "40": [
+          "Ha. Yes. That is very funny indeed."
+        ],
+        "50": [
+          "Ha. Yes. That is very funny indeed."
+        ],
+        "100": [
+          "Ha. Yes. That is very funny indeed."
+        ],
+        "1000": [
+          "Ha. Yes. That is very funny indeed."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "Ha. Yes. That is very funny indeed."
+        ],
+        "47424": [
+          "Ha. Yes. That is very funny indeed."
+        ]
+      },
+      "feed_groups": [],
+      "flush": [
+        "Ha. Yes. That is very funny indeed."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "tone_tag",
+      "text": "She said {somber}I am sorry{/somber} to hear it. Then she left.",
+      "whole": [
+        "She said {somber}I am sorry{/somber} to hear it.",
+        "Then she left."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ],
+        "2": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ],
+        "3": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ],
+        "5": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ],
+        "7": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ],
+        "30": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ],
+        "40": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ],
+        "50": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ],
+        "100": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ],
+        "1000": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ],
+        "47424": [
+          "She said {somber}I am sorry{/somber} to hear it.",
+          "Then she left."
+        ]
+      },
+      "feed_groups": [
+        [
+          "She said {somber}I am sorry{/somber} to hear it."
+        ]
+      ],
+      "flush": [
+        "Then she left."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "scene_bracket",
+      "text": "He paused for a moment. [the kettle whistles. nobody moves] Then he spoke again.",
+      "whole": [
+        "He paused for a moment.",
+        "[the kettle whistles. nobody moves] Then he spoke again."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ],
+        "2": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ],
+        "3": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ],
+        "5": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ],
+        "7": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ],
+        "30": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ],
+        "40": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ],
+        "50": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ],
+        "100": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ],
+        "1000": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ],
+        "47424": [
+          "He paused for a moment.",
+          "[the kettle whistles. nobody moves] Then he spoke again."
+        ]
+      },
+      "feed_groups": [
+        [
+          "He paused for a moment."
+        ]
+      ],
+      "flush": [
+        "[the kettle whistles. nobody moves] Then he spoke again."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "aside",
+      "text": "It rained all week. (which is normal here. everyone knows it) We stayed in.",
+      "whole": [
+        "It rained all week.",
+        "(which is normal here. everyone knows it) We stayed in."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ],
+        "2": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ],
+        "3": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ],
+        "5": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ],
+        "7": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ],
+        "30": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ],
+        "40": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ],
+        "50": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ],
+        "100": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ],
+        "1000": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ],
+        "47424": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it) We stayed in."
+        ]
+      },
+      "feed_groups": [
+        [
+          "It rained all week."
+        ]
+      ],
+      "flush": [
+        "(which is normal here. everyone knows it) We stayed in."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "unclosed_opener",
+      "text": "It rained all week. (which is normal here. everyone knows it",
+      "whole": [
+        "It rained all week.",
+        "(which is normal here. everyone knows it"
+      ],
+      "by_chunk_size": {
+        "1": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ],
+        "2": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ],
+        "3": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ],
+        "5": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ],
+        "7": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ],
+        "30": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ],
+        "40": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ],
+        "50": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ],
+        "100": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ],
+        "1000": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ],
+        "47424": [
+          "It rained all week.",
+          "(which is normal here. everyone knows it"
+        ]
+      },
+      "feed_groups": [
+        [
+          "It rained all week."
+        ]
+      ],
+      "flush": [
+        "(which is normal here. everyone knows it"
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "emphasis",
+      "text": "He was *very. truly. annoyed* about it. We noticed.",
+      "whole": [
+        "He was *very. truly. annoyed* about it.",
+        "We noticed."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ],
+        "2": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ],
+        "3": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ],
+        "5": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ],
+        "7": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ],
+        "30": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ],
+        "40": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ],
+        "50": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ],
+        "100": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ],
+        "1000": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ],
+        "47424": [
+          "He was *very. truly. annoyed* about it.",
+          "We noticed."
+        ]
+      },
+      "feed_groups": [
+        [
+          "He was *very. truly. annoyed* about it."
+        ]
+      ],
+      "flush": [
+        "We noticed."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "trailing_text",
+      "text": "A complete sentence here. And then some text",
+      "whole": [
+        "A complete sentence here.",
+        "And then some text"
+      ],
+      "by_chunk_size": {
+        "1": [
+          "A complete sentence here.",
+          "And then some text"
+        ],
+        "2": [
+          "A complete sentence here.",
+          "And then some text"
+        ],
+        "3": [
+          "A complete sentence here.",
+          "And then some text"
+        ],
+        "5": [
+          "A complete sentence here.",
+          "And then some text"
+        ],
+        "7": [
+          "A complete sentence here.",
+          "And then some text"
+        ],
+        "30": [
+          "A complete sentence here.",
+          "And then some text"
+        ],
+        "40": [
+          "A complete sentence here.",
+          "And then some text"
+        ],
+        "50": [
+          "A complete sentence here.",
+          "And then some text"
+        ],
+        "100": [
+          "A complete sentence here.",
+          "And then some text"
+        ],
+        "1000": [
+          "A complete sentence here.",
+          "And then some text"
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "A complete sentence here.",
+          "And then some text"
+        ],
+        "47424": [
+          "A complete sentence here.",
+          "And then some text"
+        ]
+      },
+      "feed_groups": [
+        [
+          "A complete sentence here."
+        ]
+      ],
+      "flush": [
+        "And then some text"
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "dangling_terminator",
+      "text": "Just one sentence now.",
+      "whole": [
+        "Just one sentence now."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "Just one sentence now."
+        ],
+        "2": [
+          "Just one sentence now."
+        ],
+        "3": [
+          "Just one sentence now."
+        ],
+        "5": [
+          "Just one sentence now."
+        ],
+        "7": [
+          "Just one sentence now."
+        ],
+        "30": [
+          "Just one sentence now."
+        ],
+        "40": [
+          "Just one sentence now."
+        ],
+        "50": [
+          "Just one sentence now."
+        ],
+        "100": [
+          "Just one sentence now."
+        ],
+        "1000": [
+          "Just one sentence now."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "Just one sentence now."
+        ],
+        "47424": [
+          "Just one sentence now."
+        ]
+      },
+      "feed_groups": [],
+      "flush": [
+        "Just one sentence now."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "whitespace_only",
+      "text": "   \n  ",
+      "whole": [],
+      "by_chunk_size": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "5": [],
+        "7": [],
+        "30": [],
+        "40": [],
+        "50": [],
+        "100": [],
+        "1000": []
+      },
+      "seeded": {
+        "20261120": [],
+        "47424": []
+      },
+      "feed_groups": [],
+      "flush": [],
+      "flush_again": []
+    },
+    {
+      "label": "not_on_a_comma",
+      "text": "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops",
+      "whole": [
+        "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+        "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+      ],
+      "by_chunk_size": {
+        "1": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "2": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "3": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "5": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "7": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "30": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "40": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "50": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "100": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "1000": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "47424": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ]
+      },
+      "feed_groups": [
+        [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on"
+        ]
+      ],
+      "flush": [
+        "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "on_a_semicolon",
+      "text": "First clause here; and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops",
+      "whole": [
+        "First clause here;",
+        "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+        "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+      ],
+      "by_chunk_size": {
+        "1": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "2": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "3": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "5": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "7": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "30": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "40": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "50": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "100": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "1000": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "47424": [
+          "First clause here;",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ]
+      },
+      "feed_groups": [
+        [
+          "First clause here;"
+        ],
+        [
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on"
+        ]
+      ],
+      "flush": [
+        "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "unpunctuated",
+      "text": "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word ",
+      "whole": [
+        "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+        "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+        "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+        "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+        "word word word word word word word word word word word"
+      ],
+      "by_chunk_size": {
+        "1": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ],
+        "2": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ],
+        "3": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ],
+        "5": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ],
+        "7": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ],
+        "30": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ],
+        "40": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ],
+        "50": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ],
+        "100": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ],
+        "1000": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ],
+        "47424": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word",
+          "word word word word word word word word word word word"
+        ]
+      },
+      "feed_groups": [
+        [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word"
+        ],
+        [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word"
+        ],
+        [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word"
+        ],
+        [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word"
+        ]
+      ],
+      "flush": [
+        "word word word word word word word word word word word"
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "stripped",
+      "text": "  One thing here.   Two things there!  Three.  ",
+      "whole": [
+        "One thing here.",
+        "Two things there!",
+        "Three."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ],
+        "2": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ],
+        "3": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ],
+        "5": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ],
+        "7": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ],
+        "30": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ],
+        "40": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ],
+        "50": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ],
+        "100": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ],
+        "1000": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ],
+        "47424": [
+          "One thing here.",
+          "Two things there!",
+          "Three."
+        ]
+      },
+      "feed_groups": [
+        [
+          "One thing here."
+        ],
+        [
+          "Two things there!"
+        ]
+      ],
+      "flush": [
+        "Three."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "all_the_words",
+      "text": "Right, let me check that for you. The U.S. market is up 3.5 percent, which is good news... Anyway, that is the lot.",
+      "whole": [
+        "Right, let me check that for you.",
+        "The U.S. market is up 3.5 percent, which is good news...",
+        "Anyway, that is the lot."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ],
+        "2": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ],
+        "3": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ],
+        "5": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ],
+        "7": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ],
+        "30": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ],
+        "40": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ],
+        "50": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ],
+        "100": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ],
+        "1000": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ],
+        "47424": [
+          "Right, let me check that for you.",
+          "The U.S. market is up 3.5 percent, which is good news...",
+          "Anyway, that is the lot."
+        ]
+      },
+      "feed_groups": [
+        [
+          "Right, let me check that for you."
+        ],
+        [
+          "The U.S. market is up 3.5 percent, which is good news..."
+        ]
+      ],
+      "flush": [
+        "Anyway, that is the lot."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "underscores",
+      "text": "He went _quiet. truly quiet_ about it. We noticed.",
+      "whole": [
+        "He went _quiet. truly quiet_ about it.",
+        "We noticed."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ],
+        "2": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ],
+        "3": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ],
+        "5": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ],
+        "7": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ],
+        "30": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ],
+        "40": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ],
+        "50": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ],
+        "100": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ],
+        "1000": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ],
+        "47424": [
+          "He went _quiet. truly quiet_ about it.",
+          "We noticed."
+        ]
+      },
+      "feed_groups": [
+        [
+          "He went _quiet. truly quiet_ about it."
+        ]
+      ],
+      "flush": [
+        "We noticed."
+      ],
+      "flush_again": []
+    },
+    {
+      "label": "mixed_markup",
+      "text": "{somber}Sorry.[aside] A second beat here. Yes it is.",
+      "whole": [
+        "{somber}Sorry.[aside] A second beat here.",
+        "Yes it is."
+      ],
+      "by_chunk_size": {
+        "1": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ],
+        "2": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ],
+        "3": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ],
+        "5": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ],
+        "7": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ],
+        "30": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ],
+        "40": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ],
+        "50": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ],
+        "100": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ],
+        "1000": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ]
+      },
+      "seeded": {
+        "20261120": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ],
+        "47424": [
+          "{somber}Sorry.[aside] A second beat here.",
+          "Yes it is."
+        ]
+      },
+      "feed_groups": [
+        [
+          "{somber}Sorry.[aside] A second beat here."
+        ]
+      ],
+      "flush": [
+        "Yes it is."
+      ],
+      "flush_again": []
+    }
+  ]
+}

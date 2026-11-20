@@ -1,0 +1,29 @@
+[package]
+name = "shed-chat"
+version.workspace = true
+edition.workspace = true
+description = "The reply layer: what the model's text *is*. Reply-quality judgements, the prose tool-call envelope, the streaming JSON scanner, the sentence splitter and the publisher that turns a token stream into speakable sentences. Pure: nothing here starts a thread, opens a file or binds a socket."
+publish = false
+
+[lints]
+workspace = true
+
+[dependencies]
+# document.rs, splitter.rs, reply_text.rs and quality.rs are built on nine `re`
+# expressions of the Python source, and three of them cannot be expressed in
+# RE2: `normalize_reply_text`'s `([,;:])(?=...)` is a lookahead, its
+# sentence-spacing pattern needs named groups inside a substitution callback,
+# and `markdown_to_ssml`/`TOOL_CALL_ENVELOPE_PATTERN` are lazy (`*?`) matches.
+# `regex`'s own README calls that out; `shed-models` already carries
+# `fancy-regex` for the same reason (its name-size pattern needs a lookbehind).
+# It is also the crate whose syntax is a port of Python's `re`, so the nine
+# patterns below transcribe rather than being re-derived — which is the whole
+# point of a port. The brief's dependency list is `serde_json` + `shed-text`;
+# this is the one addition, and the commit message names it too.
+fancy-regex.workspace = true
+# reply_text.rs and document.rs read and produce the reply document; quality.rs
+# reads the messages array and the response `_meta` the caller hands in.
+serde_json.workspace = true
+# reply_text.rs: `text_or_empty` is `str(value or "")`, whose falsy half has to
+# run before the string conversion or a JSON `0` answers "0".
+shed-text = { path = "../shed-text" }

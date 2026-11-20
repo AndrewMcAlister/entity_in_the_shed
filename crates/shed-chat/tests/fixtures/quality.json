@@ -1,0 +1,1221 @@
+{
+  "constants": {
+    "REPLY_SEGMENT_MAX": 4,
+    "TEASER_MAX_WORDS": 40
+  },
+  "events": [
+    {
+      "maxlen": 5,
+      "ids": [
+        "evt-1",
+        "evt-1"
+      ],
+      "expected": [
+        false,
+        true
+      ],
+      "final": [
+        "evt-1"
+      ]
+    },
+    {
+      "maxlen": 5,
+      "ids": [
+        "evt-1",
+        "evt-2"
+      ],
+      "expected": [
+        false,
+        false
+      ],
+      "final": [
+        "evt-1",
+        "evt-2"
+      ]
+    },
+    {
+      "maxlen": 1,
+      "ids": [
+        "a",
+        "b",
+        "a"
+      ],
+      "expected": [
+        false,
+        false,
+        false
+      ],
+      "final": [
+        "a"
+      ]
+    },
+    {
+      "maxlen": 3,
+      "ids": [
+        "a",
+        "b",
+        "c",
+        "a"
+      ],
+      "expected": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "final": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    {
+      "maxlen": 5,
+      "ids": [
+        null,
+        null
+      ],
+      "expected": [
+        false,
+        true
+      ],
+      "final": [
+        null
+      ]
+    },
+    {
+      "maxlen": 5,
+      "ids": [],
+      "expected": [],
+      "final": []
+    }
+  ],
+  "looks_like_action_teaser_reply": [
+    {
+      "input": "Let me fetch that.",
+      "expected": true
+    },
+    {
+      "input": "I'll check on it.",
+      "expected": true
+    },
+    {
+      "input": "Fetching the data now.",
+      "expected": true
+    },
+    {
+      "input": "Checking...",
+      "expected": true
+    },
+    {
+      "input": "Let me take a closer look.",
+      "expected": true
+    },
+    {
+      "input": "Let me have a look.",
+      "expected": true
+    },
+    {
+      "input": "Let me look into that.",
+      "expected": true
+    },
+    {
+      "input": "Let me see what I can find.",
+      "expected": true
+    },
+    {
+      "input": "I'll take a closer look.",
+      "expected": true
+    },
+    {
+      "input": "I will have another look.",
+      "expected": true
+    },
+    {
+      "input": "Taking a closer look now.",
+      "expected": true
+    },
+    {
+      "input": "Looking into this now.",
+      "expected": true
+    },
+    {
+      "input": "Let me dig into the numbers.",
+      "expected": true
+    },
+    {
+      "input": "Let me investigate.",
+      "expected": true
+    },
+    {
+      "input": "I'll go over it.",
+      "expected": true
+    },
+    {
+      "input": "Let me know if you need anything else.",
+      "expected": false
+    },
+    {
+      "input": "Let me know how you get on.",
+      "expected": false
+    },
+    {
+      "input": "I'll let you know when it is done.",
+      "expected": false
+    },
+    {
+      "input": "Here is the data.",
+      "expected": false
+    },
+    {
+      "input": "The weather is nice today.",
+      "expected": false
+    },
+    {
+      "input": "",
+      "expected": false
+    },
+    {
+      "input": null,
+      "expected": false
+    },
+    {
+      "input": "  ",
+      "expected": false
+    },
+    {
+      "input": "review",
+      "expected": false
+    },
+    {
+      "input": "I shall retrieve the ledger.",
+      "expected": true
+    },
+    {
+      "input": "we are looking into it, said the keeper",
+      "expected": true
+    },
+    {
+      "input": "Let me check. ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok",
+      "expected": true
+    },
+    {
+      "input": "Let me check. ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok ok",
+      "expected": false
+    },
+    {
+      "input": "The position is up two point four percent on the day and the margin sits at thirty percent, with the stop still where we left it, so I am checking nothing further and would leave it be for now, as the trend has held across every session this week and there is no reason to act.",
+      "expected": false
+    }
+  ],
+  "looks_like_mctrader_action_request": [
+    {
+      "input": "show my mctrader balance",
+      "expected": true
+    },
+    {
+      "input": "check my broker position",
+      "expected": true
+    },
+    {
+      "input": "start trader now",
+      "expected": true
+    },
+    {
+      "input": "stop trader",
+      "expected": true
+    },
+    {
+      "input": "restart trader please",
+      "expected": true
+    },
+    {
+      "input": "what is mctrader",
+      "expected": false
+    },
+    {
+      "input": "check my position",
+      "expected": false
+    },
+    {
+      "input": "tell me about the watchlist",
+      "expected": true
+    },
+    {
+      "input": "my portfolio needs attention",
+      "expected": false
+    },
+    {
+      "input": "analyse the ticker",
+      "expected": false
+    },
+    {
+      "input": "analyze my symbols",
+      "expected": false
+    },
+    {
+      "input": "how do I exchange a file",
+      "expected": false
+    },
+    {
+      "input": "",
+      "expected": false
+    },
+    {
+      "input": null,
+      "expected": false
+    }
+  ],
+  "looks_incomplete": [
+    {
+      "reply_text": "",
+      "response_details": null,
+      "expected": true
+    },
+    {
+      "reply_text": null,
+      "response_details": null,
+      "expected": true
+    },
+    {
+      "reply_text": "Any text at all",
+      "response_details": {
+        "_meta": {
+          "done_reason": "length"
+        }
+      },
+      "expected": true
+    },
+    {
+      "reply_text": "Any text at all",
+      "response_details": {
+        "_meta": {
+          "done_reason": "LENGTH"
+        }
+      },
+      "expected": true
+    },
+    {
+      "reply_text": "Any text at all",
+      "response_details": {
+        "_meta": {
+          "done_reason": " length "
+        }
+      },
+      "expected": true
+    },
+    {
+      "reply_text": "Any text at all",
+      "response_details": {
+        "_meta": {}
+      },
+      "expected": false
+    },
+    {
+      "reply_text": "Any text at all",
+      "response_details": {},
+      "expected": false
+    },
+    {
+      "reply_text": "Any text at all",
+      "response_details": {
+        "_meta": {
+          "done_reason": null
+        }
+      },
+      "expected": false
+    },
+    {
+      "reply_text": "Done here.",
+      "response_details": {
+        "_meta": {
+          "done_reason": "stop"
+        }
+      },
+      "expected": false
+    },
+    {
+      "reply_text": "Wait for it:",
+      "response_details": null,
+      "expected": true
+    },
+    {
+      "reply_text": "Hold on...",
+      "response_details": null,
+      "expected": true
+    },
+    {
+      "reply_text": "This is a fairly long incomplete line\nand another line here now",
+      "response_details": null,
+      "expected": true
+    },
+    {
+      "reply_text": "Here's a poem for you",
+      "response_details": null,
+      "expected": true
+    },
+    {
+      "reply_text": "Here is the poem",
+      "response_details": null,
+      "expected": true
+    },
+    {
+      "reply_text": "Here's a short poem about the rain, which I wrote for you just now",
+      "response_details": null,
+      "expected": true
+    },
+    {
+      "reply_text": "  ",
+      "response_details": null,
+      "expected": false
+    },
+    {
+      "reply_text": "The quick brown fox jumped.",
+      "response_details": null,
+      "expected": false
+    },
+    {
+      "reply_text": "A line of text that is long enough to pass the sixty character test",
+      "response_details": null,
+      "expected": false
+    },
+    {
+      "reply_text": "Short.",
+      "response_details": null,
+      "expected": false
+    },
+    {
+      "reply_text": "Two lines\nending with a stop.",
+      "response_details": null,
+      "expected": false
+    }
+  ],
+  "latest_user_message_text": [
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "  hi there  "
+        },
+        {
+          "role": "assistant",
+          "content": "x"
+        },
+        {
+          "role": "user",
+          "content": "two"
+        }
+      ],
+      "expected": "two"
+    },
+    {
+      "messages": [
+        {
+          "role": "assistant",
+          "content": "x"
+        }
+      ],
+      "expected": ""
+    },
+    {
+      "messages": [],
+      "expected": ""
+    },
+    {
+      "messages": null,
+      "expected": ""
+    },
+    {
+      "messages": [
+        {
+          "role": "user"
+        }
+      ],
+      "expected": ""
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": 7
+        }
+      ],
+      "expected": "7"
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": null
+        },
+        {
+          "role": "user",
+          "content": " last "
+        }
+      ],
+      "expected": "last"
+    }
+  ],
+  "looks_like_task_stub_reply": [
+    {
+      "user_text": "write a poem for me",
+      "reply_text": "I will write one for you",
+      "expected": true
+    },
+    {
+      "user_text": "create a song for me",
+      "reply_text": "Here is a line for you",
+      "expected": true
+    },
+    {
+      "user_text": "what time is it",
+      "reply_text": "It is 3pm.",
+      "expected": false
+    },
+    {
+      "user_text": "write a poem for me",
+      "reply_text": "I will write one\nfor you",
+      "expected": false
+    },
+    {
+      "user_text": "write a poem for me",
+      "reply_text": "I will write one for you right now with some rhymes and verses that flow really nicely today indeed",
+      "expected": false
+    },
+    {
+      "user_text": "write a poem for me",
+      "reply_text": "I will write \"a poem\" for you",
+      "expected": false
+    },
+    {
+      "user_text": "",
+      "reply_text": "I will",
+      "expected": false
+    },
+    {
+      "user_text": "write a poem for me",
+      "reply_text": "",
+      "expected": false
+    },
+    {
+      "user_text": "draft a letter to the bank",
+      "reply_text": "Sure",
+      "expected": true
+    },
+    {
+      "user_text": "make me a list of tools",
+      "reply_text": "Alright",
+      "expected": true
+    },
+    {
+      "user_text": "compose a speech",
+      "reply_text": "I shall draft it now",
+      "expected": true
+    },
+    {
+      "user_text": "write a poem",
+      "reply_text": "The rain came down all night.",
+      "expected": false
+    },
+    {
+      "user_text": null,
+      "reply_text": "I will",
+      "expected": false
+    },
+    {
+      "user_text": "write a poem",
+      "reply_text": null,
+      "expected": false
+    }
+  ],
+  "merge_completed_reply": [
+    {
+      "partial": "Hello",
+      "completion": "Hello world",
+      "expected": "Hello world"
+    },
+    {
+      "partial": "abc",
+      "completion": "abc def",
+      "expected": "abc def"
+    },
+    {
+      "partial": "Hello world",
+      "completion": "world is big",
+      "expected": "Hello world is big"
+    },
+    {
+      "partial": "He said",
+      "completion": "said hello",
+      "expected": "He said hello"
+    },
+    {
+      "partial": "Hi",
+      "completion": "There you go",
+      "expected": "There you go"
+    },
+    {
+      "partial": "The end is",
+      "completion": "near",
+      "expected": "The end is near"
+    },
+    {
+      "partial": "  partial  ",
+      "completion": "",
+      "expected": "partial"
+    },
+    {
+      "partial": "",
+      "completion": "Done.",
+      "expected": "Done."
+    },
+    {
+      "partial": null,
+      "completion": "Done.",
+      "expected": "Done."
+    },
+    {
+      "partial": "abc",
+      "completion": "abc",
+      "expected": "abc"
+    },
+    {
+      "partial": "abc",
+      "completion": null,
+      "expected": "abc"
+    },
+    {
+      "partial": "tail end",
+      "completion": "end",
+      "expected": "tail end"
+    },
+    {
+      "partial": "one two three",
+      "completion": "three four five",
+      "expected": "one two three four five"
+    },
+    {
+      "partial": "stop.",
+      "completion": ".carry on",
+      "expected": "stop.carry on"
+    },
+    {
+      "partial": "word",
+      "completion": "!next",
+      "expected": "word!next"
+    },
+    {
+      "partial": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "completion": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa tail",
+      "expected": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaa tail"
+    }
+  ],
+  "extract_reply_segments": [
+    {
+      "value": null,
+      "expected": []
+    },
+    {
+      "value": [],
+      "expected": []
+    },
+    {
+      "value": {},
+      "expected": []
+    },
+    {
+      "value": [
+        "Only this."
+      ],
+      "expected": [
+        "Only this."
+      ]
+    },
+    {
+      "value": [
+        "  first  ",
+        "",
+        "   ",
+        "second"
+      ],
+      "expected": [
+        "first",
+        "second"
+      ]
+    },
+    {
+      "value": [
+        "real",
+        null,
+        7,
+        {
+          "a": 1
+        },
+        [
+          "nested"
+        ]
+      ],
+      "expected": [
+        "real"
+      ]
+    },
+    {
+      "value": [
+        "segment 0",
+        "segment 1",
+        "segment 2",
+        "segment 3",
+        "segment 4",
+        "segment 5",
+        "segment 6"
+      ],
+      "expected": [
+        "segment 0",
+        "segment 1",
+        "segment 2",
+        "segment 3"
+      ]
+    },
+    {
+      "value": "Just the one.",
+      "expected": [
+        "Just the one."
+      ]
+    },
+    {
+      "value": [
+        "a",
+        "b"
+      ],
+      "expected": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "value": [
+        "Hello,world"
+      ],
+      "expected": [
+        "Hello,world"
+      ]
+    },
+    {
+      "value": "",
+      "expected": []
+    },
+    {
+      "value": 7,
+      "expected": []
+    },
+    {
+      "value": true,
+      "expected": []
+    },
+    {
+      "value": [
+        "  x  ",
+        "  x  ",
+        "  x  ",
+        "  x  ",
+        "  x  ",
+        "  x  ",
+        "  x  ",
+        "  x  ",
+        "  x  ",
+        "  x  "
+      ],
+      "expected": [
+        "x",
+        "x",
+        "x",
+        "x"
+      ]
+    }
+  ],
+  "strip_tool_call_envelope": [
+    {
+      "input": "Let me look. {tool_calls}{\"tool\": \"search_web\", \"args\": {}}{/tool_calls}",
+      "expected": "Let me look.  "
+    },
+    {
+      "input": "Let me look. {tool_calls}",
+      "expected": "Let me look.  "
+    },
+    {
+      "input": "Hi. { TOOL_CALLS }body{ / tool_calls }",
+      "expected": "Hi.  "
+    },
+    {
+      "input": "{tool_calls}a{/tool_calls} middle {tool_calls}b{/tool_calls}",
+      "expected": "  middle  "
+    },
+    {
+      "input": "{somber}I'm sorry{/somber}",
+      "expected": "{somber}I'm sorry{/somber}"
+    },
+    {
+      "input": "{whisper}don't tell anyone{/whisper}",
+      "expected": "{whisper}don't tell anyone{/whisper}"
+    },
+    {
+      "input": "{cheerful}that's wonderful{/cheerful}",
+      "expected": "{cheerful}that's wonderful{/cheerful}"
+    },
+    {
+      "input": "No markup here at all.",
+      "expected": "No markup here at all."
+    },
+    {
+      "input": null,
+      "expected": ""
+    },
+    {
+      "input": "",
+      "expected": ""
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"search_web\", \"args\": {\"query\": \"x\"}}{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}[{\"tool\": \"a\", \"args\": {}}, {\"tool\": \"b\", \"args\": {\"n\": 1}}]{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"a\", \"args\": {}}{/tool_calls}{tool_calls}{\"tool\": \"b\", \"args\": {}}{/tool_calls}",
+      "expected": "  "
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"search_web\", \"args\": \"latest news\"}{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}[\"search_web\", {\"tool\": \"a\", \"args\": {}}]{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}{\"args\": {}}{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"\"}{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"   \"}{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}{\"tool\": null}{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}   {/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}not json{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"unterminated{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}5{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}\"search_web\"{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}null{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "{tool_calls}true{/tool_calls}",
+      "expected": " "
+    },
+    {
+      "input": "Just a plain reply.",
+      "expected": "Just a plain reply."
+    },
+    {
+      "input": "  {tool_calls}  {\"tool\": \"x\"}  {/tool_calls}  ",
+      "expected": "     "
+    }
+  ],
+  "tool_calls_in_envelope": [
+    {
+      "input": "Let me look. {tool_calls}{\"tool\": \"search_web\", \"args\": {}}{/tool_calls}",
+      "expected": [
+        {
+          "tool": "search_web",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "input": "Let me look. {tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "Hi. { TOOL_CALLS }body{ / tool_calls }",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}a{/tool_calls} middle {tool_calls}b{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{somber}I'm sorry{/somber}",
+      "expected": []
+    },
+    {
+      "input": "{whisper}don't tell anyone{/whisper}",
+      "expected": []
+    },
+    {
+      "input": "{cheerful}that's wonderful{/cheerful}",
+      "expected": []
+    },
+    {
+      "input": "No markup here at all.",
+      "expected": []
+    },
+    {
+      "input": null,
+      "expected": []
+    },
+    {
+      "input": "",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"search_web\", \"args\": {\"query\": \"x\"}}{/tool_calls}",
+      "expected": [
+        {
+          "tool": "search_web",
+          "args": {
+            "query": "x"
+          }
+        }
+      ]
+    },
+    {
+      "input": "{tool_calls}[{\"tool\": \"a\", \"args\": {}}, {\"tool\": \"b\", \"args\": {\"n\": 1}}]{/tool_calls}",
+      "expected": [
+        {
+          "tool": "a",
+          "args": {}
+        },
+        {
+          "tool": "b",
+          "args": {
+            "n": 1
+          }
+        }
+      ]
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"a\", \"args\": {}}{/tool_calls}{tool_calls}{\"tool\": \"b\", \"args\": {}}{/tool_calls}",
+      "expected": [
+        {
+          "tool": "a",
+          "args": {}
+        },
+        {
+          "tool": "b",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"search_web\", \"args\": \"latest news\"}{/tool_calls}",
+      "expected": [
+        {
+          "tool": "search_web",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "input": "{tool_calls}[\"search_web\", {\"tool\": \"a\", \"args\": {}}]{/tool_calls}",
+      "expected": [
+        {
+          "tool": "a",
+          "args": {}
+        }
+      ]
+    },
+    {
+      "input": "{tool_calls}{\"args\": {}}{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"\"}{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"   \"}{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}{\"tool\": null}{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}   {/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}not json{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}{\"tool\": \"unterminated{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}5{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}\"search_web\"{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}null{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "{tool_calls}true{/tool_calls}",
+      "expected": []
+    },
+    {
+      "input": "Just a plain reply.",
+      "expected": []
+    },
+    {
+      "input": "  {tool_calls}  {\"tool\": \"x\"}  {/tool_calls}  ",
+      "expected": [
+        {
+          "tool": "x",
+          "args": {}
+        }
+      ]
+    }
+  ],
+  "looks_unusable_reply": [
+    {
+      "input": "I could not generate a response",
+      "expected": true
+    },
+    {
+      "input": "i couldn't generate a response",
+      "expected": true
+    },
+    {
+      "input": "I am unable to generate a response.",
+      "expected": true
+    },
+    {
+      "input": "  I cannot generate a response!  ",
+      "expected": true
+    },
+    {
+      "input": "Unable to generate a response",
+      "expected": true
+    },
+    {
+      "input": "I'm unable to generate a response",
+      "expected": true
+    },
+    {
+      "input": "i am unable to generate a response",
+      "expected": true
+    },
+    {
+      "input": "Hello there",
+      "expected": false
+    },
+    {
+      "input": "",
+      "expected": true
+    },
+    {
+      "input": null,
+      "expected": true
+    },
+    {
+      "input": "   ",
+      "expected": true
+    },
+    {
+      "input": "\"I could not generate a response\"",
+      "expected": true
+    },
+    {
+      "input": "I could not generate a response today",
+      "expected": false
+    }
+  ],
+  "looks_out_of_character_reply": [
+    {
+      "input": "As an AI, I think it is fine.",
+      "expected": true
+    },
+    {
+      "input": "I do not possess a personal identity.",
+      "expected": true
+    },
+    {
+      "input": "as an AI assistant, no",
+      "expected": true
+    },
+    {
+      "input": "I don't possess a personal identity",
+      "expected": true
+    },
+    {
+      "input": "The weather is nice.",
+      "expected": false
+    },
+    {
+      "input": "",
+      "expected": false
+    },
+    {
+      "input": null,
+      "expected": false
+    }
+  ],
+  "looks_like_recovery_meta_reply": [
+    {
+      "input": "There was no content in the previous reply.",
+      "expected": true
+    },
+    {
+      "input": "empty object",
+      "expected": true
+    },
+    {
+      "input": "There was no reply text to continue.",
+      "expected": true
+    },
+    {
+      "input": "Only an empty reply field in the JSON.",
+      "expected": true
+    },
+    {
+      "input": "system returned an empty object",
+      "expected": true
+    },
+    {
+      "input": "I did not intend to cut you short.",
+      "expected": true
+    },
+    {
+      "input": "All done here.",
+      "expected": false
+    },
+    {
+      "input": "",
+      "expected": false
+    },
+    {
+      "input": null,
+      "expected": false
+    },
+    {
+      "input": "  ",
+      "expected": false
+    },
+    {
+      "input": "there was no content in the   previous reply",
+      "expected": true
+    }
+  ],
+  "looks_like_generic_handoff_reply": [
+    {
+      "user_text": "what do you want",
+      "reply_text": "Tell me your question or your task.",
+      "expected": true
+    },
+    {
+      "user_text": "how can I help?",
+      "reply_text": "I remain at your disposal.",
+      "expected": true
+    },
+    {
+      "user_text": "something",
+      "reply_text": "How may I assist you today?",
+      "expected": true
+    },
+    {
+      "user_text": "something",
+      "reply_text": "How may I assist you?",
+      "expected": true
+    },
+    {
+      "user_text": "something",
+      "reply_text": "How may I assist you now, friend?",
+      "expected": true
+    },
+    {
+      "user_text": "hello",
+      "reply_text": "Tell me your question or your task.",
+      "expected": false
+    },
+    {
+      "user_text": "Hi!",
+      "reply_text": "Pray tell.",
+      "expected": false
+    },
+    {
+      "user_text": "hey",
+      "reply_text": "You're free to ask whatever you please.",
+      "expected": false
+    },
+    {
+      "user_text": "good morning",
+      "reply_text": "Without interruption, I am here.",
+      "expected": false
+    },
+    {
+      "user_text": "check the weather",
+      "reply_text": "Sunny today.",
+      "expected": false
+    },
+    {
+      "user_text": "hi",
+      "reply_text": "",
+      "expected": false
+    },
+    {
+      "user_text": "hi",
+      "reply_text": null,
+      "expected": false
+    },
+    {
+      "user_text": null,
+      "reply_text": "Tell me your question or your task.",
+      "expected": true
+    },
+    {
+      "user_text": "good evening!!!",
+      "reply_text": "I'm ready to help with automation, spreadsheets, or any factual questions you have",
+      "expected": false
+    }
+  ]
+}

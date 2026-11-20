@@ -20,7 +20,12 @@ axum = "0.8"            # shed-http: router + /health; shed-server: serve
 # `default-features = false` drops `clock` and `wasmbind`: the crate never reads the wall clock
 # (every "now" arrives as an argument), so it needs neither `Local::now` nor a system clock.
 chrono = { version = "0.4", default-features = false, features = ["std"] }
-fancy-regex = "0.20"    # shed-models: the name-size pattern needs a lookbehind, which `regex`'s RE2 cannot express
+# shed-models: the name-size pattern needs a lookbehind, which `regex`'s RE2 cannot express.
+# shed-chat: the nine `re` expressions of `normalize_reply_text`, `markdown_to_ssml`,
+# `utils/reply.py`'s envelope patterns and the splitter include a lookahead, named groups used
+# inside a substitution callback, and lazy `*?` matches — all of them RE2-excluded, and all of
+# them transcribed from Python's `re` rather than re-derived (see crates/shed-chat/Cargo.toml).
+fancy-regex = "0.20"
 http-body-util = "0.1"  # shed-http tests: collect the response body
 rand = "0.9"            # shed-llm: `random.randint(0, LM_ENGINE_RETRY_JITTER_MS)`, the wait's jitter
 # `default-features = false` because the defaults pull in `charset` (a charset sniffer no shed
@@ -35,7 +40,7 @@ rand = "0.9"            # shed-llm: `random.randint(0, LM_ENGINE_RETRY_JITTER_MS
 # as reachable here as it is in the source.
 reqwest = { version = "0.12", default-features = false, features = ["gzip", "json", "stream", "rustls-tls-native-roots"] } # shed-llm: the engine transport
 serde = { version = "1", features = ["derive"] } # shed-gates: manifest + layer model; shed-http: query args
-serde_json = "1"        # shed-config: JSON env values; shed-text: Python `str()` over values; shed-http: /health payload; shed-conversation: profile.rs reads whatever the model returned as one `Value`
+serde_json = "1"        # shed-config: JSON env values; shed-text: Python `str()` over values; shed-http: /health payload; shed-conversation: profile.rs reads whatever the model returned as one `Value`; shed-chat: the reply document, the messages array and the response `_meta`
 sha2 = "0.10"           # shed-gates: frozen-asset manifest
 tokio = { version = "1", features = ["io-util", "macros", "net", "rt-multi-thread", "signal", "time"] } # shed-server: runtime + bind + raw smoke socket + ctrl-c; shed-llm: the retry ladder's sleep
 tower = { version = "0.5", features = ["util"] } # shed-http tests: oneshot the router

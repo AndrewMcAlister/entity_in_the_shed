@@ -1,0 +1,1990 @@
+{
+  "cases": [
+    {
+      "reply": "Let me check that for you. It is forty-two. That is all.",
+      "document": "{\"reply\": \"Let me check that for you. It is forty-two. That is all.\", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "size-5",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"Let ",
+            "me ch",
+            "eck t",
+            "hat f",
+            "or yo",
+            "u. It",
+            " is f",
+            "orty-",
+            "two. ",
+            "That ",
+            "is al",
+            "l.\", ",
+            "\"tool",
+            "_call",
+            "s\": [",
+            "]}"
+          ],
+          "published": [
+            "Let me check that for you.",
+            "It is forty-two.",
+            "That is all."
+          ],
+          "spoken": "Let me check that for you. It is forty-two. That is all.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Let me check that for you. It is forty-two. That is all."
+        },
+        {
+          "label": "size-1",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "L",
+            "e",
+            "t",
+            " ",
+            "m",
+            "e",
+            " ",
+            "c",
+            "h",
+            "e",
+            "c",
+            "k",
+            " ",
+            "t",
+            "h",
+            "a",
+            "t",
+            " ",
+            "f",
+            "o",
+            "r",
+            " ",
+            "y",
+            "o",
+            "u",
+            ".",
+            " ",
+            "I",
+            "t",
+            " ",
+            "i",
+            "s",
+            " ",
+            "f",
+            "o",
+            "r",
+            "t",
+            "y",
+            "-",
+            "t",
+            "w",
+            "o",
+            ".",
+            " ",
+            "T",
+            "h",
+            "a",
+            "t",
+            " ",
+            "i",
+            "s",
+            " ",
+            "a",
+            "l",
+            "l",
+            ".",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "published": [
+            "Let me check that for you.",
+            "It is forty-two.",
+            "That is all."
+          ],
+          "spoken": "Let me check that for you. It is forty-two. That is all.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Let me check that for you. It is forty-two. That is all."
+        },
+        {
+          "label": "size-40",
+          "chunks": [
+            "{\"reply\": \"Let me check that for you. It",
+            " is forty-two. That is all.\", \"tool_call",
+            "s\": []}"
+          ],
+          "published": [
+            "Let me check that for you.",
+            "It is forty-two.",
+            "That is all."
+          ],
+          "spoken": "Let me check that for you. It is forty-two. That is all.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Let me check that for you. It is forty-two. That is all."
+        },
+        {
+          "label": "size-87",
+          "chunks": [
+            "{\"reply\": \"Let me check that for you. It is forty-two. That is all.\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "Let me check that for you.",
+            "It is forty-two.",
+            "That is all."
+          ],
+          "spoken": "Let me check that for you. It is forty-two. That is all.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Let me check that for you. It is forty-two. That is all."
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"Let me check that for you. It is forty-two. Th",
+            "at is all.\", \"tool",
+            "_calls\": []}"
+          ],
+          "published": [
+            "Let me check that for you.",
+            "It is forty-two.",
+            "That is all."
+          ],
+          "spoken": "Let me check that for you. It is forty-two. That is all.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Let me check that for you. It is forty-two. That is all."
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"reply\": ",
+            "\"Let me che",
+            "ck that for you. It is forty-tw",
+            "o. That is all.\",",
+            " \"",
+            "tool_calls",
+            "\": []}"
+          ],
+          "published": [
+            "Let me check that for you.",
+            "It is forty-two.",
+            "That is all."
+          ],
+          "spoken": "Let me check that for you. It is forty-two. That is all.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Let me check that for you. It is forty-two. That is all."
+        }
+      ]
+    },
+    {
+      "reply": "First sentence arrives now. Second one is later on.",
+      "document": "{\"reply\": \"First sentence arrives now. Second one is later on.\", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "size-5",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"Firs",
+            "t sen",
+            "tence",
+            " arri",
+            "ves n",
+            "ow. S",
+            "econd",
+            " one ",
+            "is la",
+            "ter o",
+            "n.\", ",
+            "\"tool",
+            "_call",
+            "s\": [",
+            "]}"
+          ],
+          "published": [
+            "First sentence arrives now.",
+            "Second one is later on."
+          ],
+          "spoken": "First sentence arrives now. Second one is later on.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "First sentence arrives now. Second one is later on."
+        },
+        {
+          "label": "size-1",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "F",
+            "i",
+            "r",
+            "s",
+            "t",
+            " ",
+            "s",
+            "e",
+            "n",
+            "t",
+            "e",
+            "n",
+            "c",
+            "e",
+            " ",
+            "a",
+            "r",
+            "r",
+            "i",
+            "v",
+            "e",
+            "s",
+            " ",
+            "n",
+            "o",
+            "w",
+            ".",
+            " ",
+            "S",
+            "e",
+            "c",
+            "o",
+            "n",
+            "d",
+            " ",
+            "o",
+            "n",
+            "e",
+            " ",
+            "i",
+            "s",
+            " ",
+            "l",
+            "a",
+            "t",
+            "e",
+            "r",
+            " ",
+            "o",
+            "n",
+            ".",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "published": [
+            "First sentence arrives now.",
+            "Second one is later on."
+          ],
+          "spoken": "First sentence arrives now. Second one is later on.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "First sentence arrives now. Second one is later on."
+        },
+        {
+          "label": "size-40",
+          "chunks": [
+            "{\"reply\": \"First sentence arrives now. S",
+            "econd one is later on.\", \"tool_calls\": [",
+            "]}"
+          ],
+          "published": [
+            "First sentence arrives now.",
+            "Second one is later on."
+          ],
+          "spoken": "First sentence arrives now. Second one is later on.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "First sentence arrives now. Second one is later on."
+        },
+        {
+          "label": "size-82",
+          "chunks": [
+            "{\"reply\": \"First sentence arrives now. Second one is later on.\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "First sentence arrives now.",
+            "Second one is later on."
+          ],
+          "spoken": "First sentence arrives now. Second one is later on.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "First sentence arrives now. Second one is later on."
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"First sentence arrives now. Second one is late",
+            "r on.\", \"tool_call",
+            "s\": []}"
+          ],
+          "published": [
+            "First sentence arrives now.",
+            "Second one is later on."
+          ],
+          "spoken": "First sentence arrives now. Second one is later on.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "First sentence arrives now. Second one is later on."
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"reply\": ",
+            "\"Fi",
+            "rst sent",
+            "ence arrives now. Second one is",
+            " later on.\", \"too",
+            "l_",
+            "calls\": []}"
+          ],
+          "published": [
+            "First sentence arrives now.",
+            "Second one is later on."
+          ],
+          "spoken": "First sentence arrives now. Second one is later on.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "First sentence arrives now. Second one is later on."
+        }
+      ]
+    },
+    {
+      "reply": "One two three four. Five six seven eight.",
+      "document": "{\"reply\": \"One two three four. Five six seven eight.\", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "size-5",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"One ",
+            "two t",
+            "hree ",
+            "four.",
+            " Five",
+            " six ",
+            "seven",
+            " eigh",
+            "t.\", ",
+            "\"tool",
+            "_call",
+            "s\": [",
+            "]}"
+          ],
+          "published": [
+            "One two three four.",
+            "Five six seven eight."
+          ],
+          "spoken": "One two three four. Five six seven eight.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "One two three four. Five six seven eight."
+        },
+        {
+          "label": "size-1",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "O",
+            "n",
+            "e",
+            " ",
+            "t",
+            "w",
+            "o",
+            " ",
+            "t",
+            "h",
+            "r",
+            "e",
+            "e",
+            " ",
+            "f",
+            "o",
+            "u",
+            "r",
+            ".",
+            " ",
+            "F",
+            "i",
+            "v",
+            "e",
+            " ",
+            "s",
+            "i",
+            "x",
+            " ",
+            "s",
+            "e",
+            "v",
+            "e",
+            "n",
+            " ",
+            "e",
+            "i",
+            "g",
+            "h",
+            "t",
+            ".",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "published": [
+            "One two three four.",
+            "Five six seven eight."
+          ],
+          "spoken": "One two three four. Five six seven eight.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "One two three four. Five six seven eight."
+        },
+        {
+          "label": "size-40",
+          "chunks": [
+            "{\"reply\": \"One two three four. Five six ",
+            "seven eight.\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "One two three four.",
+            "Five six seven eight."
+          ],
+          "spoken": "One two three four. Five six seven eight.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "One two three four. Five six seven eight."
+        },
+        {
+          "label": "size-72",
+          "chunks": [
+            "{\"reply\": \"One two three four. Five six seven eight.\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "One two three four.",
+            "Five six seven eight."
+          ],
+          "spoken": "One two three four. Five six seven eight.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "One two three four. Five six seven eight."
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"One two three four. Five six seven eight.\", \"t",
+            "ool_calls\"",
+            ": []}"
+          ],
+          "published": [
+            "One two three four.",
+            "Five six seven eight."
+          ],
+          "spoken": "One two three four. Five six seven eight.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "One two three four. Five six seven eight."
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"On",
+            "e two th",
+            "ree four. Five six seven eight.",
+            "\", \"tool_calls\": ",
+            "[]}"
+          ],
+          "published": [
+            "One two three four.",
+            "Five six seven eight."
+          ],
+          "spoken": "One two three four. Five six seven eight.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "One two three four. Five six seven eight."
+        }
+      ]
+    },
+    {
+      "reply": "A sentence here. Another sentence there.",
+      "document": "{\"reply\": \"A sentence here. Another sentence there.\", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "size-5",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"A se",
+            "ntenc",
+            "e her",
+            "e. An",
+            "other",
+            " sent",
+            "ence ",
+            "there",
+            ".\", \"",
+            "tool_",
+            "calls",
+            "\": []",
+            "}"
+          ],
+          "published": [
+            "A sentence here.",
+            "Another sentence there."
+          ],
+          "spoken": "A sentence here. Another sentence there.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "A sentence here. Another sentence there."
+        },
+        {
+          "label": "size-1",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "A",
+            " ",
+            "s",
+            "e",
+            "n",
+            "t",
+            "e",
+            "n",
+            "c",
+            "e",
+            " ",
+            "h",
+            "e",
+            "r",
+            "e",
+            ".",
+            " ",
+            "A",
+            "n",
+            "o",
+            "t",
+            "h",
+            "e",
+            "r",
+            " ",
+            "s",
+            "e",
+            "n",
+            "t",
+            "e",
+            "n",
+            "c",
+            "e",
+            " ",
+            "t",
+            "h",
+            "e",
+            "r",
+            "e",
+            ".",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "published": [
+            "A sentence here.",
+            "Another sentence there."
+          ],
+          "spoken": "A sentence here. Another sentence there.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "A sentence here. Another sentence there."
+        },
+        {
+          "label": "size-40",
+          "chunks": [
+            "{\"reply\": \"A sentence here. Another sent",
+            "ence there.\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "A sentence here.",
+            "Another sentence there."
+          ],
+          "spoken": "A sentence here. Another sentence there.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "A sentence here. Another sentence there."
+        },
+        {
+          "label": "size-71",
+          "chunks": [
+            "{\"reply\": \"A sentence here. Another sentence there.\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "A sentence here.",
+            "Another sentence there."
+          ],
+          "spoken": "A sentence here. Another sentence there.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "A sentence here. Another sentence there."
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"A sentence here. Another sentence there.\", \"to",
+            "ol_calls\":",
+            " []}"
+          ],
+          "published": [
+            "A sentence here.",
+            "Another sentence there."
+          ],
+          "spoken": "A sentence here. Another sentence there.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "A sentence here. Another sentence there."
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"A ",
+            "sentence",
+            " here. Another sentence there.\"",
+            ", \"tool_calls\"",
+            ": []}"
+          ],
+          "published": [
+            "A sentence here.",
+            "Another sentence there."
+          ],
+          "spoken": "A sentence here. Another sentence there.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "A sentence here. Another sentence there."
+        }
+      ]
+    },
+    {
+      "reply": "Spoken to nobody. But counted.",
+      "document": "{\"reply\": \"Spoken to nobody. But counted.\", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "size-5",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"Spok",
+            "en to",
+            " nobo",
+            "dy. B",
+            "ut co",
+            "unted",
+            ".\", \"",
+            "tool_",
+            "calls",
+            "\": []",
+            "}"
+          ],
+          "published": [
+            "Spoken to nobody.",
+            "But counted."
+          ],
+          "spoken": "Spoken to nobody. But counted.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "Spoken to nobody. But counted."
+        },
+        {
+          "label": "size-1",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "S",
+            "p",
+            "o",
+            "k",
+            "e",
+            "n",
+            " ",
+            "t",
+            "o",
+            " ",
+            "n",
+            "o",
+            "b",
+            "o",
+            "d",
+            "y",
+            ".",
+            " ",
+            "B",
+            "u",
+            "t",
+            " ",
+            "c",
+            "o",
+            "u",
+            "n",
+            "t",
+            "e",
+            "d",
+            ".",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "published": [
+            "Spoken to nobody.",
+            "But counted."
+          ],
+          "spoken": "Spoken to nobody. But counted.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "Spoken to nobody. But counted."
+        },
+        {
+          "label": "size-40",
+          "chunks": [
+            "{\"reply\": \"Spoken to nobody. But counted",
+            ".\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "Spoken to nobody.",
+            "But counted."
+          ],
+          "spoken": "Spoken to nobody. But counted.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "Spoken to nobody. But counted."
+        },
+        {
+          "label": "size-61",
+          "chunks": [
+            "{\"reply\": \"Spoken to nobody. But counted.\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "Spoken to nobody.",
+            "But counted."
+          ],
+          "spoken": "Spoken to nobody. But counted.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "Spoken to nobody. But counted."
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"Spoken to nobody. ",
+            "But count",
+            "ed.\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "Spoken to nobody.",
+            "But counted."
+          ],
+          "spoken": "Spoken to nobody. But counted.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "Spoken to nobody. But counted."
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"reply\": \"",
+            "Spoken to nobod",
+            "y. But co",
+            "unted.",
+            "\", \"to",
+            "ol_ca",
+            "lls\": []}"
+          ],
+          "published": [
+            "Spoken to nobody.",
+            "But counted."
+          ],
+          "spoken": "Spoken to nobody. But counted.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "Spoken to nobody. But counted."
+        }
+      ]
+    },
+    {
+      "reply": "Well now then... that is a long story indeed. Sit down.",
+      "document": "{\"reply\": \"Well now then... that is a long story indeed. Sit down.\", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "size-5",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"Well",
+            " now ",
+            "then.",
+            ".. th",
+            "at is",
+            " a lo",
+            "ng st",
+            "ory i",
+            "ndeed",
+            ". Sit",
+            " down",
+            ".\", \"",
+            "tool_",
+            "calls",
+            "\": []",
+            "}"
+          ],
+          "published": [
+            "Well now then...",
+            "that is a long story indeed.",
+            "Sit down."
+          ],
+          "spoken": "Well now then... that is a long story indeed. Sit down.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Well now then... that is a long story indeed. Sit down."
+        },
+        {
+          "label": "size-1",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "W",
+            "e",
+            "l",
+            "l",
+            " ",
+            "n",
+            "o",
+            "w",
+            " ",
+            "t",
+            "h",
+            "e",
+            "n",
+            ".",
+            ".",
+            ".",
+            " ",
+            "t",
+            "h",
+            "a",
+            "t",
+            " ",
+            "i",
+            "s",
+            " ",
+            "a",
+            " ",
+            "l",
+            "o",
+            "n",
+            "g",
+            " ",
+            "s",
+            "t",
+            "o",
+            "r",
+            "y",
+            " ",
+            "i",
+            "n",
+            "d",
+            "e",
+            "e",
+            "d",
+            ".",
+            " ",
+            "S",
+            "i",
+            "t",
+            " ",
+            "d",
+            "o",
+            "w",
+            "n",
+            ".",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "published": [
+            "Well now then...",
+            "that is a long story indeed.",
+            "Sit down."
+          ],
+          "spoken": "Well now then... that is a long story indeed. Sit down.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Well now then... that is a long story indeed. Sit down."
+        },
+        {
+          "label": "size-40",
+          "chunks": [
+            "{\"reply\": \"Well now then... that is a lo",
+            "ng story indeed. Sit down.\", \"tool_calls",
+            "\": []}"
+          ],
+          "published": [
+            "Well now then...",
+            "that is a long story indeed.",
+            "Sit down."
+          ],
+          "spoken": "Well now then... that is a long story indeed. Sit down.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Well now then... that is a long story indeed. Sit down."
+        },
+        {
+          "label": "size-86",
+          "chunks": [
+            "{\"reply\": \"Well now then... that is a long story indeed. Sit down.\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "Well now then...",
+            "that is a long story indeed.",
+            "Sit down."
+          ],
+          "spoken": "Well now then... that is a long story indeed. Sit down.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Well now then... that is a long story indeed. Sit down."
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"Well now then... that is a long story indeed. ",
+            "Sit down.\", \"tool_",
+            "calls\": []}"
+          ],
+          "published": [
+            "Well now then...",
+            "that is a long story indeed.",
+            "Sit down."
+          ],
+          "spoken": "Well now then... that is a long story indeed. Sit down.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Well now then... that is a long story indeed. Sit down."
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"reply\": ",
+            "\"Well now t",
+            "hen... that is a long story ind",
+            "eed. Sit down.\", ",
+            "\"t",
+            "ool_calls\"",
+            ": []}"
+          ],
+          "published": [
+            "Well now then...",
+            "that is a long story indeed.",
+            "Sit down."
+          ],
+          "spoken": "Well now then... that is a long story indeed. Sit down.",
+          "aborted": false,
+          "count": 3,
+          "spoken_text": "Well now then... that is a long story indeed. Sit down."
+        }
+      ]
+    },
+    {
+      "reply": "She said {somber}I am sorry{/somber} to hear it. Then she left.",
+      "document": "{\"reply\": \"She said {somber}I am sorry{/somber} to hear it. Then she left.\", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "size-5",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"She ",
+            "said ",
+            "{somb",
+            "er}I ",
+            "am so",
+            "rry{/",
+            "sombe",
+            "r} to",
+            " hear",
+            " it. ",
+            "Then ",
+            "she l",
+            "eft.\"",
+            ", \"to",
+            "ol_ca",
+            "lls\":",
+            " []}"
+          ],
+          "published": [
+            "She said {somber}I am sorry{/somber} to hear it.",
+            "Then she left."
+          ],
+          "spoken": "She said {somber}I am sorry{/somber} to hear it. Then she left.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "She said {somber}I am sorry{/somber} to hear it. Then she left."
+        },
+        {
+          "label": "size-1",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "S",
+            "h",
+            "e",
+            " ",
+            "s",
+            "a",
+            "i",
+            "d",
+            " ",
+            "{",
+            "s",
+            "o",
+            "m",
+            "b",
+            "e",
+            "r",
+            "}",
+            "I",
+            " ",
+            "a",
+            "m",
+            " ",
+            "s",
+            "o",
+            "r",
+            "r",
+            "y",
+            "{",
+            "/",
+            "s",
+            "o",
+            "m",
+            "b",
+            "e",
+            "r",
+            "}",
+            " ",
+            "t",
+            "o",
+            " ",
+            "h",
+            "e",
+            "a",
+            "r",
+            " ",
+            "i",
+            "t",
+            ".",
+            " ",
+            "T",
+            "h",
+            "e",
+            "n",
+            " ",
+            "s",
+            "h",
+            "e",
+            " ",
+            "l",
+            "e",
+            "f",
+            "t",
+            ".",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "published": [
+            "She said {somber}I am sorry{/somber} to hear it.",
+            "Then she left."
+          ],
+          "spoken": "She said {somber}I am sorry{/somber} to hear it. Then she left.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "She said {somber}I am sorry{/somber} to hear it. Then she left."
+        },
+        {
+          "label": "size-40",
+          "chunks": [
+            "{\"reply\": \"She said {somber}I am sorry{/",
+            "somber} to hear it. Then she left.\", \"to",
+            "ol_calls\": []}"
+          ],
+          "published": [
+            "She said {somber}I am sorry{/somber} to hear it.",
+            "Then she left."
+          ],
+          "spoken": "She said {somber}I am sorry{/somber} to hear it. Then she left.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "She said {somber}I am sorry{/somber} to hear it. Then she left."
+        },
+        {
+          "label": "size-94",
+          "chunks": [
+            "{\"reply\": \"She said {somber}I am sorry{/somber} to hear it. Then she left.\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "She said {somber}I am sorry{/somber} to hear it.",
+            "Then she left."
+          ],
+          "spoken": "She said {somber}I am sorry{/somber} to hear it. Then she left.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "She said {somber}I am sorry{/somber} to hear it. Then she left."
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"She said {somber}I am sorry{/somber} to hear i",
+            "t. Then she left.\"",
+            ", \"tool_calls\": []}"
+          ],
+          "published": [
+            "She said {somber}I am sorry{/somber} to hear it.",
+            "Then she left."
+          ],
+          "spoken": "She said {somber}I am sorry{/somber} to hear it. Then she left.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "She said {somber}I am sorry{/somber} to hear it. Then she left."
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"reply\": ",
+            "\"She said {",
+            "somber}I am sorry{/somber} to h",
+            "ear it. Then she ",
+            "le",
+            "ft.\", \"too",
+            "l_calls\": []}"
+          ],
+          "published": [
+            "She said {somber}I am sorry{/somber} to hear it.",
+            "Then she left."
+          ],
+          "spoken": "She said {somber}I am sorry{/somber} to hear it. Then she left.",
+          "aborted": false,
+          "count": 2,
+          "spoken_text": "She said {somber}I am sorry{/somber} to hear it. Then she left."
+        }
+      ]
+    },
+    {
+      "reply": "No terminators at all in this one",
+      "document": "{\"reply\": \"No terminators at all in this one\", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "size-5",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"No t",
+            "ermin",
+            "ators",
+            " at a",
+            "ll in",
+            " this",
+            " one\"",
+            ", \"to",
+            "ol_ca",
+            "lls\":",
+            " []}"
+          ],
+          "published": [
+            "No terminators at all in this one"
+          ],
+          "spoken": "No terminators at all in this one",
+          "aborted": false,
+          "count": 1,
+          "spoken_text": "No terminators at all in this one"
+        },
+        {
+          "label": "size-1",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "N",
+            "o",
+            " ",
+            "t",
+            "e",
+            "r",
+            "m",
+            "i",
+            "n",
+            "a",
+            "t",
+            "o",
+            "r",
+            "s",
+            " ",
+            "a",
+            "t",
+            " ",
+            "a",
+            "l",
+            "l",
+            " ",
+            "i",
+            "n",
+            " ",
+            "t",
+            "h",
+            "i",
+            "s",
+            " ",
+            "o",
+            "n",
+            "e",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "published": [
+            "No terminators at all in this one"
+          ],
+          "spoken": "No terminators at all in this one",
+          "aborted": false,
+          "count": 1,
+          "spoken_text": "No terminators at all in this one"
+        },
+        {
+          "label": "size-40",
+          "chunks": [
+            "{\"reply\": \"No terminators at all in this",
+            " one\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "No terminators at all in this one"
+          ],
+          "spoken": "No terminators at all in this one",
+          "aborted": false,
+          "count": 1,
+          "spoken_text": "No terminators at all in this one"
+        },
+        {
+          "label": "size-64",
+          "chunks": [
+            "{\"reply\": \"No terminators at all in this one\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "No terminators at all in this one"
+          ],
+          "spoken": "No terminators at all in this one",
+          "aborted": false,
+          "count": 1,
+          "spoken_text": "No terminators at all in this one"
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"No terminators at ",
+            "all in th",
+            "is one\", \"tool_calls\": []}"
+          ],
+          "published": [
+            "No terminators at all in this one"
+          ],
+          "spoken": "No terminators at all in this one",
+          "aborted": false,
+          "count": 1,
+          "spoken_text": "No terminators at all in this one"
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"reply\": \"",
+            "No terminators ",
+            "at all in",
+            " this ",
+            "one\", ",
+            "\"tool",
+            "_calls\": []}"
+          ],
+          "published": [
+            "No terminators at all in this one"
+          ],
+          "spoken": "No terminators at all in this one",
+          "aborted": false,
+          "count": 1,
+          "spoken_text": "No terminators at all in this one"
+        }
+      ]
+    },
+    {
+      "reply": "",
+      "document": "{\"reply\": \"\", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "size-5",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"\", \"",
+            "tool_",
+            "calls",
+            "\": []",
+            "}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        },
+        {
+          "label": "size-1",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        },
+        {
+          "label": "size-40",
+          "chunks": [
+            "{\"reply\": \"\", \"tool_calls\": []}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        },
+        {
+          "label": "size-31",
+          "chunks": [
+            "{\"reply\": \"\", \"tool_calls\": []}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"\", \"",
+            "tool",
+            "_calls\": []}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"repl",
+            "y\": \"\",",
+            " \"too",
+            "l_c",
+            "all",
+            "s\"",
+            ": []}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        }
+      ]
+    },
+    {
+      "reply": "  ",
+      "document": "{\"reply\": \"  \", \"tool_calls\": []}",
+      "sequences": [
+        {
+          "label": "size-5",
+          "chunks": [
+            "{\"rep",
+            "ly\": ",
+            "\"  \",",
+            " \"too",
+            "l_cal",
+            "ls\": ",
+            "[]}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        },
+        {
+          "label": "size-1",
+          "chunks": [
+            "{",
+            "\"",
+            "r",
+            "e",
+            "p",
+            "l",
+            "y",
+            "\"",
+            ":",
+            " ",
+            "\"",
+            " ",
+            " ",
+            "\"",
+            ",",
+            " ",
+            "\"",
+            "t",
+            "o",
+            "o",
+            "l",
+            "_",
+            "c",
+            "a",
+            "l",
+            "l",
+            "s",
+            "\"",
+            ":",
+            " ",
+            "[",
+            "]",
+            "}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        },
+        {
+          "label": "size-40",
+          "chunks": [
+            "{\"reply\": \"  \", \"tool_calls\": []}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        },
+        {
+          "label": "size-33",
+          "chunks": [
+            "{\"reply\": \"  \", \"tool_calls\": []}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        },
+        {
+          "label": "seeded-20261120",
+          "chunks": [
+            "{\"reply\": \"  \", \"tool_cal",
+            "ls\":",
+            " []}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        },
+        {
+          "label": "seeded-47424",
+          "chunks": [
+            "{\"r",
+            "epl",
+            "y\": \"  \", \"t",
+            "ool",
+            "_call",
+            "s\":",
+            " []}"
+          ],
+          "published": [],
+          "spoken": "",
+          "aborted": false,
+          "count": 0,
+          "spoken_text": ""
+        }
+      ]
+    }
+  ],
+  "hand_built": [
+    {
+      "label": "tool_calls_first",
+      "why": "the scanner aborts before any reply text exists",
+      "chunks": [
+        "{\"tool_calls\": [], \"reply\": \"Too late.\"}"
+      ],
+      "published": [],
+      "spoken": "",
+      "aborted": true,
+      "count": 0,
+      "spoken_text": ""
+    },
+    {
+      "label": "prose_then_document",
+      "why": "prose is published, then a document reveals tool calls",
+      "chunks": [
+        "Let me look. ",
+        "{\"tool_calls\": [], \"reply\": \"Later.\"}"
+      ],
+      "published": [],
+      "spoken": "",
+      "aborted": true,
+      "count": 0,
+      "spoken_text": ""
+    },
+    {
+      "label": "document_opens_then_tool_calls",
+      "why": "the abort lands after the document has opened",
+      "chunks": [
+        "{\"tool_calls\": []",
+        ", \"reply\": \"Never spoken.\"}"
+      ],
+      "published": [],
+      "spoken": "",
+      "aborted": true,
+      "count": 0,
+      "spoken_text": ""
+    },
+    {
+      "label": "half_a_document",
+      "why": "finish() on a document that never closed",
+      "chunks": [
+        "{\"reply\": \"First sentence arrives now. Se"
+      ],
+      "published": [
+        "First sentence arrives now.",
+        "Se"
+      ],
+      "spoken": "First sentence arrives now. Se",
+      "aborted": false,
+      "count": 2,
+      "spoken_text": "First sentence arrives now. Se"
+    },
+    {
+      "label": "empty_chunks",
+      "why": "a stream of nothing, which must not invent a sentence",
+      "chunks": [
+        "",
+        "",
+        ""
+      ],
+      "published": [],
+      "spoken": "",
+      "aborted": false,
+      "count": 0,
+      "spoken_text": ""
+    }
+  ],
+  "streamed": [
+    {
+      "reply": "Let me check that for you. It is forty-two.",
+      "spoken": "Let me check that for you.",
+      "prefix_length": 26,
+      "split": [
+        "It is forty-two.",
+        false
+      ],
+      "stripped": "It is forty-two."
+    },
+    {
+      "reply": "That is the whole thing.",
+      "spoken": "That is the whole thing.",
+      "prefix_length": 24,
+      "split": [
+        "",
+        false
+      ],
+      "stripped": ""
+    },
+    {
+      "reply": "Whole reply here.",
+      "spoken": "",
+      "prefix_length": 0,
+      "split": [
+        "Whole reply here.",
+        false
+      ],
+      "stripped": "Whole reply here."
+    },
+    {
+      "reply": "One two three.   Four five six.\nSeven eight nine.",
+      "spoken": "One two three. Four five six.",
+      "prefix_length": 31,
+      "split": [
+        "Seven eight nine.",
+        false
+      ],
+      "stripped": "Seven eight nine."
+    },
+    {
+      "reply": "Something entirely different was said instead.",
+      "spoken": "The beginning the user actually heard.",
+      "prefix_length": null,
+      "split": [
+        "Something entirely different was said instead.",
+        true
+      ],
+      "stripped": "Something entirely different was said instead."
+    },
+    {
+      "reply": "Anything at all.",
+      "spoken": "",
+      "prefix_length": 0,
+      "split": [
+        "Anything at all.",
+        false
+      ],
+      "stripped": "Anything at all."
+    },
+    {
+      "reply": "Let me check that now. The market is up three percent.",
+      "spoken": "Let me check that now.",
+      "prefix_length": 22,
+      "split": [
+        "The market is up three percent.",
+        false
+      ],
+      "stripped": "The market is up three percent."
+    },
+    {
+      "reply": "The market is up three percent.",
+      "spoken": "Let me check that now.",
+      "prefix_length": null,
+      "split": [
+        "The market is up three percent.",
+        true
+      ],
+      "stripped": "The market is up three percent."
+    },
+    {
+      "reply": "Unchanged reply.",
+      "spoken": "",
+      "prefix_length": 0,
+      "split": [
+        "Unchanged reply.",
+        false
+      ],
+      "stripped": "Unchanged reply."
+    },
+    {
+      "reply": "Let me check that now.",
+      "spoken": "Let me check that now.",
+      "prefix_length": 22,
+      "split": [
+        "",
+        false
+      ],
+      "stripped": ""
+    },
+    {
+      "reply": "",
+      "spoken": "",
+      "prefix_length": 0,
+      "split": [
+        "",
+        false
+      ],
+      "stripped": ""
+    },
+    {
+      "reply": null,
+      "spoken": null,
+      "prefix_length": 0,
+      "split": [
+        "",
+        false
+      ],
+      "stripped": ""
+    },
+    {
+      "reply": "  spaced reply  ",
+      "spoken": "spaced reply",
+      "prefix_length": 14,
+      "split": [
+        "",
+        false
+      ],
+      "stripped": ""
+    },
+    {
+      "reply": "abc",
+      "spoken": "abcd",
+      "prefix_length": null,
+      "split": [
+        "abc",
+        true
+      ],
+      "stripped": "abc"
+    },
+    {
+      "reply": "Partial match of the wor",
+      "spoken": "Partial match of the word",
+      "prefix_length": null,
+      "split": [
+        "Partial match of the wor",
+        true
+      ],
+      "stripped": "Partial match of the wor"
+    }
+  ]
+}
