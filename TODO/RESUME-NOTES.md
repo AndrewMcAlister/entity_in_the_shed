@@ -1,4 +1,4 @@
-# Resume Notes — 2026-11-12 (later same day)
+# Resume Notes — 2026-11-21 (slice 4f-1 committed)
 
 Rename this file with a `_DONE` suffix once Stage 9 closes (same time as PLAN-Rust-Clone.md), per principle 21.
 Update this file at every milestone: each stage-slice commit, and any decision
@@ -6,69 +6,53 @@ or discovery a resuming session would otherwise have to re-derive.
 
 ## Where we are
 
-- **SLICE-4f-1 IS IN PROGRESS, UNCOMMITTED, AND THE WORKSPACE DOES NOT BUILD RIGHT NOW.**
-  `Cargo.toml` has `members = ["crates/*"]`, `crates/shed-chat/Cargo.toml` exists, and
-  `crates/shed-chat/src/` is **empty** — no `lib.rs`. Any `cargo` command over the workspace fails
-  with `couldn't read crates/shed-chat/src/lib.rs` until the first module lands. That is the state
-  the 2026-11-20 session left it in (it was mid-way through writing the capture tool, at the
-  operator's request to stop and write these notes). If the gate has to be run for any other
-  reason, `crates/shed-chat/Cargo.toml` must be moved out of the way or given a stub `lib.rs`.
+- **SLICE 4f-1 IS COMMITTED** (`3298fee`, on `main`, 2026-11-21, on top of `df68519`, the crate
+  scaffold): the whole reply layer — `crates/shed-chat/src/{lib,reply_text,quality,document,
+  stream_scanner,splitter,streamed,publisher}.rs` plus seven integration test files, every one of
+  them driven by `tests/fixtures/*.json` captured from the running app. Gate green on the committed
+  tree: fmt, clippy `--workspace --all-targets --all-features -- -D warnings`, **670 Rust passed /
+  0 failed**, **250 JS passed**. The 670 includes 177 in shed-chat: quality 93, splitter 25,
+  stream_scanner 24, publisher 20, document 7, reply_text 2, lib units 6. The reference test files
+  hold 136 tests (78 `test_reply_utils`, 21 `test_sentence_splitter`, 20
+  `test_reply_stream_scanner`, 17 `test_reply_stream_publisher`) and all 136 are ported; the Rust
+  count is higher because the constant tables and the fixture-driven sweeps are each their own
+  test. `PublishFn` is re-exported from `lib.rs` for the publisher tests.
+  `docs/PARITY.md` carries the reply-layer divergence rows; `docs/GUARD_CATALOGUE.md` carries the
+  first two runtime-guard entries — reply completeness/usability and the prose tool-call envelope —
+  with their table rows flipped to **ported**.
+  **Next is 4f-2**: the reply *loop* around these pieces (the `run_agent` reply region, the turn
+  gate, the duplicate-event guard). `TODO/SLICE-4f-BRIEF.md` is the scoping brief for the split.
+  `origin/main` is at `df68519`, so `3298fee` and the notes commit that follows it are unpushed.
 
-  **Committed work is untouched.** `main` = `7c0cf3d` (docs only, on top of `dc74524` = 4e). Dirty
-  tree: `M Cargo.toml` (mine: two comments extended to name shed-chat for `fancy-regex` and
-  `serde_json`, principle 16), `M crates/shed-gates/src/layers.rs` (mine: the 9-edge `shed-chat`
-  entry replaced with `("shed-chat", &["shed-text"])` + a comment — the brief's rule is that the
-  map lists edges actually used, not edges a finished stage might want), `M How_To_Code.md` (the
-  operator's, leave out of any commit), untracked `TODO/RESUME-NOTES.md`, `crates/shed-chat/`,
-  `tools/`.
+  **Two real port bugs, both found by the fixtures and both fixed in `src/`** — the reason to let
+  the fixture win over a reading of the Python:
+  - `reply_text::clause_spacing` was transcribed with the wrong class
+    (`([,;:])(?=[A-Za-z])`); the source is `([,;:])(?=(?:["'(\[{])?[A-Za-z])`, so a comma before a
+    quote or bracket was not being spaced.
+  - `stream_scanner`'s `State::Fence` arm dropped the reference's `character.isspace()` test and
+    aborted on the space after ` ``` `, which killed **every** ` ```json\n{…}` reply. The scanner
+    fixtures are the only thing that caught it: the unit reading of the code looked fine.
 
-  **What exists on disk for 4f-1:**
-  - `crates/shed-chat/Cargo.toml` — deps `fancy-regex.workspace`, `serde_json.workspace`,
-    `shed-text = { path = "../shed-text" }`. Nothing else. No dev-deps yet; the integration tests
-    will need none beyond `serde_json` if the fixture reader lives in each test file.
-  - `crates/shed-chat/{src,tests,tests/fixtures}` — created, empty.
-  - `tools/capture_reply_fixtures.py` (~1,110 lines) — the D8 golden-fixture capture for all six
-    modules (reply_text, quality, document, stream_scanner, splitter, publisher). **Run; its six
-    fixtures are on disk and untracked like the rest of the slice.**
+  **Reading the reference app (`D:\Entity-In-The-Shed`, hyphen) is a trap.** `read` / `glob` /
+  `grep` against that path returned *fabricated* file contents throughout 4f-1 — plausible Python
+  that was not the file. The only trustworthy reads there are `python` run against a `.py` file and
+  `shutil.copyfile` into `C:\Users\AndrewBot\AppData\Local\Temp\opencode\`, which is where the
+  four reference test files and the verified line map live. The clone (`D:\Entity_In_The_Shed`,
+  underscore) is fine. The same session fabricated a crate name (`shed-support`; there is no such
+  crate — `py_repr` / `py_str` / `text_or_empty` are in `shed-text`) and fabricated `agent.py` line
+  citations, so every provenance comment in `src/` was re-derived against the real file. Trust the
+  brief's *paste* of the source; verify anything recalled from memory, including line numbers.
 
-  **How the tool honours the brief's rule** ("the pure Python module in a subprocess, never import
-  `agent.py`, never boot the app"): `utils/reply.py` is imported (it imports `json`, `re`,
-  `typing` — nothing else, so no server, no files); `agent.py:5504-6202` is read out of the file
-  and `compile`d + `exec`'d into a hand-built namespace (`json`, `re`, `ast`, `app` = a stub whose
-  `logger.warning` is recorded into a list, `PROTECTED_TEXT_PATTERN`,
-  `COMMON_NON_TERMINAL_ABBREVIATIONS`). Before exec it computes the range's free names and
-  **refuses to run** if any name the namespace does not supply — so a wrong range or a missed
-  dependency is a loud message, not a silent `NameError` mid-capture. Every warning the reference
-  implementation logs is captured into the fixture alongside the return value, so the Rust
-  `tracing::warn!` calls have something to be tested against.
-
-  **Five names the pasted range reads but does not define** (the gap found on 2026-11-20; the
-  brief mentions none of them, and the `symtable` free-name check in the capture tool is what
-  turned up the last three):
-  - `PROTECTED_TEXT_PATTERN` — `utils/text.py:294`. Imported from there (`utils/text.py` imports
-    only `re`). `static/app-helpers.js:1490` carries the same pattern as
-    `SPEECH_PROTECTED_TEXT_PATTERN`, which is the second opinion that the transcription is right.
-  - `extract_reply_segments`, `strip_tool_call_envelope`, `tool_calls_in_envelope` — all three are
-    in `utils/reply.py` and are called from inside the range (`settle_prose_tool_calls` and
-    `ReplyStreamPublisher`). `agent.py` imports the module, not the names, so they reach the range
-    as globals. **In the Rust port these are `shed-chat`'s own `quality` module** — one crate, so
-    the layer map gains nothing, but `document.rs` and `publisher.rs` must `use crate::quality::…`
-    and the module wiring inside the crate has to put `quality` below `document`.
-  - `COMMON_NON_TERMINAL_ABBREVIATIONS` — `agent.py:283`, **outside** the pasted range, read by
-    `normalize_reply_text` and by `SentenceSplitter._is_non_terminal_period`. Lifted with
-    `ast.parse` + `ast.literal_eval` over the module's top-level assignments: the module is never
-    imported and never exec'd, so no name in it runs. It is written into `splitter.json` as
-    `common_non_terminal_abbreviations` (sorted) so the Rust port reads a captured constant rather
-    than one typed from memory. `shed-text` has no abbreviation list and no protected-text
-    pattern, so both must arrive through the fixture — do not retype them.
-
-  **The tool has been run: all six fixtures are on disk** (2026-11-20, ~105 KB total,
-  `crates/shed-chat/tests/fixtures/`): `reply_text.json` (3.4 KB), `quality.json` (18 KB),
-  `document.json` (20 KB), `stream_scanner.json` (29 KB), `splitter.json` (53 KB),
-  `publisher.json` (27 KB). Re-running `python tools\capture_reply_fixtures.py` regenerates them
-  identically; it is idempotent and takes 0.4 s. It imports `utils.reply` / `utils.text`, exec's
-  the `agent.py` range into the stub namespace, and touches nothing else — no server, no port 5005,
-  no storage root.
+  **The verified line map** (re-derived, use it instead of re-searching): `agent.py` —
+  `COMMON_NON_TERMINAL_ABBREVIATIONS` 283-296, `normalize_reply_text` 5504-5547,
+  `markdown_to_ssml` 5550-5577, `JsonReplyStreamScanner` 5592-5799, `_DOTTED_ACRONYM_RE` 5809,
+  `SentenceSplitter` 5819-5939 (its only `re` call is the trailing-token search at 5905),
+  `_streamed_prefix_length` 5942-5960, `split_reply_after_stream` 5963-5976,
+  `strip_streamed_prefix` 5979-5985, `ReplyStreamPublisher` 5988-6031, `REPLY_DOCUMENT_KEYS` 6037,
+  `_parse_structured_candidate` 6040-6068, `_parse_model_reply_document` 6071-6136 (regex fallbacks
+  6118-6134), `reply_without_prose_tool_calls` 6139-6146, `settle_prose_tool_calls` 6149-6191,
+  `parse_model_json_content` 6194-6202. `utils/reply.py` — constants 16/25/28-46/241-244/250,
+  functions 49-389 (`_is_duplicate_event` 384-389); `agent.py:157` imports all 14 public names.
 
   **What the fixtures already answer** (read them, but these were checked and re-deriving them
   costs a session):
@@ -76,96 +60,78 @@ or discovery a resuming session would otherwise have to re-derive.
   - `SentenceSplitter::MIN_SENTENCE_CHARS` = **12**, `MAX_SENTENCE_CHARS` = **240**, and
     `COMMON_NON_TERMINAL_ABBREVIATIONS` is **12 entries, stored lower-cased with no trailing dot**:
     `dr, e.g, etc, i.e, jr, mr, mrs, ms, …` (so the lookup compares a lower-cased word with the
-    dot stripped — port that exactly, it is why `Mr.` is not a terminator).
+    dot stripped — ported exactly, it is why `Mr.` is not a terminator).
   - **The scanner is chunk-independent**: `same_as_whole` is true for all 26 documents × 4 chunk
-    sequences, including one-character-at-a-time and the two seeded splits. So the Rust port may be
-    tested against any chunking and the assertion is meaningful, not a tautology.
-  - **An abort is terminal**: after it, `feed()` returns `""` forever and `reply` stays empty
-    (`abort_is_terminal` in `stream_scanner.json`).
+    sequences, including one-character-at-a-time and the two seeded splits, so the Rust
+    chunk-independence assertion is meaningful, not a tautology.
+  - **An abort is terminal**: after it, `feed()` returns `""` forever and `reply` stays empty.
   - **The publisher never speaks prose that precedes a JSON document.** `["Let me look. ",
     '{"tool_calls": [], "reply": "Later."}']` publishes **nothing** and aborts — the leading prose
     is still inside the 256-char preamble window when the `{` arrives, so it is swallowed. The Rust
     port must not "helpfully" flush the preamble on abort.
   - **`finish()` on a half-written document flushes a mid-word fragment**: cutting
     `{"reply": "First sentence arrives now. Second one is later on.", …}` in half publishes
-    `["First sentence arrives now.", "Se"]`. That is reference behaviour, pinned in
-    `publisher.json` → `hand_built` → `half_a_document`; reproduce it, do not clean it up.
+    `["First sentence arrives now.", "Se"]`. Reference behaviour, pinned in `publisher.json` →
+    `hand_built` → `half_a_document`; do not clean it up.
   - `_streamed_prefix_length` returns `None` when the spoken text is not a prefix of the reply
-    (that `None` is what drives `split_reply_after_stream`'s `replaced` flag), and it compares
+    (that `None` drives `split_reply_after_stream`'s `replaced` flag), and it compares
     **whitespace-normalised**: `"One two three.   Four five six.\nSeven eight nine."` against
     `"One two three. Four five six."` gives 31, not 27.
   - `settle_prose_tool_calls` logged **no** warnings for any of the 33 captured documents — the
     warning path needs a document that carries tool calls *outside* the JSON envelope (the
-    `{tool_calls}…{/tool_calls}` prose form). `document.json` has those shapes; if the Rust port's
-    `tracing::warn!` never fires either, check that case first.
-
-  **The five defects this file's previous version listed here are fixed** (2026-11-20): the
-  free-name check now uses `symtable` (an `ast` walk reports every parameter as unresolved, and
-  `Symbol.get_type()` is 3.13+ while this box runs 3.12.10, so it uses the `is_global()` /
-  `is_assigned()` predicates); `sys.path` is set at module scope; `SCAN_DOCUMENTS`' overlong case
-  is a marker expanded inside `capture_scanner` (it read `MAX_PREAMBLE_CHARS` at import time); the
-  teaser word-boundary cases capture the real answer instead of a hardcoded `True`/`False`; and the
-  `hand_built` publisher block is a readable `[{label, why, chunks, …publish_with(chunks)}]` list
-  rather than nested lambdas. **The `symtable` check is what found the three `utils.reply`
-  functions the range calls** — see below. Keep it: it is the only thing standing between a
-  future edit of this script and a silent `NameError` mid-capture.
+    `{tool_calls}…{/tool_calls}` prose form). `document.json` has those shapes; the Rust guard
+    warns there too, and the fixture's `warnings` rows are deliberately **not** asserted (they are
+    logger payloads; `shed-chat` emits the same text through `tracing::warn!`).
 
   **Decisions already taken, not to be re-litigated:**
-  - **`fancy-regex`, not `regex`.** The brief's dependency list ("`fancy-regex` only if a pattern
-    needs lookaround — otherwise `regex`") is impossible as written for these nine patterns:
-    `normalize_reply_text`'s comma rule is `([,;:])(?=(?:["'([{])?[A-Za-z])` (lookahead),
-    `markdown_to_ssml` uses named groups inside a substitution callback, and the sentence splitter
-    uses lazy `*?`. `fancy-regex` is already a workspace dependency (added for `shed-models`), so
-    this adds no new resolution risk (§10 risk 10). Justify it in the commit message, per
-    principle 16.
-  - **Chunk sequences are seeded, not ad hoc.** The brief demands "the whole document at once, one
-    character at a time, and two arbitrary splits from a seeded RNG". The tool cuts at
-    `random.Random(seed).sample(...)` boundaries with seeds `20261120` and `47424`, so a fixture
-    that pins a split landing inside a `\uXXXX` escape pins it identically forever. The splitter
-    additionally re-splits every case at fixed chunk sizes 1, 2, 3, 5, 7, 30, 40, 50, 100, 1000.
-  - **Per-chunk state must be recorded, not just the joined text.** The brief's rule is that a
-    fixture records what a future session could not regenerate — here that is the *interleaving* of
-    `feed()` output and `flush()` output, and the abort state. `scan_with` / `split_with` /
-    `publish_with` record `reply` / `done` / `aborted`, per-`feed` sentence groups, `flush`, and a
-    second `flush` (which must be empty), plus `same_as_whole` per sequence.
-  - **`settle_prose_tool_calls`'s `app.logger.warning`** → `tracing::warn!` in the Rust port
-    (`shed-conversation` already uses tracing, so it is not a novel dependency for the workspace).
-    The fixture carries the message text and its arguments so the Rust call can be checked to carry
-    the same facts.
-  - **`test_glm4.py` / `test_glm4_followup.py` are not fixture modules.** They are live-engine
-    scripts that hit a running model; nothing to port as unit tests. The one usable artefact is
-    their document shape, which is in `document.json`:
-    `{"reply": "Fetching positions...", "tool_calls": [{"tool": "get_positions", "args": {"brokerId": 1}}]}`.
-    Say that in the commit message rather than pretending 136 tests covers them.
+  - **`fancy-regex`, not `regex`.** `normalize_reply_text`'s comma rule is a lookahead,
+    `markdown_to_ssml` uses named groups inside a substitution callback, and the splitter uses lazy
+    `*?`. `fancy-regex` is already a workspace dependency, so this adds no resolution risk.
+  - **Chunk sequences are seeded, not ad hoc** (`random.Random.sample` boundaries, seeds
+    `20261120` and `47424`), and the splitter re-splits every case at fixed chunk sizes 1, 2, 3, 5,
+    7, 30, 40, 50, 100, 1000 — so a split landing inside a `\uXXXX` escape is pinned identically
+    forever.
+  - **Per-chunk state is recorded, not just the joined text**: `reply` / `done` / `aborted`,
+    per-`feed` sentence groups, `flush`, a second `flush` (which must be empty), and `same_as_whole`
+    per sequence.
+  - **`app.logger.warning` → `tracing::warn!`**, and the fixture carries the message text so the
+    Rust call can be checked to carry the same facts.
+  - **`test_glm4.py` / `test_glm4_followup.py` are live-engine scripts**, not fixture modules; the
+    one usable artefact is their document shape, which is in `document.json`.
+  - **The fixture loader is shared** — `crates/shed-chat/tests/common/mod.rs` (`fixture`, `cases`,
+    `field`, `value`, `input_text`, `expected_bool`, `expected_text`, `text_list`,
+    `opt_text_list`, `chunks`). The earlier note saying "one `fn load()` per file" is superseded:
+    `mod common;` per test binary is one parse per binary and it removed a dozen copies.
+  - **Test naming**: the reference name verbatim minus `test_`, in one flat file per module; a name
+    that collides across the reference's classes takes that class as a prefix; fixture-driven tests
+    are `fixture_<section>` with no crate or module prefix.
+  - **Python `None` may be fed to the Rust `&str` / `&[Value]` signatures as `""` / `&[]`** —
+    verified live for all 14 quality functions and both stream helpers, because every one of them
+    falsiness-tests or `str()`s its argument first.
+  - `tools/capture_reply_fixtures.py` is the **authoritative definition of every fixture field**;
+    re-running it is diff-clean (`json.dumps(indent=2, ensure_ascii=False)`), so it is also the way
+    to answer "does the reference really do that" without booting anything.
 
-  **What is still to do, in order:**
-  1. ~~Capture the fixtures.~~ Done — read them and let them win over any expectation written from
-     reading the Python. `splitter.json` is the big one (53 KB, 24 cases × 12 chunkings); the
-     fixture reader for each test file should be a small `fn load() -> Value` inside that test file
-     rather than a shared `mod fixture`, because integration tests are separate crates and a
-     `#[path]`-included module duplicates the parse anyway.
-  2. Write the eight modules: `lib.rs`, `reply_text.rs`, `quality.rs`, `document.rs`,
-     `stream_scanner.rs`, `splitter.rs`, `streamed.rs`, `publisher.rs`. `lib.rs` must exist before
-     any cargo command works again.
-  3. Seven integration test files + one fixture-driven test per file; **136 ported tests**
-     (78 `test_reply_utils`, 21 `test_sentence_splitter`, 20 `test_reply_stream_scanner`,
-     17 `test_reply_stream_publisher`) — the Python sources are read-only at
-     `D:\Entity-In-The-Shed\tests\` and were read in full on 2026-11-20.
-  4. Gate: fmt, clippy `-D warnings`, `cargo test` (**≥136 new passing**; the workspace total was
-     **493** at `dc74524`, so expect ~629), `npm test` (250). Then commit
-     `Stage 4 (part 2f-1): the reply layer` — excluding `How_To_Code.md`.
-  5. `docs/PARITY.md` and `docs/GUARD_CATALOGUE.md` rows for the reply layer; the duplicate-event
-     guard (`_is_duplicate_event`) and the reply-recovery guards are Stage-4 rows that can turn
-     **ported** here — the `shed-gates::guards` honesty gate is waiting for the first of them.
+  **Documented rather than fixed** (all four are rows in `docs/PARITY.md`):
+  - A Python **set inside a reply document** serialises as a JSON array here. `Value` has no
+    unserialisable member, so the literal parser renders it as an array; it cannot even be a
+    fixture, because `json.dumps` raises `TypeError: Object of type set is not JSON serializable`.
+  - The regex `\s` gap: Rust `\s` does not match U+001C–U+001F, Python's does.
+  - `py_digit` implements `str.isdigit`, not `is_numeric`; they differ only for characters like `½`.
+  - The `shed-gates::guards` catalogue-honesty check is **deferred, not written**. The catalogue's
+    intro says the check is due now that 4f-1 has ported the first runtime guards, and its table row
+    stays `pending (first guard)` — that is the honest state, and the check itself belongs with the
+    slice that owns the gate binary.
 
-  **Watch-outs carried into 4f-1:** `too-many-lines-threshold = 50` counts *code* lines, and
-  `normalize_reply_text` + `SentenceSplitter.feed` will both want splitting into helpers rather
-  than an `#[allow]`; Python `[:n]` slices count **code points** (`chars().take(n)`, never byte
-  indexing) — this matters most in the scanner's `\uD83D\uDE00` surrogate-pair handling, where a
-  Rust `char` is already a code point but the *escape* is 12 bytes of input; `rustfmt.toml` is
-  `max_width = 100` with default `struct_variant_width = 35`, so run `cargo fmt --all` after
-  writing any enum with struct variants; and a test binary that declares `mod fixture;` needs
-  `use crate as _;`.
+  **Watch-outs that stayed true:** `too-many-lines-threshold = 50` counts *code* lines, so
+  `normalize_reply_text` and `SentenceSplitter::feed` are split into helpers rather than given an
+  `#[allow]`; Python `[:n]` slices count **code points** — decisive in the scanner's surrogate-pair
+  escape handling, where the `char` is one code point but the *escape* is 12 bytes of input;
+  `rustfmt.toml` is `max_width = 100`. Shell notes for this box: run cargo through
+  `cmd /c "cargo … 2>&1"` and confirm the exit status with a trailing `&& echo OK || echo FAILED`;
+  PowerShell mangles `$_` and nested quotes inside `cmd /c`, so `findstr` takes only single-word
+  patterns and anything with a space goes through a redirected file; multi-line commit messages need
+  `git commit -F <file>`; `> file` from PowerShell writes UTF-16.
 
 - **SLICE 4e is COMMITTED and pushed** (`dc74524`, on `main`, 2026-11-20): `src/housekeeping.rs`
   (1448 lines — the strict record loader, the two transcripts, the summary and profile calls
@@ -474,3 +440,4 @@ gate waits for.
 - `bins/shed-server/src/main.rs` — boot order, `--smoke`, `base_dir(args)`.
 - `crates/shed-config/src/config.rs` — `AppConfig::load_from`, DEFAULT_STORAGE_ROOT.
 - Reference snapshot kept: `%TEMP%\opencode\agent_at_7864f77.py`.
+
