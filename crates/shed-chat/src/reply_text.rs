@@ -16,51 +16,59 @@ use shed_text::text_or_empty;
 
 use crate::COMMON_NON_TERMINAL_ABBREVIATIONS;
 
-/// The six `re` expressions of these two functions, transcribed verbatim.
-///
-/// Python's flags become a `(?i)` / `(?is)` prefix, which is what those flags
-/// mean to `re` — the whole pattern is case-insensitive — and keeps each
-/// pattern a single string the reader can hold next to the source. They are
-/// compiled through the crate's `pattern!`; the two that cannot compile are
-/// the interesting ones, and each carries its own note below.
+// The six `re` expressions of these two functions, transcribed verbatim.
+//
+// Python's flags become a `(?i)` / `(?is)` prefix, which is what those flags
+// mean to `re` — the whole pattern is case-insensitive — and keeps each
+// pattern a single string the reader can hold next to the source. They are
+// compiled through the crate's `pattern!`; the two that cannot compile are
+// the interesting ones, and each carries its own note below.
 
-/// `utils/text.py:294`'s `PROTECTED_TEXT_PATTERN` (`re.IGNORECASE`): the spans
-/// no normalisation may rewrite — a URL or an email address is data, not
-/// something to say differently.
-///
-/// The client mirrors this one by hand (`SPEECH_PROTECTED_TEXT_PATTERN` in
-/// `app-helpers.js`), so a drift here would let the two sides disagree about
-/// which parts of a reply are words.
+// `utils/text.py:294`'s `PROTECTED_TEXT_PATTERN` (`re.IGNORECASE`): the spans
+// no normalisation may rewrite — a URL or an email address is data, not
+// something to say differently.
+//
+// The client mirrors this one by hand (`SPEECH_PROTECTED_TEXT_PATTERN` in
+// `app-helpers.js`), so a drift here would let the two sides disagree about
+// which parts of a reply are words.
 pattern!(
     protected_text,
     r"(?i)https?://[^\s,]+|www\.[^\s,]+|\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b"
 );
-/// `agent.py`'s clause spacing: `([,;:])(?=(?:["'([{])?[A-Za-z])`.
-///
-/// The lookahead is why this crate uses `fancy-regex` — `regex`'s RE2 cannot
-/// express it, and this one cannot simply be dropped: without it a comma that
-/// the model wrote tight against the next word is spoken as one word.
-pattern!(clause_spacing, r"([,;:])(?=(?:[\"'([{])?[A-Za-z])");
-/// `agent.py`'s sentence spacing, with the three named groups the callback
-/// reads (`token`, `punct`, `next`) kept as named groups for the same reason.
-///
-/// `next` matches a single letter, not a word: `re.sub` resumes after the
-/// match, so a run of two stops — `No.Say it.` — only ever gains the spaces the
-/// first one asks for. `test_reply_utils.py` pins that, which is why the group
-/// is not widened to `[A-Za-z]+`.
+// `agent.py`'s clause spacing: `([,;:])(?=(?:["'([{])?[A-Za-z])`.
+//
+// The lookahead is why this crate uses `fancy-regex` — `regex`'s RE2 cannot
+// express it, and this one cannot simply be dropped: without it a comma that
+// the model wrote tight against the next word is spoken as one word.
+//
+// The `[` is escaped where Python leaves it bare. Inside a character class
+// `re` reads an unmatched `[` as itself, but `fancy-regex`'s class parser
+// rejects it outright, and `pattern!` turns a rejected compile into `None` —
+// which every caller reads as "no match", so an unescaped copy of this pattern
+// would quietly stop spacing clauses at all rather than fail to build. Only
+// `[` needs it — the `(` and `{` of the same class are literal to
+// `fancy-regex`, exactly as they are to `re`.
+pattern!(clause_spacing, r#"([,;:])(?=(?:["'(\[{])?[A-Za-z])"#);
+// `agent.py`'s sentence spacing, with the three named groups the callback
+// reads (`token`, `punct`, `next`) kept as named groups for the same reason.
+//
+// `next` matches a single letter, not a word: `re.sub` resumes after the
+// match, so a run of two stops — `No.Say it.` — only ever gains the spaces the
+// first one asks for. `test_reply_utils.py` pins that, which is why the group
+// is not widened to `[A-Za-z]+`.
 pattern!(
     sentence_spacing,
-    r"(?P<token>(?:__PROTECTED_TEXT_\d+__|\b[A-Za-z0-9][A-Za-z0-9.']{0,15}))(?P<punct>[.?!])(?:[ \t]+)?(?P<next>(?:[\"')\]]+[ \t]*)?[A-Za-z])"
+    r#"(?P<token>(?:__PROTECTED_TEXT_\d+__|\b[A-Za-z0-9][A-Za-z0-9.']{0,15}))(?P<punct>[.?!])(?:[ \t]+)?(?P<next>(?:["')\]]+[ \t]*)?[A-Za-z])"#
 );
-/// `markdown_to_ssml`'s three substitutions, in the order it applies them.
-///
-/// All three are lazy (`+?`), which is the other RE2 exclusion: `"**a*b*c**"`
-/// turns into two moderate emphases inside the literal asterisks the first
-/// pattern could not match, and only laziness makes it so.
+// `markdown_to_ssml`'s three substitutions, in the order it applies them.
+//
+// All three are lazy (`+?`), which is the other RE2 exclusion: `"**a*b*c**"`
+// turns into two moderate emphases inside the literal asterisks the first
+// pattern could not match, and only laziness makes it so.
 pattern!(strong_emphasis, r"\*\*([^*]+?)\*\*");
-/// `markdown_to_ssml`'s second pass: `*text*` → moderate emphasis.
+// `markdown_to_ssml`'s second pass: `*text*` → moderate emphasis.
 pattern!(moderate_emphasis, r"\*([^*]+?)\*");
-/// `markdown_to_ssml`'s third pass: `_text_` → reduced pitch.
+// `markdown_to_ssml`'s third pass: `_text_` → reduced pitch.
 pattern!(softer_prosody, r"_([^_]+?)_");
 
 /// `agent.py`'s `normalize_reply_text(value)`.
@@ -84,12 +92,22 @@ pattern!(softer_prosody, r"_([^_]+?)_");
 /// 6. the placeholders are put back, in the order they were taken out.
 #[must_use]
 pub fn normalize_reply_text(value: &Value) -> String {
-    let text = text_or_empty(Some(value));
+    normalize_reply_str(&text_or_empty(Some(value)))
+}
+
+/// The same pass over text that is already a `str`.
+///
+/// The document parser has already read the reply out of a JSON object, so
+/// going through a `Value` only to spell `str(value or "")` again would be a
+/// lie about what it does — and the source's `str()` there is a no-op on the
+/// string it just built.
+#[must_use]
+pub(crate) fn normalize_reply_str(text: &str) -> String {
     if text.is_empty() {
         return String::new();
     }
 
-    let written = expand_written_breaks(&text);
+    let written = expand_written_breaks(text);
     let broken = collapse_breaks(&written);
     let (protected, placeholders) = protect_long_text(&broken);
     let spaced = space_before_clauses(&protected);
@@ -134,7 +152,9 @@ pub fn markdown_to_ssml(text: &str) -> String {
 /// These are *written* breaks — a backslash and an `n` in the text — and the
 /// CRLF spelling is replaced first so it does not become a stray backslash-r.
 fn expand_written_breaks(text: &str) -> String {
-    text.replace(r"\r\n", "\n").replace(r"\n", "\n").replace(r"\r", "\n")
+    text.replace(r"\r\n", "\n")
+        .replace(r"\n", "\n")
+        .replace(r"\r", "\n")
 }
 
 /// Pass two, both halves: real `\r\n` and `\r` become `\n`, then a run of three

@@ -1227,6 +1227,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "shed-chat"
+version = "0.1.0"
+dependencies = [
+ "fancy-regex",
+ "serde_json",
+ "shed-text",
+ "tracing",
+]
+
+[[package]]
 name = "shed-config"
 version = "0.1.0"
 dependencies = [

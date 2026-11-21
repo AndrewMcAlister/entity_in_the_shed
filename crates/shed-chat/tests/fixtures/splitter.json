@@ -88,6 +88,25 @@
           "Are you sure?"
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "Let me check that for you. It",
+          " is f",
+          "orty",
+          "-two! Are you sure?"
+        ],
+        "47424": [
+          "Let m",
+          "e chec",
+          "k that for you.",
+          " It is fo",
+          "r",
+          "ty-tw",
+          "o! Are",
+          " you ",
+          "sure?"
+        ]
+      },
       "feed_groups": [
         [
           "Let me check that for you."
@@ -173,6 +192,25 @@
           "Third one to finish."
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "First sentence here. Second s",
+          "enten",
+          "ce t",
+          "here. Third one to finish."
+        ],
+        "47424": [
+          "First",
+          " sente",
+          "nce here. Secon",
+          "d sentenc",
+          "e",
+          " ther",
+          "e. Thi",
+          "rd on",
+          "e to finish."
+        ]
+      },
       "feed_groups": [
         [
           "First sentence here."
@@ -245,6 +283,25 @@
           "He agreed with me."
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "I spoke to Mr. Smith about it",
+          ". He ",
+          "agre",
+          "ed with me."
+        ],
+        "47424": [
+          "I spo",
+          "ke",
+          " to ",
+          "Mr. Smith about",
+          " it. He a",
+          "g",
+          "reed ",
+          "with m",
+          "e."
+        ]
+      },
       "feed_groups": [
         [
           "I spoke to Mr. Smith about it."
@@ -312,6 +369,25 @@
         "47424": [
           "The U.S. market is up today.",
           "That is good news."
+        ]
+      },
+      "seeded_chunks": {
+        "20261120": [
+          "The U.S. market is up today. ",
+          "That ",
+          "is g",
+          "ood news."
+        ],
+        "47424": [
+          "The",
+          " U",
+          ".S",
+          ". ma",
+          "rket is up toda",
+          "y. That i",
+          "s",
+          " good",
+          " news."
         ]
       },
       "feed_groups": [
@@ -383,6 +459,25 @@
           "That matters."
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "The value is 3.5 percent high",
+          "er. T",
+          "hat ",
+          "matters."
+        ],
+        "47424": [
+          "The",
+          " v",
+          "al",
+          "ue i",
+          "s 3.5 percent h",
+          "igher. Th",
+          "a",
+          "t mat",
+          "ters."
+        ]
+      },
       "feed_groups": [
         [
           "The value is 3.5 percent higher."
@@ -450,6 +545,25 @@
         "47424": [
           "We are on version 2.",
           "It works well enough."
+        ]
+      },
+      "seeded_chunks": {
+        "20261120": [
+          "We are on version 2. It works",
+          " well",
+          " eno",
+          "ugh."
+        ],
+        "47424": [
+          "We ",
+          "ar",
+          "e ",
+          "on v",
+          "ersion 2. It wo",
+          "rks well ",
+          "e",
+          "nou",
+          "gh."
         ]
       },
       "feed_groups": [
@@ -534,6 +648,25 @@
           "Sit down."
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "Well now then... that is a lo",
+          "ng st",
+          "ory ",
+          "indeed. Sit down."
+        ],
+        "47424": [
+          "Well ",
+          "now th",
+          "en... that is a",
+          " long sto",
+          "r",
+          "y ind",
+          "eed. S",
+          "it do",
+          "wn."
+        ]
+      },
       "feed_groups": [
         [
           "Well now then..."
@@ -591,6 +724,25 @@
         ],
         "47424": [
           "Ha. Yes. That is very funny indeed."
+        ]
+      },
+      "seeded_chunks": {
+        "20261120": [
+          "Ha. Yes. That is very fun",
+          "ny i",
+          "ndeed",
+          "."
+        ],
+        "47424": [
+          "Ha",
+          ". ",
+          "Y",
+          "es. Th",
+          "at is ",
+          "ve",
+          "ry funn",
+          "y in",
+          "deed."
         ]
       },
       "feed_groups": [],
@@ -656,6 +808,25 @@
         "47424": [
           "She said {somber}I am sorry{/somber} to hear it.",
           "Then she left."
+        ]
+      },
+      "seeded_chunks": {
+        "20261120": [
+          "She said {somber}I am sorry{/",
+          "sombe",
+          "r} t",
+          "o hear it. Then she left."
+        ],
+        "47424": [
+          "She s",
+          "aid {s",
+          "omber}I am sorr",
+          "y{/somber",
+          "}",
+          " to h",
+          "ear it",
+          ". The",
+          "n she left."
         ]
       },
       "feed_groups": [
@@ -727,6 +898,25 @@
           "[the kettle whistles. nobody moves] Then he spoke again."
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "He paused for a moment. [the kettle whistles. nobody move",
+          "s] Then he",
+          " spoke a",
+          "gain."
+        ],
+        "47424": [
+          "He pa",
+          "used ",
+          "for",
+          " a momen",
+          "t. [the kettle whistles. nobody",
+          " moves] Then he s",
+          "po",
+          "ke",
+          " again."
+        ]
+      },
       "feed_groups": [
         [
           "He paused for a moment."
@@ -794,6 +984,25 @@
         "47424": [
           "It rained all week.",
           "(which is normal here. everyone knows it) We stayed in."
+        ]
+      },
+      "seeded_chunks": {
+        "20261120": [
+          "It rained all week. (which is normal here. everyon",
+          "e knows",
+          " it) We st",
+          "ayed in."
+        ],
+        "47424": [
+          "It ra",
+          "ined ",
+          "all",
+          " week. (",
+          "which is normal here. everyone ",
+          "knows it) We sta",
+          "y",
+          "ed",
+          " in."
         ]
       },
       "feed_groups": [
@@ -865,6 +1074,25 @@
           "(which is normal here. everyone knows it"
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "It rained all week. (which is",
+          " norm",
+          "al h",
+          "ere. everyone knows it"
+        ],
+        "47424": [
+          "It ra",
+          "ined a",
+          "ll week. (which",
+          " is norma",
+          "l",
+          " here",
+          ". ever",
+          "yone ",
+          "knows it"
+        ]
+      },
       "feed_groups": [
         [
           "It rained all week."
@@ -932,6 +1160,25 @@
         "47424": [
           "He was *very. truly. annoyed* about it.",
           "We noticed."
+        ]
+      },
+      "seeded_chunks": {
+        "20261120": [
+          "He was *very. truly. annoyed*",
+          " abou",
+          "t it",
+          ". We noticed."
+        ],
+        "47424": [
+          "He wa",
+          "s ",
+          "*ver",
+          "y. truly. annoy",
+          "ed* about",
+          " ",
+          "it. W",
+          "e noti",
+          "ced."
         ]
       },
       "feed_groups": [
@@ -1003,6 +1250,25 @@
           "And then some text"
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "A complete sentence here. And",
+          " then",
+          " som",
+          "e text"
+        ],
+        "47424": [
+          "A c",
+          "om",
+          "pl",
+          "ete ",
+          "sentence here. ",
+          "And then ",
+          "s",
+          "ome t",
+          "ext"
+        ]
+      },
       "feed_groups": [
         [
           "A complete sentence here."
@@ -1059,6 +1325,25 @@
           "Just one sentence now."
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "Just one senten",
+          "ce",
+          " n",
+          "ow."
+        ],
+        "47424": [
+          "J",
+          "us",
+          "t",
+          " o",
+          "ne sent",
+          "en",
+          "ce ",
+          "n",
+          "ow."
+        ]
+      },
       "feed_groups": [],
       "flush": [
         "Just one sentence now."
@@ -1084,6 +1369,22 @@
       "seeded": {
         "20261120": [],
         "47424": []
+      },
+      "seeded_chunks": {
+        "20261120": [
+          "  ",
+          " \n",
+          " ",
+          " "
+        ],
+        "47424": [
+          " ",
+          " ",
+          " ",
+          "\n",
+          " ",
+          " "
+        ]
       },
       "feed_groups": [],
       "flush": [],
@@ -1146,6 +1447,25 @@
         "47424": [
           "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
           "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ]
+      },
+      "seeded_chunks": {
+        "20261120": [
+          "This sentence runs on and on, and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on an",
+          "d on and on and on and on and on and o",
+          "n and on and on and on and on and ",
+          "on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "47424": [
+          "This sentence runs on and on, and on an",
+          "d on and on and on and on and on and on and",
+          " on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and",
+          " on and on and on and on and on and on and on and on and on and on ",
+          "and on",
+          " and on and on and on and on and on and on ",
+          "and on and on and on and on and on and on and on and",
+          " on and on and on and on and on and on",
+          " and on and on and on and on and on and finally stops"
         ]
       },
       "feed_groups": [
@@ -1228,6 +1548,25 @@
           "First clause here;",
           "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
           "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ]
+      },
+      "seeded_chunks": {
+        "20261120": [
+          "First clause here; and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on",
+          " and on and on and on and on and on an",
+          "d on and on and on and on and on a",
+          "nd on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and finally stops"
+        ],
+        "47424": [
+          "First clause here; and on and on and on",
+          " and on and on and on and on and on and on ",
+          "and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on and on ",
+          "and on and on and on and on and on and on and on and on and on and ",
+          "on and",
+          " on and on and on and on and on and on and ",
+          "on and on and on and on and on and on and on and on ",
+          "and on and on and on and on and on and",
+          " on and on and on and on and finally stops"
         ]
       },
       "feed_groups": [
@@ -1341,6 +1680,25 @@
           "word word word word word word word word word word word"
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word ",
+          "word word word word word word word word word word word word word word word wo",
+          "rd word word word word word word word word word word word word word",
+          " word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word "
+        ],
+        "47424": [
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word wor",
+          "d word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word ",
+          "word word word word word word word word word word word word word word word word word word word word word word word word word word word ",
+          "word word wo",
+          "rd word word word word word word word word word word word word word word word word wo",
+          "rd word word word word word word word word word word word word word word word word word word word word wo",
+          "rd word word word word word word word word word word word word word word wor",
+          "d word word word word word word word word word word word word word word word word word word word word word word ",
+          "word word word word word word word word word word word word "
+        ]
+      },
       "feed_groups": [
         [
           "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word"
@@ -1432,6 +1790,25 @@
           "Three."
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "  One thing here.   Two thing",
+          "s the",
+          "re! ",
+          " Three.  "
+        ],
+        "47424": [
+          "  O",
+          "ne",
+          " t",
+          "hing",
+          " here.   Two th",
+          "ings ther",
+          "e",
+          "!  Th",
+          "ree.  "
+        ]
+      },
       "feed_groups": [
         [
           "One thing here."
@@ -1517,6 +1894,25 @@
           "Anyway, that is the lot."
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "Right, let me check that for you. The U.S. market is up 3",
+          ".5 percent",
+          ", which ",
+          "is good news... Anyway, that is the lot."
+        ],
+        "47424": [
+          "Right, let",
+          " me check t",
+          "hat for you. The U.S. market is",
+          " up 3.5 percent, ",
+          "wh",
+          "ich is goo",
+          "d news... Any",
+          "way, that ",
+          "is the lot."
+        ]
+      },
       "feed_groups": [
         [
           "Right, let me check that for you."
@@ -1589,6 +1985,25 @@
           "We noticed."
         ]
       },
+      "seeded_chunks": {
+        "20261120": [
+          "He went _quiet. truly quiet_ ",
+          "about",
+          " it.",
+          " We noticed."
+        ],
+        "47424": [
+          "He we",
+          "nt",
+          " _qu",
+          "iet. truly quie",
+          "t_ about ",
+          "i",
+          "t. We",
+          " notic",
+          "ed."
+        ]
+      },
       "feed_groups": [
         [
           "He went _quiet. truly quiet_ about it."
@@ -1656,6 +2071,25 @@
         "47424": [
           "{somber}Sorry.[aside] A second beat here.",
           "Yes it is."
+        ]
+      },
+      "seeded_chunks": {
+        "20261120": [
+          "{somber}Sorry.[aside] A secon",
+          "d bea",
+          "t he",
+          "re. Yes it is."
+        ],
+        "47424": [
+          "{somb",
+          "er",
+          "}Sor",
+          "ry.[aside] A se",
+          "cond beat",
+          " ",
+          "here.",
+          " Yes i",
+          "t is."
         ]
       },
       "feed_groups": [

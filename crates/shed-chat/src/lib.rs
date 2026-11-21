@@ -50,6 +50,13 @@
 //! `try: … except Exception:` around `markdown_to_ssml` reads a broken pattern
 //! as "return the text unchanged"; none of them can fail here, and none of them
 //! is allowed to take the reply down with it.
+//!
+//! One transcription difference runs through eight of them. The source writes a
+//! double quote inside a pattern as `\"`, which is Python's *string* syntax and
+//! not the regex's: the compiled pattern holds a plain `"`. Rust raw strings end
+//! at the first `"`, so those eight are written with `#` delimiters and the class
+//! spelled as the characters it really matches — `[A-Z\"']` becomes `[A-Z"']`,
+//! and the fixtures cannot tell the two apart because they are the same class.
 
 /// One `re` pattern from the source, compiled once per process.
 ///
@@ -80,7 +87,9 @@ macro_rules! pattern {
         fn $name() -> Option<&'static fancy_regex::Regex> {
             static COMPILED: std::sync::OnceLock<Option<fancy_regex::Regex>> =
                 std::sync::OnceLock::new();
-            COMPILED.get_or_init(|| fancy_regex::Regex::new($src).ok()).as_ref()
+            COMPILED
+                .get_or_init(|| fancy_regex::Regex::new($src).ok())
+                .as_ref()
         }
     };
 }
@@ -97,21 +106,21 @@ pub use document::{
     parse_model_json_content, parse_model_reply_document, parse_structured_candidate,
     reply_without_prose_tool_calls, settle_prose_tool_calls, ReplyDocument,
 };
-pub use publisher::ReplyStreamPublisher;
+pub use publisher::{PublishFn, ReplyStreamPublisher};
 pub use quality::{
     extract_reply_segments, latest_user_message_text, looks_incomplete,
     looks_like_action_teaser_reply, looks_like_generic_handoff_reply,
-    looks_like_mctrader_action_request, looks_like_recovery_meta_reply,
-    looks_like_task_stub_reply, looks_out_of_character_reply, looks_unusable_reply,
-    merge_completed_reply, strip_tool_call_envelope, tool_calls_in_envelope, RecentEvents,
-    REPLY_SEGMENT_MAX, TEASER_MAX_WORDS,
+    looks_like_mctrader_action_request, looks_like_recovery_meta_reply, looks_like_task_stub_reply,
+    looks_out_of_character_reply, looks_unusable_reply, merge_completed_reply,
+    strip_tool_call_envelope, tool_calls_in_envelope, RecentEvents, REPLY_SEGMENT_MAX,
+    TEASER_MAX_WORDS,
 };
 pub use reply_text::{markdown_to_ssml, normalize_reply_text};
 pub use splitter::SentenceSplitter;
 pub use stream_scanner::JsonReplyStreamScanner;
 pub use streamed::{split_reply_after_stream, streamed_prefix_length, strip_streamed_prefix};
 
-/// `utils/text.py`'s `COMMON_NON_TERMINAL_ABBREVIATIONS`.
+/// `agent.py:283-296`'s `COMMON_NON_TERMINAL_ABBREVIATIONS`.
 ///
 /// One constant on purpose: `normalize_reply_text`'s sentence-spacing callback
 /// and the splitter's abbreviation test both read it, and
@@ -119,7 +128,7 @@ pub use streamed::{split_reply_after_stream, streamed_prefix_length, strip_strea
 /// is a statement that they agree. Lower-cased and without the trailing dot, as
 /// the source stores them, so a caller compares a lower-cased word with its
 /// dots stripped.
-pub(crate) const COMMON_NON_TERMINAL_ABBREVIATIONS: [&str; 12] = [
+pub const COMMON_NON_TERMINAL_ABBREVIATIONS: [&str; 12] = [
     "dr", "e.g", "etc", "i.e", "jr", "mr", "mrs", "ms", "prof", "sr", "st", "vs",
 ];
 
@@ -133,4 +142,43 @@ pub(crate) const COMMON_NON_TERMINAL_ABBREVIATIONS: [&str; 12] = [
 /// need moves it to `shed-text`, which all three are allowed to depend on.
 pub(crate) fn py_strip(value: &str) -> &str {
     value.trim_matches(|c: char| c.is_whitespace() || ('\u{1c}'..='\u{1f}').contains(&c))
+}
+
+/// Python's whitespace predicate, wider than `char::is_whitespace`: `str.split()`,
+/// `str.isspace()` and `re`'s `\s` all count the four file, group, record and
+/// unit separators, and neither Rust's predicate nor Rust's `\s` does.
+///
+/// Every `isspace()` and `split()` in this crate goes through it. The scanner and
+/// the splitter both decide *where to cut* with it, so a character they disagree
+/// about over the Python is a sentence spoken in the wrong place.
+pub(crate) fn py_whitespace_char(ch: char) -> bool {
+    ch.is_whitespace() || ('\u{1c}'..='\u{1f}').contains(&ch)
+}
+
+/// Python's `text.split()`: runs separated by any character Python counts as
+/// whitespace, with no leading or trailing empties.
+pub(crate) fn py_split_whitespace(text: &str) -> Vec<&str> {
+    text.split(py_whitespace_char)
+        .filter(|piece| !piece.is_empty())
+        .collect()
+}
+
+/// `len(text.split())`, the measure two of the reply-quality judgements take.
+pub(crate) fn py_word_count(text: &str) -> usize {
+    py_split_whitespace(text).len()
+}
+
+/// `re.sub(r"\s+", " ", text).strip()`, which is what every "is this text just
+/// boilerplate?" judgement in [`quality`] compares after.
+pub(crate) fn collapse_whitespace(text: &str) -> String {
+    py_split_whitespace(text).join(" ")
+}
+
+/// Python's `str.isdigit()`.
+///
+/// `is_numeric` is the nearest Rust predicate; the two differ only for a
+/// character like `½`, which neither call site — a digit either side of a `.` —
+/// is ever shown.
+pub(crate) fn py_digit(ch: char) -> bool {
+    ch.is_numeric()
 }

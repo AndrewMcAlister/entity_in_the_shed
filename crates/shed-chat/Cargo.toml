@@ -27,3 +27,9 @@ serde_json.workspace = true
 # reply_text.rs: `text_or_empty` is `str(value or "")`, whose falsy half has to
 # run before the string conversion or a JSON `0` answers "0".
 shed-text = { path = "../shed-text" }
+# `settle_prose_tool_calls` is the one place in this crate that reports anything:
+# the source logs a warning when a model writes a tool call as prose, because a
+# reply that *describes* a call instead of making one is a prompt problem worth
+# counting in the log. `tracing` is what every other crate in the workspace uses
+# for that, and it is the second addition to the brief's dependency list.
+tracing = { workspace = true }

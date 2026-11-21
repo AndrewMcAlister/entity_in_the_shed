@@ -930,9 +930,15 @@ def capture_splitter(agent: dict[str, Any]) -> None:
         for size in SPLITTER_CHUNK_SIZES:
             chunks = [text[index : index + size] for index in range(0, len(text), size)]
             per_size[str(size)] = split_with(cls, chunks)
+        # The chunks are recorded next to the answers: `random.Random` is
+        # Python's, so a reader of the fixture could not otherwise rebuild the
+        # sequence that produced a seeded row and would have to take it on faith.
         seeded = {}
+        seeded_chunks_by_seed = {}
         for seed, pieces in ((20261120, 4), (47424, 9)):
-            seeded[str(seed)] = split_with(cls, seeded_chunks(text, seed, pieces))
+            chunks = seeded_chunks(text, seed, pieces)
+            seeded_chunks_by_seed[str(seed)] = chunks
+            seeded[str(seed)] = split_with(cls, chunks)
         # A feed that ends mid-markup holds the boundary; flush still releases the words.
         splitter = cls()
         fed = []
@@ -948,6 +954,7 @@ def capture_splitter(agent: dict[str, Any]) -> None:
                 "whole": whole,
                 "by_chunk_size": per_size,
                 "seeded": seeded,
+                "seeded_chunks": seeded_chunks_by_seed,
                 "feed_groups": fed,
                 "flush": first_flush,
                 "flush_again": splitter.flush(),
